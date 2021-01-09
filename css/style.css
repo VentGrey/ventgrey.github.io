@@ -344,3 +344,10 @@ blockquote {
   border-radius: 4px;
   box-shadow: 0 5px 30px 0 rgba(0, 0, 0, 0.05);
   border-left: 6px solid #367bf0; }
+
+/* Custom Rules */
+.bg-header {
+  background-color: rgba(0, 0, 0, 0.6);
+  background-image: url('../img/bg-img.jpg');
+  height: 100%;
+}
