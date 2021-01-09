@@ -309,9 +309,9 @@ input[type=radio] {
         transform: translate(2.5rem, -1px); }
 
 hr {
-  width: 50%;
-  height: 7px;
-  border: 0; }
+  width: 50% !important;
+  height: 7px !important;
+  border: 0 !important; }
 
 code, pre {
   padding: .5em 1em;
