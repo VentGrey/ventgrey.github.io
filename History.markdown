@@ -1,240 +1,58 @@
-## HEAD
-
-### Documentation
-
-  * Forward port v2.5.1 release (#399)
-  * Docs: remove Google+ (#373)
-  * Update README section on adding favicons to site (#438)
-
-### Minor Enhancements
-
-  * Add Keybase to social links (#400)
-  * Solarized skins (#404)
-  * Add a placeholder of favicons (#433)
-  * fix: make page.list_title optional (#303)
-  * Add stackoverflow to social media list (#443)
-  * Add social support for dev.to (#410)
-  * Add GitLab to social (#352)
-  * Support mutiple authors on post layout (#348)
-  * Re-implement site footer markup and styles (#448)
-  * Support pagination through posts in home layout (#450)
-  * Show the last modified date of posts (#432)
-  * Set margins of hr to improve readability (#461)
-  * Export a variable to let users to custom the font family of code (#462)
-  * Set margin-bottom of pagination (#458)
-  * Adjust margins of headings to make sections clear (#467)
-  * Rename favicons.html to custom-head.html (#468)
-  * Remove RSS icon from the social media list (#470)
-  * Improve the readablility of blockquotes (#481)
-  * Extract more color rules into skins (#452)
-  * Introduce &#34;Dark Minima&#34; skin (#335)
-
-### Major Enhancements
-
-  * Allow skins to be defined and customized easily (#336)
-  * Drop support for scalar &#39;author&#39; configuration (#384)
-  * Place skins in `minima/skins` to clarify purpose (#479)
-
-### Bug Fixes
-
-  * Add missing rel=me attributes to social links (#386)
-  * Set the border radius of highlight (#426)
-  * Removed unnecessary whitespace-controls (#390)
-  * fix: overflow auto for tables (#296)
-  *  Add `overflow-wrap: break-word` to body tag (#321)
-  * Use &#34;rem&#34; unit in relative-font-size mixin (#436)
-  * Assign static value to variable outside forloop (#437)
-  * Add font-size styles for elements h5 and h6 (#441)
-  * Stop prefixing CSS calc with `-webkit-` (#445)
-  * Improve readability of post titles with diacritics (#449)
-  * Fix a bug of incorrect parsing of page.modified_date (#455)
-  * Specify the font size of the root element (#485)
-
-### Development Fixes
-
-  * Ignore .jekyll-cache (#439)
-  * Clean up and optimize .gitignore (#475)
-  * [chore] Normalize Travis CI builds (#480)
-  * chore(deps): bump Ruby version (#510)
-  * Conditionally load GFM-parser gem in CI builds (#535)
-  * Improve CI workflow configuration (#609)
-
-## 2.5.1
-
-### Minor Enhancements
-
-  * Allow use and testing with Jekyll 4.x (#398)
-
-### Bug Fixes
-
-  * Footer overlapping issue (Support Microsoft Explorer 11) (#248)
-  * Update multiline config comment. (#346)
-
-### Development Fixes
-
-  * remove deprecated `sudo: false` in .travis.yml (#347)
-
-## 2.5.0
-
-### Bug Fixes
-
-  * Add `jekyll-feed` plugin in config (#228)
-
-### Minor Enhancements
-
-  * Stick footer for short posts (#223)
-  * Consolidate trigger SVG paths (#148)
-
-## 2.4.1
-
-### Bug Fixes
-
-  * Reintroduce removed social includes for backwards compatibility (#217)
-
-## 2.4.0
-
-### Minor Enhancements
-
-  * Add better system fonts (#205)
-  * Remove whitespace due to Liquid tags in generated HTML (#202)
-  * Adding Mastodon to the social networks (#198)
-
-### Bug Fixes
-
-  * social icons should resolve baseurl properly (#201)
-  * fix: styling main element in IE 11 (#199)
-
-### Documentation
-
-  * Improve thw wording in index.md (#175)
-  * Update config description comment (#203)
-
-## 2.3.0
-
-  * Add option to show excerpts on the homepage (#90)
-  * Handle RSS feed with jekyll-feed (#183)
-  * Test build with Ruby 2.4 on CI (#184)
-  * Document how to customize navigation links (#192)
-
-## 2.2.1
-
-  * Revert social_sites hash for retrocompatibility (#190)
-
-## 2.2.0
-
-### Minor Enhancements
-
-  * handling content outside of posts (#88)
-  * Add default table styles (#144)
-  * Add `jekyll-seo-tag` dependency (#139)
-  * Add Microformats markup (#160)
-  * Add more social links (#141)
-
-### Documentation
-
-  * Docs: clarification about page title (#142)
-
-## 2.1.1 / 2017-04-13
-
-### Minor Enhancements
-
-  * Close #55: Improve mobile user experience (#62)
-  * Remove incomplete status from spec summary (#63)
-  * Use date_format if set in configuration (#70)
-  * Corrected misspelled word (#72)
-  * Scale headings relative to base-font-size (#78)
-  * Remove 2.0 post-install message (#82)
-  * Fixes #115 - Only include the nav tag if there are pages to be displayed in the menu (#116)
-  * Fixes #80, #106. Make the hamburger work with pure CSS. (#111)
-  * add `header_pages` config to link only specific files in header (#52)
-  * More easily customizable CSS (#117)
-  * Use relative size for fonts and line-height (#103)
-  * Add 404 page from jekyll `master` (#121)
-
-### Development Fixes
-
-  * Remove duplicate .sass-cache  (#71)
-  * Demo minima on GitHub Pages (#76)
-  * Remove the Rakefile (#118)
-
-### Documentation
-
-  * Update README with theme content description (#91)
-  * Update default local URL (#120)
-
-## 2.1.0 / 2016-11-15
-
-### Minor Enhancements
-
-  * Update gemspec to require at least Jekyll 3.3 (#59)
-  * Use `absolute_url` filter for disqus (#66)
-  * replace `example/index.html` with `example/index.md` (#58)
-
-### Development Fixes
-
-  * Example should require Jekyll 3.3 (#61)
-
-## 2.0.0 / 2016-10-06
-
-### Minor Enhancements
-
-  * priority to site.url when site.github.url is available (#46)
-  * Move contents of the index.html page to the 'home' layout (#48)
-  * Use  new `absolute_url` and `relative_url` filters in minima (#57)
-
-### Development Fixes
-
-  * Use standardized tab size of 2 spaces (#44)
-
-### Major Enhancements
-
-  * move `css/` directory from jekyll into `assets/` (#43)
-
-### Bug Fixes
-
-  * Fix html proofer errors (#49)
-  * Update gem regex to include new `assets` directory (#54)
-
-## 1.2.0 / 2016-09-12
-
-### Minor Enhancements
-
-  * Look to site.url when available (#35)
-
-### Documentation
-
-  * Move instruction for CSS in install section (#37)
-
-## 1.1.0 / 2016-09-07
-
-### Major Enhancements
-
-  * Add support to Disqus (#21)
-  * Google analytics support (#26)
-  * Look for `site.github.url` if it exists (#25)
-
-### Minor Enhancements
-
-  * Fixed Flash Of Unstyled SVG (#12)
-  * Added "author" in footer instead of double title (#22)
-
-### Documentation
-
-  * Document how to link to the theme styles (#18)
-  * Update Example to resemble Default site (#24)
-
-### Development Enhancements
-
-  * Use upstream gemspec file matcher (#9)
-  * Fix gemspec regex (#31)
-  * Add Travis and a basic smoke test (#33)
-
-## 1.0.1 / 2016-07-28
-
-  * include `_layouts`, `_includes`, and `_sass` dir in gem (#6)
-
-## 1.0.0 / 2016-07-27
-
-  * default layout: html `lang` attribute should allow user customization (#3)
-  * Use `normalize_whitespace` filter for meta description (#4)
-  * Fix repo's URL in contributing (#5)
+## Portafolio Extendido 👨‍💻
+
+Aquí puedes encontrar un portafolio extenso de mi carrera como programador :)
+
+## Creaciones mías 🌟
+
+- [UpVent](https://upvent.codes) - *Una empresa dedicada a crear soluciones de software libre* 🏢
+- [upvent.codes](https://github.com/UpVent/upvent.codes) - *La página oficial de UpVent* (Python, HTML, CSS y JS) 🌎
+- [Orchid](https://github.com/UpVent/orchid) - *Un script para automatizar diferentes tareas de servidor* 🌺
+- [Weeping moon](https://github.com/UpVent/weeping-moon) - *Un script para mejorar la seguridad de instalaciones de Ubuntu Server* 🌙
+- [Epitaph](https://github.com/VentGrey/Epitaph) - *Un tema completo para LeftWM* ☠️
+- [Debian MATE Themes](https://github.com/VentGrey/debian-mate-themes) - *Temas de Ubuntu MATE portados para Debian MATE* 🎨
+- [VentMacs](https://github.com/VentGrey/VentMacs) - *Mi microdistribución personal de Emacs* ✒️
+- [scanrs](https://github.com/VentGrey/scanrs) - *Una biblioteca de Rust para leer entrada estándar* ⌨️
+- [dotfiles](https://github.com/VentGrey/dotfiles) - *Programas y configuraciones personales* ⚙️
+- [Algorithms and data struct](https://github.com/VentGrey/algorithms-and-data-struct) - *Repositorio de algoritmos y estructura de datos* 🪐
+- [Rust Easy Snippets](https://github.com/VentGrey/rust-easy-snippets) - *Pequeños fragmentos de código para evitar usar bibliotecas en Rust* 🪄
+- [Marwaita Icons Remix](https://github.com/VentGrey/Marwaita-Icons-Remix) - *Tema de iconos revivido para Budgie* 🧩
+
+## Contribuciones a la comunidad F.L.O.S.S (Free, Libre and Open Source Software) 🤝
+
+- [Mejoras a indicator-emojitwo de Ubuntu MATE](https://github.com/ubuntu-mate/indicator-emojitwo/pull/2)
+- [Página de manual para LeftWM](https://github.com/leftwm/leftwm/pull/573)
+- [Corrección de bug relacionado con los escritorios en LeftWM](https://github.com/leftwm/leftwm/pull/572)
+- [Adición del icono de Julia en lsd](https://github.com/Peltoche/lsd/pull/444)
+- [Mejora a la documentación de system76](https://github.com/system76/docs/pull/473)
+- [Corrección de versiones en la documentación de system76](https://github.com/system76/docs/pull/379)
+- [Corrección de código en doom-snippets](https://github.com/hlissner/doom-snippets/pull/15)
+- [Traductor en la wiki de Debian](https://wiki.debian.org/CategoryWikiTranslator)
+- [Todas mis contribuciones en la wiki de Funtoo](https://www.funtoo.org/Special:Contributions/Ventgrey)
+- [Numerosos cambios en la wiki de Debian](https://wiki.debian.org/Omar%20Jair%20Purata%20Funes)
+
+## Trabajo (Experiencia Laboral) 👨‍💼
+
+Estos son los lugares donde he trabajado a lo largo de mi carrera como programador:
+
+- Freelancer (2015-2019) 🦅
+  - Numerosos proyectos propios o prototipos que me dieron experiencia para construir mi propio software.
+
+- Ambotics (2019-2020) 🤖
+  - Comencé como desarrollador web, realizando páginas web estáticas y dinámicas por pedido.
+  - Subí en mi posición como DevOps alrededor de Octubre del mismo año que me uní.
+  - Antes de terminar mi trabajo en Ambotics ascendí al puesto de CTO.
+   
+- AsCard (2018 - 2020) 🃏
+  - Realicé mejoras en la página web del proyecto estudiantil y futuro producto AsCard.
+  - Creé multiples proyectos en favor del proyecto como un navegador web sencillo o un editor de tarjetas.
+
+- CyberIndustree (2020 - 2020) 🌳
+  - Colaboré como externo en esta empresa, realizando trabajos a petición de los clientes y mejorando las tecnologías
+  actuales, así como el servidor empresarial.
+
+- BrannAR (2017 - 2019) 🔥
+  - Colaboré con la creación y mantenimiento de los archivos `.iso` de la distribución de Gnu/Linux que mantenían
+  además de ayudar con diferentes medidas de código y seguridad.
+
+- UpVent (2020 - Present) 🚀
+  - Fundé UpVent con la misión de promover una sociedad, educación y movimiento empresarial basado en software libre.
