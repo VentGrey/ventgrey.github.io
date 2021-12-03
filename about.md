@@ -10,16 +10,18 @@ Este sitio es mi blog / sitio personal creado con jekyll y editado con el poder 
 
 ## Software que uso
 
+> Es hermoso, te lo aseguro
+
 ### Básico
 
 * Sistema Operativo
   * Utilizo [Debian](https://debian.org) Gnu/Linux, una distribución madre nacida en 1995. No suelo cambiar mucho de distribución, todas son iguales.
   
 * Terminal
-  * Me gusta utilizar alacritty, de todos los emuladores de terminal considero que es lo que los Méxicanos podemos llamar "El menos pior" por el momento. Odio que pese tanto y consuma los recursos que consume, sin embargo, considero que es bastante útil para las cosas que debería hacer una terminal.
+  * Me gusta utilizar kitty, de todos los emuladores de terminal considero que es lo que los Méxicanos podemos llamar "El menos pior" por el momento. Anteriormente utilizaba alacritty, ahora soy feliz con un emulador de terminal que no come RAM como si fuese juego de steam.
   
 * Shell
-  * Como shell utilizo `bash`. No veo razón para cambiar de shell y si, aunque bash es conocida por ser lenta, no he conocido otra shell que pueda sustituirla con mis criterios. Conozco `zsh` pero sus plugins excesivos, sus "shortcuts" y su manejo extraño de wildcards me mantienen felizmente alejado de ella.
+  * Como shell utilizo `zsh` sin plugins. Bash era lindo, pero como shell interactiva perdió mi amor al ser lenta.
 
 * Entorno de Escritorio
  * ¿Podría llamarlo `ventDE`? Utilizo `leftwm` como manejador de ventanas, con un tema personalizado llamado [Epitaph](https://github.com/VentGrey/Epitaph)
