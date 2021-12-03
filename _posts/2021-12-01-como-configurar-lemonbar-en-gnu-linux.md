@@ -6,15 +6,15 @@ layout: post
 
 Uno de los aspectos de *"Hacer más con menos"* en los window managers es la inclusión de una barra de estado. En entornos de escritorio es posible añadir applets o widgets en pantalla que nos muestren múltiples líneas de información sobre el estado actual de nuestro sistema, esta información puede representar cosas diferentes, la fecha y hora, la batería restante, el estado de la red / bluetooth, la carga del sistema, etc.
 
-Por lo general yo no incluía esta información en mis páneles o en mi escritorio, pues los entornos ya son bastante *"pesados"* en si mismos y añadir cosas encima solo los haría mas lentos. Sin embargo, con un Window Manager ligero a mi disposición consideré que podía darme el lujo de añadir dicha información para verla constantemente. 
+Por lo general yo no incluía esta información en mis paneles o en mi escritorio, pues los entornos ya son bastante *"pesados"* en sí mismos y añadir cosas encima solo los haría más lentos. Sin embargo, con un Window Manager ligero a mi disposición consideré que podía darme el lujo de añadir dicha información para verla constantemente. 
 
-Comencé usando [polybar](https://github.com/polybar/polybar), porque la configuración es sencilla y no toma más de 5 minutos aprender a dejarla con la información que te gusta, el problema para mi es que Polybar consumía 26~30Mb de RAM en mi sistema y esa cantidad de memoria consumida para algo tan sencillo como una barra es **INACEPTABLE**. Por lo que comencé a buscar alternativas que pudiese usar y, luego de ver más de 18 status bar (*todas feas, debo decir*) llegué a la conclusión de que la mejor opción era una barra llamada [lemonbar](https://github.com/LemonBoy/bar). Era la opción más minimalista y tenía una excusa perfecta para usarla: Lemonbar procesa todo por "strings" que uno le pasa a través de un *pipe*, como obtener información y como desplegarla a lemonbar es problema de quien la usa, por lo que, tu te encargas de configurar todo y tu eres el único responsable de que tan rápida y ligera o que tan lenta y pesada es tu barra de estado.
+Comencé usando [polybar](https://github.com/polybar/polybar), porque la configuración es sencilla y no toma más de 5 minutos aprender a dejarla con la información que te gusta, el problema para mí es que Polybar consumía 26~30Mb de RAM en mi sistema y esa cantidad de memoria consumida para algo tan sencillo como una barra es **INACEPTABLE**. Por lo que comencé a buscar alternativas que pudiese utilizar y, luego de ver más de 18 status bar (*todas feas, debo decir*) llegué a la conclusión de que la mejor opción era una barra llamada [lemonbar](https://github.com/LemonBoy/bar). Era la opción más minimalista y tenía una excusa perfecta para usarla: Lemonbar procesa todo por "strings" que uno le pasa a través de un *pipe*, como obtener información y como desplegarla a lemonbar es problema de quien la utiliza, por lo que, tú te encargas de configurar todo y tú eres el único responsable de que tan rápida y ligera o que tan lenta y pesada es tu barra de estado.
 
-Esto era perfecto para mi, pues mataba a dos pájaros de un tiro, tendría una barra que se ajuste 1:1 a mis necesidades Y podría practicar el uso de scripts en shell y programación en C y aprender un par de trucos nuevos. La idea general de una barra de estado es monitorear el sistema y su estado de la forma mas básica que sea legible para nosotros, por lo que no buscaba incluir indicadores de música, layout del window manager o cosas mas vagas como frases aleatorias del comando `fortune`. La implementación final se ve así:
+Esto era perfecto para mí, pues mataba a dos pájaros de un tiro, tendría una barra que se ajuste 1:1 a mis necesidades Y podría practicar el uso de scripts en shell y programación en C y aprender un par de trucos nuevos. La idea general de una barra de estado es monitorear el sistema y su estado de la forma más básica que sea legible para nosotros, por lo que no buscaba incluir indicadores de música, layout del window manager o cosas más vagas como frases aleatorias del comando `fortune`. La implementación final se ve así:
 
 ![lemonbar](https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/master/assets/img/barra.png)
 
-Ahora es momento de explicar como configuré los elementos que se ven en la barra y como tu puedes lograr configuraciones similares en caso de que decidas usar lemonbar en un futuro cercano.
+Ahora es momento de explicar como configuré los elementos que se ven en la barra y como tú puedes lograr configuraciones similares en caso de que decidas usar lemonbar en un futuro cercano.
 
 A grandes rasgos, lemonbar solo dibuja una barra con texto, como meter ese texto es cosa del usuario. El problema de lemonbar viene cuando queremos calcular "al vuelo" e imprimir en la misma barra. Lemonbar no es multihilo / multiproceso y procesar todo bajo el mismo lugar puede ocasionar dos cosas: 
 
@@ -81,7 +81,7 @@ El mismo principio puede ser aplicado a diferentes módulos, con una diferencia 
 
 En el caso de los módulos de batería, volúmen y otros, es mejor hacer un ciclo infinito y poner a "dormir" el trabajo durante algunos segundos o milisegundos antes de volver a actualizar la información.
 
-> Es importante no saltar el `sleep` en este caso, si nuestros módulos se actualizan muy rápido puede ser que tengan un impacto en el CPU de nuestro equipo O que simplemente no permitan a lemonbar dibujar las cosas a tiempo y cause bugs visuales.
+> Es importante no saltar el `sleep` en este caso, si nuestros módulos se actualizan muy rápido puede ser que tengan un impacto en la CPU de nuestro equipo O que simplemente no permitan a lemonbar dibujar las cosas a tiempo y cause bugs visuales.
 
 En mi caso no leo constantemente el módulo de fecha y hora ni el módulo de internet, por lo que, puedo esperar 3 segundos para ver una actualización de los mismos en lemonbar:
 
@@ -166,7 +166,7 @@ Tengo que recalcar que, `leftwm-state` es un comando propio de leftwm que imprim
 ![meme](https://plantillasdememes.com/img/plantillas/ahora-si-viene-lo-chido21574322946.jpg)
 
 Una vez definidos nuestros módulos necesitamos crear un FIFO (siglas para *First In, First Out*), esto lo haremos con una variable y
-el comando `mkfifo`. En sistemas tipo UNIX, `mkfifo` sirve para crear un archivo especial *FIFO* con un nombre o con una ruta. Este archivo especial puede ser leído o escrito por cualquier proceso del mismo modo que un archivo normal.
+el comando `mkfifo`. En sistemas tipo UNIX, `mkfifo` sirve para producir un archivo especial *FIFO* con un nombre o con una ruta. Este archivo especial puede ser leído o escrito por cualquier proceso del mismo modo que un archivo normal.
 
 Primero definimos una variable para la ruta donde deberá ser creado nuestro *fifo*:
 
@@ -209,11 +209,11 @@ B: 86%
 V:100%
 ```
 
-Espera un momento...hay algo raro en esa salida. ¿No notas algo raro?
+Espera un momento...Hay algo raro en esa salida. ¿No notas algo raro?
 
 Exacto, todas las salidas tienen un "prefijo" que consta de una letra, seguida de dos puntos `:`, si eres observador/a te diste cuenta desde el momento en el que definimos las funciones de los módulos. Bueno, estos prefijos los utilizaremos en nuestra función `_Main()`. Esta función se encargará de leer el archivo *fifo* y se encargará de hacer dos cosas:
 
-1. "recortar" la información de cada línea del *fifo*.
+1. "Recortar" la información de cada línea del *fifo*.
 2. Imprimir la información recordada a lemonbar
 
 Veamos primero la función y la explicaremos línea por línea:
@@ -247,7 +247,7 @@ Esto quiere decir que, si la línea actual que está leyendo la función `_Main`
 
 Debajo del `case` simplemente esperamos `0.1` segundos para actualizar la información de la barra, he intentado eliminarlo para que la actualización sea "inmediata", el consumo de CPU no sube mucho, PERO, ocurre lo que dije anteriormente, las cosas son tan rápidas que lemonbar no tiene oportunidad de redibujarse y ocurren bugs visuales.
 
-La orden `printf` es probablemente la más caótica y problemática de todas, por esa razón me reservaré algunos detalles, solo diré que, en ella imprimimos las variables que cambian dentro de `_Main`, podríamos incluirlas "así 'nomas", todos los símbolos extraños y operadores `%{}` son propios de lemonbar y puedes encontrar más informacion de ellos [aquí](https://github.com/LemonBoy/bar#formatting).
+La orden `printf` es probablemente la más caótica y problemática de todas, por esa razón me reservaré algunos detalles, unicamente resaltaré que en ella imprimimos las variables que cambian dentro de `_Main`, podríamos incluirlas *"Así nomas"*, todos los símbolos extraños y operadores `%{}` son propios de lemonbar y puedes encontrar más informacion de ellos [aquí](https://github.com/LemonBoy/bar#formatting).
 
 Como cierre del telón haremos uso de los operadores de redirección de la shell de nuevo, esta vez utilizaremos la redirección de entrada `<`. Más arriba dije que la función iba a leer líneas, las líneas que debe leer son las líneas del archivo *fifo*, por lo que tenemos que redirigir la entrada del fifo a la función `_Main`:
 
@@ -259,7 +259,7 @@ _Main < "$lemon_fifo"
 
 Con esto, lograste crear la primera versión de tu configuración de lemonbar lista y funcional. Ahora es cuestión de empezar a investigar un poco más para ir modificándola poco a poco y dejarla cien por ciento a tu gusto.
 
-El código mostrado en este blog es parte de [Epitaph](https://github.com/VentGrey/Epitaph), un tema para LeftWM creado por mi. Si utilizas este window manager te invito a darle una estrellita en GitHub ⭐
+El código mostrado en este blog es parte de [Epitaph](https://github.com/VentGrey/Epitaph), un tema para LeftWM hecho por mí. Si utilizas este window manager te invito a darle una estrellita en GitHub ⭐
 
 Si deseas encontrar los programas que utilicé para los módulos, puedes encontrarlos todos [aquí](https://github.com/VentGrey/Epitaph/tree/master/scripts/lemonbar). Solo ten en cuenta que, ninguno de ellos es un script de shell, todos fueron escritos en lenguajes compilados y necesitarás un compilador de `C` y de `Rust`. Puedes encontrar las órdenes de compilación de cada uno en el [archivo de instalación de Epitaph](https://github.com/VentGrey/Epitaph/blob/master/install).
 
@@ -267,7 +267,7 @@ Eso es todo por el momento, si te gustó este blog compártelo con tus amigos y 
 
 ---
 
-¿Te gustan estos blogs? Ayúdame a seguir escribiendolos de las siguientes formas:
+¿Te gustan estos blogs? Ayúdame a seguir escribiéndolos de las siguientes formas:
 - [Invítame un café 🍵](https://ko-fi.com/ventgrey)
 - [Regálame un follow en GitHub ❤](https://github.com/VentGrey)
 
