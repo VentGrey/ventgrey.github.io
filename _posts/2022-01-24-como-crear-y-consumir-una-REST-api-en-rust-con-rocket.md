@@ -1,13 +1,24 @@
 ---
 layout: post
 ---
-# Y es que...todos son iguales.
+# Y es que...todas las API son iguales.
 
 Seamos sinceros, todos hemos hecho al menos una REST API en nuestra vida, honestamente es algo de esperarse, siendo el estilo de arquitectura de software más popular de los últimos años. Si bien REST no es algo nuevo (Pues, su existencia puede rastrearse hasta el año 2000) sigue siendo un enfoque de desarrollo modular y en un todo muy conveniente. Sobre todo si hablamos de tecnologías basadas en la web.
 
 No creo que sea necesario dar tanto contexto sobre qué es una REST API, mucho menos en estos años donde podemos encontrar (sin exagerar) miles de sitios donde se nos podría explicar perfectamente que son las REST API, como funcionan, sus casos de uso, ventajas, desventajas y todas esas cosas que nos encanta leer para excusar una flamewar en foros o grupos de chat.
 
 Para esta entrada vamos a ver como crear y consumir una REST API. Con la parte de la creación utilizaremos [Rust](https://www.rust-lang.org/) con [Rocket](https://rocket.rs/) y para la parte del consumo una página web con un script básico debería funcionar. Asímismo voy a utilizar como ejemplo mi proyecto personal "[upventrs](https://github.com/UpVent/upventrs)" (Por: UpVent RustSvelte). Donde pondré ejemplos de como podemos consumir nuestra REST API desde un framework para JavaScript como [Svelte](https://svelte.dev/).
+
+## Prerequisitos
+Este es un trabajo o más bien un proyecto de medio nivel, por lo que se requiere tener un poco de experiencia con el lenguaje de programación Rust y, para la parte del "Frontend" es necesario conocer un poco de Svelte. 
+
+Claro, puedes seguir este tutorial sin cumplir estos prerequisitos, pero te será más complicado entender lo que de por si no puedo explicar a la perfección.
+
+Si te interesa aprender un poco más aquí te dejo una lista de recursos que podrías encontrar interesantes:
+
+- [Ejercicios para dominar Rust](https://github.com/rust-lang/rustlings)
+- [Compilación de ejemplos de Svelte](https://svelte.dev/examples/hello-world)
+- [Svelte en 100 segundos](https://www.youtube.com/watch?v=rv3Yq-B8qp4)
 
 ## Preparando el entorno de trabajo
 Si estás leyendo este tutorial asumiré que ya tienes un poco de experiencia con Rust (por lo menos la [instalación](https://rustup.rs/) debería ser algo que ya lograste hacer con éxito). Para este trabajo vamos a crear un binario de Rust y añadiremos algunas dependencias.
@@ -739,3 +750,7 @@ fn rocket() -> _ {
     )
 }
 ```
+
+## Creando los endpoints
+Casi hemos terminado nuestra REST API, nos falta una parte muy importante que son los *endpoints*, estos devolverán una respuesta diferente dependiendo de la petición que les enviemos o no enviarán nada. Para comenzar a desarrollar nuestros endpoints debemos crear un archivo `routes.rs` en el mismo directorio donde se encuentra nuestro archivo `main.rs` y añadirlo como módulo usando la línea `mod routes;`.
+
