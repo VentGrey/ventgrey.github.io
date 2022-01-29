@@ -347,6 +347,95 @@ El último método nos ayudará a listar múltiples gatos, en caso de que varios
 
 Con esto podemos dar por terminados los métodos comunes y el "esqueleto" de nuestra REST API. Sin embargo esto aún no termina, aun necesitamos probarla, implementar rocket y sus endpoints para que los métodos nos regresen una respuesta en JSON y crear un pequeño frontend para consumir nuestra API de gatitos. 
 
+Nuestro archivo `models.rs` deberá verse así una vez terminemos de implementar estos métodos:
+
+```rust
+use diesel;
+use diesel::prelude::*;
+use diesel::sqlite::SqliteConnection;
+
+use crate::schema::cats;
+use crate::schema::cats::dsl::cats as all_cats;
+
+#[derive(Queryable)]
+pub struct Cat {
+    pub id: i32,
+    pub name: String,
+    pub photo_url: String,
+    pub is_adopted: bool,
+    pub description: String,
+}
+
+#[derive(Insertable)]
+#[table_name = "cats"]
+pub struct NewCat {
+    pub name: String,
+    pub photo_url: String,
+    pub is_adopted: bool,
+    pub description: String,
+}
+
+impl Cat {
+    pub fn show(id: i32, conn: &SqliteConnection) -> Vec<Cat> {
+        all_cats
+            .find(id)
+            .load::<Cat>(conn)
+            .expect("Ocurrió un error al cargar el gato...")
+    }
+
+    pub fn all(conn: &SqliteConnection) -> Vec<Cat> {
+        all_cats
+            .order(cats::id.desc())
+            .load::<Cat>(conn)
+            .expect("Ocurrió un error al cargar todos los gatos...")
+    }
+
+    pub fn update_by_id(id: i32, conn: &SqliteConnection, cat: NewCat) -> bool {
+        use crate::schema::cats::dsl::{
+            description as d, is_adopted as i, name as n, photo_url as p,
+        };
+
+        let NewCat {
+            name,
+            photo_url,
+            is_adopted,
+            description,
+        } = cat;
+
+        diesel::update(all_cats.find(id))
+            .set((
+                n.eq(name),
+                p.eq(photo_url),
+                i.eq(is_adopted),
+                d.eq(description),
+            ))
+            .execute(conn)
+            .is_ok()
+    }
+
+    pub fn insert(cat: NewCat, conn: &SqliteConnection) -> bool {
+        diesel::insert_into(cats::table)
+            .values(&cat)
+            .execute(conn)
+            .is_ok()
+    }
+
+    pub fn delete_by_id(id: i32, conn: &SqliteConnection) -> bool {
+        if Cat::show(id, conn).is_empty() {
+            return false;
+        };
+        diesel::delete(all_cats.find(id)).execute(conn).is_ok()
+    }
+
+    pub fn all_by_name(name: String, conn: &SqliteConnection) -> Vec<Cat> {
+        all_cats
+            .filter(cats::name.eq(name))
+            .load::<Cat>(conn)
+            .expect("Ocurrió un error al cargar los gatos por nombre")
+    }
+}
+```
+
 ## Probando el ORM
 Es tiempo de probar nuestro ORM y ver si es capaz de insertar datos correctamente en la base de datos, para ello necesitaremos hacer modificaciones menores a nuestro archivo `main.rs`, te mostraré como se deberá de ver, no te preocupes, que lo explicaré una vez mostrado el código:
 
@@ -410,3 +499,193 @@ Si tienes buena memoria recordarás que, en nuestro archivo `Cargo.toml` ya colo
 Solo es necesario añadir una línea con los features que deseamos incluir en nuestro proyecto, en este caso necesitamos de las features de JSON para que nuestra REST API pueda enviarnos los datos codificados como JSON a través de sus endpoints. Solo hay que añadir la línea `rocket = { version = "0.5.0-rc.1", features = [ "json" ] }` a nuestro archivo `Cargo.toml` y tenemos todo para ganar.
 
 Hecho esto es recomendable volver a ejecutar `$cargo build` para que Cargo descargue y compile las dependencias necesarias para Rocket. 
+
+## Implementando r2d2
+
+Por el momento nuestra API funciona correctamente, sin embargo tiene un pequeño problema. Establecer una nueva conexión a una base de datos cada vez que necesitamos consumir datos de la misma es ineficiente y pesado en recursos, esto (por experiencia) puede hacer que la máquina que está ejecutando nuestro servidor comience a fallar, que salte el demonio *EarlyOOM* y mate procesos que considere innecesarios (a veces mata cosas importantes) o que simplemente el servidor colapse por falta de recursos. 
+
+Para solucionar este problema existe `r2d2` el cual podría definirse como un "manejador de conexiones" para las bases de datos.
+
+La implementación es corta, no es sencilla y explicarla es complejo.
+
+> Para serte sincero, ni yo tengo idea de que es lo que hice en ese momento, tuve que experimentar mucho con los genéricos, tutoriales y documentación sobre traits en Rust para llegar a un resultado que funcione bien.
+
+Primero debemos crear un archivo llamado `db.rs` en el mismo directorio donde se encuentra nuestro archivo `main.rs` (No olvides incluirlo como módulo dentro de `main.rs` usando `mod db;`), una vez incluido como módulo debemos añadir los siguientes imports al inicio del archivo:
+
+```rust
+use diesel::r2d2::ConnectionManager;
+use diesel::sqlite::SqliteConnection;
+use rocket::http::Status;
+use rocket::outcome::try_outcome;
+use rocket::outcome::Outcome;
+use rocket::request::{self, FromRequest};
+use rocket::{Request, State};
+use std::ops::Deref;
+```
+
+Para ahorrarnos un par de errores en el futuro también es conveniente añadir estas líneas a nuestro archivo `main.rs` debajo del uso de macros de Diesel:
+
+```rust
+#[macro_use]
+extern crate rocket;
+```
+
+En caso de que estés perdido en este punto, nuestro archivo `main.rs` deberá verse así:
+
+```rust
+use diesel::prelude::*;
+use diesel::sqlite::SqliteConnection;
+use dotenv::dotenv;
+use std::env;
+
+#[macro_use]
+extern crate diesel;
+//-- Esto fue lo que añadimos
+#[macro_use]
+extern crate rocket;
+//--
+mod db;
+mod models;
+mod schema;
+
+fn main() {
+    dotenv().ok();
+
+    let database_url = env::var("DATABASE_URL").expect("No se encontró la variable DATABASE_URL");
+    let conn = SqliteConnection::establish(&database_url).unwrap();
+
+    let cat = models::NewCat {
+        name: "Erina".to_string(),
+        photo_url: "https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/master/assets/img/erina.jpg".to_string(),
+        is_adopted: true,
+        description: "Erina es un gato de la raza 'ocicat' adoptada el 6 de Septiembre del 2021, es una gata tranquila y traviesa.".to_string()
+    };
+
+    if models::Cat::insert(cat, &conn) {
+        println!("Se registró el gato correctamente");
+    } else {
+        println!("No se pudo añadir el gato a la base de datos");
+    }
+}
+```
+
+Ahora si, de vuelta a nuestro archivo `db.rs`.
+
+Dentro del mismo haremos un "wrapper" para un manejador de conexiones utilizando la versión de `r2d2` que viene con Diesel, una función de inicialización de manejo de conexiones y finalmente un par de traits para terminar la implementación. 
+
+Como dije anteriormente, este archivo es un poco complejo de explicar y este blog ya es de por si bastante largo, sin embargo no te dejaré con la curiosidad, aquí tienes algunos recursos que utilicé para esto:
+
+- [El trait `FromRequest` de Rocket](https://api.rocket.rs/v0.5-rc/rocket/request/trait.FromRequest.html)
+- ["Guards" con Rocket](https://rocket.rs/v0.5-rc/guide/state/#within-guards)
+- [Primeros pasos con Rocket y r2d2](https://users.rust-lang.org/t/first-baby-steps-with-diesel-r2d2/37858/5)
+- [La implementación de r2d2 de Diesel](https://docs.diesel.rs/diesel/r2d2/index.html?search=j#)
+
+Con esta información servida, el archivo `db.rs` debería verse así:
+
+**NOTA: Esto está diseñado para trabajar con bases de datos SQLite, con cosas como PostgreSQL y/o MySQL/MariaDB tus resultados podrían variar, así que deberás modificar esto de acuerdo a tus necesidades**
+
+```rust
+use diesel::r2d2::ConnectionManager;
+use diesel::sqlite::SqliteConnection;
+use rocket::http::Status;
+use rocket::outcome::try_outcome;
+use rocket::outcome::Outcome;
+use rocket::request::{self, FromRequest};
+use rocket::{Request, State};
+use std::ops::Deref;
+
+// Create a wrapper for the r2d2 Pool object
+pub type Pool = diesel::r2d2::Pool<ConnectionManager<SqliteConnection>>;
+
+pub fn init_pool(db_url: String) -> Pool {
+    let manager = ConnectionManager::<SqliteConnection>::new(db_url);
+    diesel::r2d2::Pool::new(manager).expect("Failed to init database pool!")
+}
+
+// Create a guard for our database connection
+pub struct Conn(pub diesel::r2d2::PooledConnection<ConnectionManager<SqliteConnection>>);
+
+#[rocket::async_trait]
+impl<'r> FromRequest<'r> for Conn {
+    type Error = ();
+
+    async fn from_request(request: &'r Request<'_>) -> request::Outcome<Conn, ()> {
+        let pool = try_outcome!(request.guard::<&State<Pool>>().await);
+        match pool.get() {
+            Ok(conn) => Outcome::Success(Conn(conn)),
+            Err(_) => Outcome::Failure((Status::ServiceUnavailable, ())),
+        }
+    }
+}
+
+impl Deref for Conn {
+    type Target = SqliteConnection;
+
+    // Rust already inlines this, no need to specify the previous decorator.
+    fn deref(&self) -> &Self::Target {
+        &self.0
+    }
+}
+```
+
+Antes de implementar nuestros métodos en `db.rs` tenemos que regresar a nuestro archivo `models.rs` para implementar Serde y así poder codificar nuestras estructuras en JSON.
+
+Dentro de `models.rs` en la parte de los imports necesitamos añadir dos líneas extra, una para el serializador y otra para el deserializador:
+
+```rust
+use rocket::serde::Deserialize;
+use rocket::serde::Serialize;
+```
+
+Debajo, en la estructura `Cat` modificaremos el atributo `derive` para añadir los atributos `Serialize`, `Debug` y `Clone`. 
+
+**NOTA: Es probable que, si incluyes estos atributos, Cargo te arroje un error: `error[E0463]: can't find crate for serde`, esto ocurre por una regla de Rust llamada "Rust Orphan Rule". El fix es sencillo, solo hace falta añadir un atributo extra debajo de derive**
+
+De igual forma modificaremos la estructura `NewCat`, para no alargarme demasiado ambas estructuras deberán verse así:
+
+```rust
+#[derive(Serialize, Queryable, Debug, Clone)]
+#[serde(crate = "rocket::serde")]
+pub struct Cat {
+    pub id: i32,
+    pub name: String,
+    pub photo_url: String,
+    pub is_adopted: bool,
+    pub description: String,
+}
+
+#[derive(Insertable, Serialize, Deserialize)]
+#[serde(crate = "rocket::serde")]
+#[table_name = "cats"]
+pub struct NewCat {
+    pub name: String,
+    pub photo_url: String,
+    pub is_adopted: bool,
+    pub description: String,
+}
+```
+
+Con esto la serialización y deserialización de nuestras estructuras en JSON está "casi" completa. 
+
+Es tiempo de implementar nuestro manejador de conexiones de bases de datos junto con rocket en nuestro archivo `main.rs`
+
+## Rocket y las rutas
+Para comenzar con Rocket es necesario modificar nuestra función `main`. Hay muchas formas de hacer esto según la documentación de Rocket, sin embargo yo recomiendo que eliminemos lo poco que tenemos en la función `main` y lo reemplazemos por esto:
+
+```rust
+#[get("/")]
+fn index() -> &'static str {
+    "Hello, world!"
+}
+
+#[launch]
+fn rocket() -> _ {
+    rocket::build().mount("/", routes![index])
+}
+```
+
+Solo debemos restaurar dos líneas para que el funcionamiento se acerque a lo que teníamos antes (no te preocupes por la prueba de inserción de datos, eso lo manejaremos más tarde):
+
+```rust
+
+```
