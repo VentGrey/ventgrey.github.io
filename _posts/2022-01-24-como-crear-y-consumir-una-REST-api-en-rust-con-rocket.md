@@ -724,3 +724,18 @@ La primer función utiliza un macro declarativo y fungirá como el índice de nu
 Asimismo en la función debajo hace algo similar, solo que utilizará los macros declarativos para servir archivos estáticos, en este caso todos los que se encuentren en el directorio `public/`.
 
 Por el momento no crearemos ningún archivo estático. Recuerda que al inicio del tutorial dije que utilizaríamos Svelte como framework de JavaScript para ejemplificar como consumir esta pequeña API. 
+
+Ahora debemos añadir nuestras rutas estáticas a la función `rocket` en nuestro archivo `main.rs`, con las rutas añadidas la función `rocket` ahora debería verse así:
+
+```rust
+#[launch]
+fn rocket() -> _ {
+    dotenv().ok();
+    let db_url: String = env::var("DATABASE_URL").expect("set DATABASE_URL");
+    let pool = db::init_pool(db_url);
+    rocket::build().mount(
+        "/",
+        routes![crate::static_files::all, crate::static_files::index],
+    )
+}
+```
