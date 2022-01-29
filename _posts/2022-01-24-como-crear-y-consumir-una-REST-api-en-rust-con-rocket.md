@@ -684,8 +684,43 @@ fn rocket() -> _ {
 }
 ```
 
-Solo debemos restaurar dos líneas para que el funcionamiento se acerque a lo que teníamos antes (no te preocupes por la prueba de inserción de datos, eso lo manejaremos más tarde):
+Solo debemos restaurar dos líneas para que el funcionamiento se acerque a lo que teníamos antes (no te preocupes por la prueba de inserción de datos, eso lo manejaremos más tarde), podemos aprovechar para utilizar nuestro manejador de conexiones de bases de datos en `db.rs` aquí:
 
 ```rust
-
+#[launch]
+fn rocket() -> _ {
+    dotenv().ok();
+    let db_url: String = env::var("DATABASE_URL").expect("set DATABASE_URL");
+	// -- Se añadió esta linea
+    let pool = db::init_pool(db_url);
+	// --
+    rocket::build().mount("/", routes![index])
+}
 ```
+
+## Manejando archivos estáticos
+Algo que nos sería de mucha utilidad sería una ruta para manejar los archivos estáticos y servirlos si son requeridos por el usuario. Para esto es necesario repetir el paso donde creamos un módulo. En el mismo directorio donde se encuentra `main.rs` debemos crear un archivo llamado `static_files.rs` y lo incluimos en `main.rs` con la línea `mod static_files;`.
+
+Dentro de `static_files.rs` colocaremos el siguiente código:
+
+```rust
+use rocket::fs::NamedFile;
+use std::io;
+use std::path::{Path, PathBuf};
+
+#[get("/")]
+pub async fn index() -> io::Result<NamedFile> {
+    NamedFile::open("public/index.html").await
+}
+
+#[get("/<file..>", rank = 5)]
+pub async fn all(file: PathBuf) -> Option<NamedFile> {
+    NamedFile::open(Path::new("public/").join(file)).await.ok()
+}
+```
+
+La primer función utiliza un macro declarativo y fungirá como el índice de nuestra página web servida con Rocket. Esta función `index` regresará un resultado con un archivo, el archivo en cuestión es un `index.html` dentro del directorio `public/`.
+
+Asimismo en la función debajo hace algo similar, solo que utilizará los macros declarativos para servir archivos estáticos, en este caso todos los que se encuentren en el directorio `public/`.
+
+Por el momento no crearemos ningún archivo estático. Recuerda que al inicio del tutorial dije que utilizaríamos Svelte como framework de JavaScript para ejemplificar como consumir esta pequeña API. 
