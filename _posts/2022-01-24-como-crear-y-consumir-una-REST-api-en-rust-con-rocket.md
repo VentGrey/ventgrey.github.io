@@ -752,5 +752,113 @@ fn rocket() -> _ {
 ```
 
 ## Creando los endpoints
-Casi hemos terminado nuestra REST API, nos falta una parte muy importante que son los *endpoints*, estos devolverán una respuesta diferente dependiendo de la petición que les enviemos o no enviarán nada. Para comenzar a desarrollar nuestros endpoints debemos crear un archivo `routes.rs` en el mismo directorio donde se encuentra nuestro archivo `main.rs` y añadirlo como módulo usando la línea `mod routes;`.
+Casi hemos terminado nuestra REST API, nos falta una parte muy importante que son los *endpoints*, estos devolverán una respuesta diferente dependiendo de la petición HTTP que les enviemos (GET, POST, UPDATE, DELETE, etc) o no enviarán nada. Para comenzar a desarrollar nuestros endpoints debemos crear un archivo `routes.rs` en el mismo directorio donde se encuentra nuestro archivo `main.rs` y añadirlo como módulo usando la línea `mod routes;`.
 
+Dentro de nuestro archivo `routes.rs` debemos incluir los siguientes imports:
+
+```rust
+use crate::db::Conn as DbConn;
+use crate::models::{Cat, NewCat};
+use rocket::serde::json::{json, Json, Value};
+```
+
+### Endpoint: index
+La primera cosa que implementaremos en nuestra API será un endpoint que nos permitirá sacar toda la información de nuestra base de datos en una sola operación. Rocket nos puede ayudar con el uso de atributos, en este caso atributos especiales para manejo de rutas y respuestas:
+
+```rust
+#[get("/cats", format = "application/json")]
+pub fn index(conn: DbConn) -> Json<Value> {
+    let cats: Vec<Cat> = Cat::all(&conn);
+
+    Json(json!({
+        "status": 200,
+        "result": cats,
+    }))
+}
+```
+
+La función hará una conexión a nuestra base de datos y regresará los datos ya formateados como JSON, dentro del JSON regresaremos dos cosas, el código de salida (200 en caso de que todo vaya bien) y `"result"` que será un arreglo enorme con todos los gatos que tengamos registrados en nuestra base de datos.
+
+### Endpoint: new
+
+Ahora necesitamos crear un endpoint que nos permita crear un nuevo gato si es necesario:
+
+```rust
+#[post("/cats", format = "application/json", data = "<new_cat>")]
+pub fn new(conn: DbConn, new_cat: Json<NewCat>) -> Json<Value> {
+    Json(json!({
+        "status": Cat::insert(new_cat.into_inner(), &conn),
+        "result": Cat::all(&conn).first(),
+    }))
+}
+```
+
+El atributo que usaremos esta vez sirve para procesar peticiones POST, de igual forma la respuesta será en formato JSON, con la diferencia que ahora tendremos un campo nuevo llamado `data` el cual guardará un nuevo gato, en nuestro caso es el gato que guardaremos en la base de datos. Esta función nos devolverá un JSON con el estatus de salida de la inserción del gato y el resultado que es el mismo gato que acabamos de insertar en la base de datos.
+
+### Endpoint: show
+
+```rust
+#[get("/cats/<id>", format = "application/json")]
+pub fn show(conn: DbConn, id: i32) -> Json<Value> {
+    let result: Vec<Cat> = Cat::show(id, &conn);
+    let status: i32 = if result.is_empty() { 404 } else { 200 };
+
+    Json(json!({
+        "status": status,
+        "result": result.get(0),
+    }))
+}
+```
+
+
+### Endpoint: update
+
+
+```rust
+#[put("/cats/<id>", format = "application/json", data = "<cat>")]
+pub fn update(conn: DbConn, id: i32, cat: Json<NewCat>) -> Json<Value> {
+    let status: i32 = if Cat::update_by_id(id, &conn, cat.into_inner()) {
+        200
+    } else {
+        404
+    };
+
+    Json(json!({
+        "status": status,
+        "result": null,
+    }))
+}
+```
+
+
+### Endpoint: delete
+
+
+```rust
+#[delete("/cats/<id>")]
+pub fn delete(id: i32, conn: DbConn) -> Json<Value> {
+    let status: i32 = if Cat::delete_by_id(id, &conn) {
+        200
+    } else {
+        404
+    };
+    Json(json!({
+        "status": status,
+        "result": null,
+    }))
+}
+```
+
+
+### Endpoint: name
+
+
+```rust
+#[get("/cats/names/<name>", format = "application/json")]
+pub fn name(name: String, conn: DbConn) -> Json<Value> {
+    Json(json!({
+        "status": 200,
+        "result": Cat::all_by_name(name, &conn),
+    }))
+}
+```
