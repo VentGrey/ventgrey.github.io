@@ -195,3 +195,218 @@ table! {
 }
 ```
 
+Si todo se generó correctamente, ahora podemos continuar editando nuestro archivo `models.rs` y añadir los siguientes imports debajo de diesel.
+
+```rust
+use crate::schema::cats;
+use crate::schema::cats::dsl::cats as all_cats;
+```
+
+Como dato importante, no debemos olvidar que debemos añadir `mod schema;` en nuestro archivo `main.rs` para incluirlo como módulo en nuestro proyecto de Rust. 
+
+Ahora viene una parte interesante. Para manejar las inserciones, modificaciones o eliminaciones de los registros en nuestra base de datos, necesitaremos de una segunda estructura con propiedades insertables y que apunte a un nombre de tabla en específico, solo hace falta copiar nuestra estructura anterior, eliminar el campo de identificación, añadir el prefijo `New` y un par de atributos por encima de la misma, estos atributos son `#[derive(Insertable)]` y `#[table_name = "cats"]`, en nuestro caso la estructura debería verse así:
+
+```rust
+#[derive(Insertable)]
+#[table_name = "cats"]
+pub struct NewCat {
+    pub name: String,
+    pub photo_url: String,
+    pub is_adopted: bool,
+    pub description: String,
+}
+```
+
+Se lo que estás pensando: *"Mi IDE me está diciendo que tengo errores por todos lados*", no te preocupes, esto pasa porque no le hemos indicado a Rust que deseamos utilizar los macros que vienen dentro de Diesel, esto se soluciona fácilmente añadiendo un par de líneas a nuestro archivo `main.rs`:
+
+```rust
+// -- Bibliotecas
+use std::io;
+
+// -- Usar los macros de Diesel
+#[macro_use]
+extern crate diesel;
+
+// -- Módulos
+mod models;
+mod schema;
+
+fn main() {
+    println!("Hello, world!");
+}
+```
+
+Esto debería eliminar los errores de compilación, quedarán un par de warnings, pero iremos eliminándolas poco a poco. Ahora, regresemos a nuestro archivo `models.rs` para crear los métodos comunes, para esto necesitamos crear una implementación `impl` para nuestra estructura `Cat`. Dentro de `models.rs` crearemos un nuevo bloque de implementación y en las siguientes secciones describiré los métodos que este bloque deberá contener. (No tienen que estar en el mismo orden.) De igual forma, si te pierdes en el proceso recuerda que al final del blog hay un enlace a un repositorio de GitHub donde podrás bajar el proyecto como plantilla, dentro de `models.rs` abre un nuevo bloque debajo de `NewCat`:
+
+```rust
+impl Cat {
+// -- Métodos aquí
+}
+```
+
+**NOTA**: Algunos métodos regresarán Vectores con datos y, más abajo será muy notorio por que, sin embargo, otros métodos regresarán solo un booleano para saber si la operación fue satisfactoria o no. Si aún no dominas las funciones y sus tipos de retorno en Rust te recomiendo volver a leer [el libro](https://doc.rust-lang.org/book/).
+
+### El método show
+El método show nos permitirá mostrar una entrada de la base de datos en específico basados en el identificador, en pocas palabras nos mostrará los datos de el gato que nosotros necesitemos, siempre y cuando el gato exista y tenga un identificador válido.
+
+Dentro de nuestro bloque `impl Cat{...}` podemos añadir el método `show` de la siguiente forma:
+
+```rust
+    pub fn show(id: i32, conn: &SqliteConnection) -> Vec<Cat> {
+        all_cats
+            .find(id)
+            .load::<Cat>(conn)
+            .expect("Ocurrió un error al cargar el gato...")
+    }
+```
+
+Considero que no es necesario explicar la estructura de la función en si, la parte interesante está en la forma de hacer consultas, `find()` busca por "llave primaria" según la [documentación de Diesel](https://docs.diesel.rs/1.4.x/diesel/dsl/type.Find.html), en este caso `id` lo definimos como una llave primaria en nuestra tabla SQL. Por otra parte `load` ejecuta una consulta y regresa un vector de resultados, al combinarlos tenemos la consulta completa donde primero buscamos al gato cuyo `id` sea igual al del parámetro de la función y luego ejecutamos la consulta, regresando un Vector de un solo elemento que en este caso es, el gato consultado. 
+
+No explicaré la parte del manejo de errores con `expect`, ya que es similar a `unwrap` pero con la habilidad de poner un mensaje de error personalizado, puedes leer más al respecto [aquí](https://learning-rust.github.io/docs/e4.unwrap_and_expect.html).
+
+### El método all
+Este método nos arrojará un vector con todos los registros que tengamos en la base de datos de la estructura que le pedimos, en este caso `Cat`. El método es el siguiente:
+
+```rust
+    pub fn all(conn: &SqliteConnection) -> Vec<Cat> {
+        all_cats
+            .order(cats::id.desc())
+            .load::<Cat>(conn)
+            .expect("Ocurrió un error al cargar todos los gatos...")
+    }
+```
+
+Por conveniencia, ordenaremos los gatos de forma descendente por identificador y luego ejecutaremos la consulta.
+
+### El método update by id
+Este método nos permitirá actualizar la información de un solo gato siempre y cuando tengamos un identificador del mismo. Su estructura es un poco más compleja que las otras funciones porque requiere de consultar y reescribir todos y cada uno de los campos del gato en cuestión. El método es demasiado largo para explicarlo correctamente sin dar vueltas en múltiples temas, en muy resumidas cuentas, estamos creando una estructura con nuevo gato que reemplazará a al gato que Diesel encuentre en la línea `diesel::update(all_cats.find(id))`.
+
+El método es el siguiente:
+
+```rust
+    pub fn update_by_id(id: i32, conn: &SqliteConnection, cat: NewCat) -> bool {
+        use crate::schema::cats::dsl::{
+            description as d, is_adopted as i, name as n, photo_url as p,
+        };
+
+        let NewCat {
+            name,
+            photo_url,
+            is_adopted,
+            description,
+        } = cat;
+
+        diesel::update(all_cats.find(id))
+            .set((
+                n.eq(name),
+                p.eq(photo_url),
+                i.eq(is_adopted),
+                d.eq(description),
+            ))
+            .execute(conn)
+            .is_ok()
+    }
+```
+
+### El método insert
+Insert, como su nombre lo dice nos permitirá insertar un nuevo gato en el registro de nuestra base de datos. El método no tiene mucha ciencia, solo debemos enviar una estructura `NewCat` al método (ya llena) y el se encargará de crear un nuevo registro en la base de datos con las medidas pertinentes. El método es el siguiente:
+
+```rust
+    pub fn insert(cat: NewCat, conn: &SqliteConnection) -> bool {
+        diesel::insert_into(cats::table)
+            .values(&cat)
+            .execute(conn)
+            .is_ok()
+    }
+```
+
+### El método delete by id
+Este método eliminará de la base de datos el gato con el id que solicitemos. Para evitar una operación incorrecta primero revisará si la tabla donde buscamos borrar el gato se encuentra vacía, si lo está simplemente regresará `false` pues no hay nada que borrar. El método es el siguiente:
+
+```rust
+    pub fn delete_by_id(id: i32, conn: &SqliteConnection) -> bool {
+        if Cat::show(id, conn).is_empty() {
+            return false;
+        };
+        diesel::delete(all_cats.find(id)).execute(conn).is_ok()
+    }
+````
+
+
+### El método all by name
+El último método nos ayudará a listar múltiples gatos, en caso de que varios tengan el mismo nombre y necesitemos buscar uno en específico o en caso de que necesitemos trabajar con todos los gatos llamados "Misifu". El método es el siguiente:
+
+```rust
+    pub fn all_by_name(name: String, conn: &SqliteConnection) -> Vec<Cat> {
+        all_cats
+            .filter(cats::name.eq(name))
+            .load::<Cat>(conn)
+            .expect("Ocurrió un error al cargar los gatos por nombre")
+    }
+```
+
+Con esto podemos dar por terminados los métodos comunes y el "esqueleto" de nuestra REST API. Sin embargo esto aún no termina, aun necesitamos probarla, implementar rocket y sus endpoints para que los métodos nos regresen una respuesta en JSON y crear un pequeño frontend para consumir nuestra API de gatitos. 
+
+## Probando el ORM
+Es tiempo de probar nuestro ORM y ver si es capaz de insertar datos correctamente en la base de datos, para ello necesitaremos hacer modificaciones menores a nuestro archivo `main.rs`, te mostraré como se deberá de ver, no te preocupes, que lo explicaré una vez mostrado el código:
+
+```rust
+use diesel::prelude::*;
+use diesel::sqlite::SqliteConnection;
+use dotenv::dotenv;
+use std::env;
+
+#[macro_use]
+extern crate diesel;
+
+mod models;
+mod schema;
+
+fn main() {
+    dotenv().ok();
+
+    let database_url = env::var("DATABASE_URL").expect("No se encontró la variable DATABASE_URL");
+    let conn = SqliteConnection::establish(&database_url).unwrap();
+
+    let cat = models::NewCat {
+        name: "Erina".to_string(),
+        photo_url: "https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/master/assets/img/erina.jpg".to_string(),
+        is_adopted: true,
+        description: "Erina es un gato de la raza 'ocicat' adoptada el 6 de Septiembre del 2021, es una gata tranquila y traviesa.".to_string()
+    };
+
+    if models::Cat::insert(cat, &conn) {
+        println!("Se registró el gato correctamente");
+    } else {
+        println!("No se pudo añadir el gato a la base de datos");
+    }
+}
+```
+
+Primero lo primero importamos las cosas necesarias. Dentro de la función `main` tenemos `dotenv().ok()`, de acuerdo a la [documentación de dotenv](https://docs.rs/dotenv/latest/dotenv/fn.dotenv.html), esto es todo lo que necesitamos para que la biblioteca lea el archivo `.env` que creamos antes y la cargue en memoria. Luego tenemos la variable `database_url` que utiliza `std::env` para leer una variable de entorno y guardarla como un `String` si es que la encuentra, en caso de no encontrarla el programa se detendrá y Rust nos enviará un error informándonos que dicha variable no se encontró.
+
+La variable `conn` la utilizamos para crear una conexión a la base de datos Sqlite que creamos antes, esta se realiza utilizando la variable `database_url`, como regresa un `Result` podemos (aunque no es recomendado) utilizar el método `unwrap`, pues, si todo va bien no es necesario reportar nada, pero si falla, no tiene sentido continuar con la ejecución del programa,  por lo tanto Rust hará que el programa falle directamente y termine su ejecución.
+
+Debajo creamos una variable `cat` la cual solo es una estructura `NewCat` con los datos de un gato, en mi caso utilicé a mi gata Erina como prueba. Debajo de la declaración solo creamos una condicional para ver si la inserción en la base de datos fue realizada correctamente.
+
+Si seguimos estos pasos al pie de la letra deberíamos poder ejecutar el comando `$ cargo run` y obtener la siguiente salida:
+
+```
+warning: `rest-rust-template` (bin "rest-rust-template") generated 5 warnings
+    Finished dev [unoptimized + debuginfo] target(s) in 0.67s
+     Running `target/debug/rest-rust-template`
+Se registró el gato correctamente
+```
+
+Véase la última línea: `Se registró el gato correctamente`. Para comprobar esto utilizaré la herramienta [sqlite browser](https://sqlitebrowser.org/) para revisar la base de datos y comprobar que en efecto, Erina fue registrada correctamente:
+
+![Imágen del explorador de Sqlite mostrando el registro de Erina](https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/master/assets/img/sqlite.png)
+
+¡Perfecto! Nuestros métodos de inserción funcionan. Ahora tomemos el camino riesgoso y comencemos a modificar nuestra API como bestias sin haber probado los otros métodos.
+
+## Añadiendo rocket con soporte para JSON
+Si tienes buena memoria recordarás que, en nuestro archivo `Cargo.toml` ya colocamos `r2d2` como *"feature"* de Diesel en su momento, esto con la finalidad de evitar esa mala práctica de importar una nueva versión de una biblioteca cuando no es requerida forzosamente. Ahora haremos lo mismo con Rocket, normalmente se añade rocket, serde, serde-json y otras dependencias al archivo `Cargo.toml`, gracias al cielo con Rocket v0.5-rc1 esto ya no pasa, pues el soporte para JSON viene como *feature* y las crates de `rocket_codegen` y `rocket_contrib` ya se encuentran *deprecated*. 
+
+Solo es necesario añadir una línea con los features que deseamos incluir en nuestro proyecto, en este caso necesitamos de las features de JSON para que nuestra REST API pueda enviarnos los datos codificados como JSON a través de sus endpoints. Solo hay que añadir la línea `rocket = { version = "0.5.0-rc.1", features = [ "json" ] }` a nuestro archivo `Cargo.toml` y tenemos todo para ganar.
+
+Hecho esto es recomendable volver a ejecutar `$cargo build` para que Cargo descargue y compile las dependencias necesarias para Rocket. 
