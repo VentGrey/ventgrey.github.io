@@ -796,6 +796,7 @@ pub fn new(conn: DbConn, new_cat: Json<NewCat>) -> Json<Value> {
 El atributo que usaremos esta vez sirve para procesar peticiones POST, de igual forma la respuesta será en formato JSON, con la diferencia que ahora tendremos un campo nuevo llamado `data` el cual guardará un nuevo gato, en nuestro caso es el gato que guardaremos en la base de datos. Esta función nos devolverá un JSON con el estatus de salida de la inserción del gato y el resultado que es el mismo gato que acabamos de insertar en la base de datos.
 
 ### Endpoint: show
+Ahora ¿Qué pasa si necesitamos consultar un gato en específico? Simple, ahora necesitamos hacer un endpoint que nos permita hacer eso mismo, en esta caso lo llamaremos `show`:
 
 ```rust
 #[get("/cats/<id>", format = "application/json")]
@@ -810,9 +811,10 @@ pub fn show(conn: DbConn, id: i32) -> Json<Value> {
 }
 ```
 
+Este endpoint vuelve a hacer uso del macro `GET`, solo que en este caso utiliza las directivas especiales de las rutas de Rocket, llamadas *Dynamic Paths* (mas información [aquí](https://rocket.rs/v0.5-rc/guide/requests/#dynamic-paths)). Con esto podemos consultar el ID de un gato en específico y Rocket sabrá dirigirnos al mismo, lo mejor de todo es que nos devolverá el gato ya codificado como JSON.
 
 ### Endpoint: update
-
+¿Registraste mal un gato? ¿Alguien ya lo adoptó? Para eso podemos crear un endpoint `update`:
 
 ```rust
 #[put("/cats/<id>", format = "application/json", data = "<cat>")]
@@ -830,9 +832,13 @@ pub fn update(conn: DbConn, id: i32, cat: Json<NewCat>) -> Json<Value> {
 }
 ```
 
+Empiezo a pensar que todas las cosas que impliquen un update siempre serán un despelote....`¯\_(ツ)_/¯` anyways.
+
+Este método necesitará que le digamos en la URI el ID del gato que deseamos actualizar, para esto será necesario enviar un nuevo gato. La condicional en el JSON devuelto dependerá de la salida del comando de actualización. Si el gato pudo actualizarse correctamente el status de salida será un 200, en cualquier otro caso devolveremos un error 404 (Es recomendable manejar los errores mejor de lo que yo lo hice, pues una actualización no solo podría fallar por no encontrar un gato, si no por un error de servidor).
 
 ### Endpoint: delete
 
+Casi hemos terminado, ahora necesitamos un endpoint para eliminar un gato de la base de datos en caso de que lo necesitemos.
 
 ```rust
 #[delete("/cats/<id>")]
