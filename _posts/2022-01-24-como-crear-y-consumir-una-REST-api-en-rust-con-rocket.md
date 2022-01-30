@@ -1192,7 +1192,19 @@ pub fn name(name: String, conn: DbConn) -> Json<Value> {
 El archivo para manejar archivos estáticos en Rocket deberá verse así:
 
 ```rust
+use rocket::fs::NamedFile;
+use std::io;
+use std::path::{Path, PathBuf};
 
+#[get("/")]
+pub async fn index() -> io::Result<NamedFile> {
+    NamedFile::open("public/index.html").await
+}
+
+#[get("/<file..>", rank = 5)]
+pub async fn all(file: PathBuf) -> Option<NamedFile> {
+    NamedFile::open(Path::new("public/").join(file)).await.ok()
+}
 ```
 
 ### src/schema.rs
