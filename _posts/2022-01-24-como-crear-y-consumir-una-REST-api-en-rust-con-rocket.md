@@ -956,7 +956,7 @@ fn rocket() -> _ {
     rocket::build()
         .manage(pool)
         .mount(
-            "/api/v1/",
+            "/api/",
             routes![
                 crate::routes::index,
                 crate::routes::new,
@@ -1005,7 +1005,7 @@ fn rocket() -> _ {
     rocket::build()
         .manage(pool)
         .mount(
-            "/api/v1/",
+            "/api/",
             routes![
                 crate::routes::index,
                 crate::routes::new,
@@ -1235,3 +1235,63 @@ Si ponemos atención a la sección que dice: `🛰  Routes:` podemos darnos cuen
 
 En una nueva terminal intentemos ejecutar la siguiente orden:
 
+```sh
+curl -v http://127.0.0.1:8000/api/cats/
+```
+
+La salida de la terminal debería ser:
+
+```
+*   Trying 127.0.0.1:8000...
+* Connected to 127.0.0.1 (127.0.0.1) port 8000 (#0)
+> GET /api/cats/ HTTP/1.1
+> Host: 127.0.0.1:8000
+> User-Agent: curl/7.74.0
+> Accept: */*
+> 
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< content-type: application/json
+< server: Rocket
+< permissions-policy: interest-cohort=()
+< x-frame-options: SAMEORIGIN
+< x-content-type-options: nosniff
+< content-length: 567
+< date: Sun, 30 Jan 2022 05:29:32 GMT
+< 
+* Connection #0 to host 127.0.0.1 left intact
+{"result":[{"description":"Erina es un gato de la raza 'ocicat' adoptada el 6 de Septiembre del 2021, es una gata tranquila y traviesa.","id":2,"is_adopted":true,"name":"Erina","photo_url":"https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/master/assets/img/erina.jpg"},{"description":"Erina es un gato de la raza 'ocicat' adoptada el 6 de Septiembre del 2021, es una gata tranquila y traviesa.","id":1,"is_adopted":true,"name":"Erina","photo_url":"https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/master/assets/img/erina.jpg"}],"status":200}
+```
+
+Si miramos la pantalla de Rocket podremos ver que la salida muestra nuevas líneas:
+
+```
+GET /api/cats/:
+   >> Matched: (index) GET /api/cats application/json
+   >> Outcome: Success
+   >> Response succeeded.
+```
+
+¡Perfecto! Ahora probemos si podemos insertar un nuevo gato con la siguiente orden de curl:
+
+```sh
+
+```
+
+La salida de la terminal debería ser la siguiente:
+
+```
+
+```
+
+Ahora comprobemos si nuestro gato nuevo fue registrado con éxito, con la primer orden que hicimos:
+
+```sh
+
+```
+
+¡Perfecto! ¡Funciona!
+
+```
+
+```
