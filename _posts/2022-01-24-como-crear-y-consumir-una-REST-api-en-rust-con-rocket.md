@@ -1212,7 +1212,15 @@ pub async fn all(file: PathBuf) -> Option<NamedFile> {
 El archivo autogenerado por Diesel deberá verse así:
 
 ```rust
-
+table! {
+    cats (id) {
+        id -> Integer,
+        name -> Text,
+        photo_url -> Text,
+        is_adopted -> Bool,
+        description -> Text,
+    }
+}
 ```
 
 ## Probando nuestra REST API
