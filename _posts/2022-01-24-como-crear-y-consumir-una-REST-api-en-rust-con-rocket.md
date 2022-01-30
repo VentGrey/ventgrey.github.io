@@ -1275,23 +1275,65 @@ GET /api/cats/:
 ¡Perfecto! Ahora probemos si podemos insertar un nuevo gato con la siguiente orden de curl:
 
 ```sh
-
+curl -d '{ "id":3, "name":"Erino", "photo_url":"https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/master/assets/img/erino.jpeg", "is_adopted":true, "description":"Erino es el hijo de Erina, es un gato de la misma raza, pequeño y travieso. Le gusta dormir estirado" }' -H 'Content-Type: application/json' http://127.0.0.1:8000/api/cats
 ```
 
 La salida de la terminal debería ser la siguiente:
 
 ```
-
+{"result":{"description":"Erino es el hijo de Erina, es un gato de la misma raza, pequeño y travieso. Le gusta dormir estirado","id":3,"is_adopted":true,"name":"Erino","photo_url":"https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/master/assets/img/erino.jpeg"},"status":true}
 ```
 
 Ahora comprobemos si nuestro gato nuevo fue registrado con éxito, con la primer orden que hicimos:
 
 ```sh
-
+curl -v http://127.0.0.1:8000/api/cats/                                                                         ~*   Trying 127.0.0.1:8000...* Connected to 127.0.0.1 (127.0.0.1) port 8000 (#0)
+> GET /api/cats/ HTTP/1.1
+> Host: 127.0.0.1:8000
+> User-Agent: curl/7.74.0
+> Accept: */*
+> 
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< content-type: application/json
+< server: Rocket
+< permissions-policy: interest-cohort=()
+< x-frame-options: SAMEORIGIN
+< x-content-type-options: nosniff
+< content-length: 832
+< date: Sun, 30 Jan 2022 05:50:28 GMT
+< 
+* Connection #0 to host 127.0.0.1 left intact
+{"result":[{"description":"Erino es el hijo de Erina, es un gato de la misma raza, pequeño y travieso. Le gusta dormir estirado","id":3,"is_adopted":true,"name":"Erino","photo_url":"https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/master/assets/img/erino.jpeg"},{"description":"Erina es un gato de la raza 'ocicat' adoptada el 6 de Septiembre del 2021, es una gata tranquila y traviesa.","id":2,"is_adopted":true,"name":"Erina","photo_url":"https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/master/assets/img/erina.jpg"},{"description":"Erina es un gato de la raza 'ocicat' adoptada el 6 de Septiembre del 2021, es una gata tranquila y traviesa.","id":1,"is_adopted":true,"name":"Erina","photo_url":"https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/master/assets/img/erina.jpg"}],"status":200}
 ```
 
-¡Perfecto! ¡Funciona!
+Espera...¿Hay dos "Erina" registadas? Eso es inadmisible, Erina solo hay una. Tendremos que borrar al impostor:
 
+```sh
+curl -X DELETE http://127.0.0.1:8000/api/cats/2
 ```
 
+Comprobemos si la Erina impostora se eliminó correctamente:
+
+```sh
+curl -v http://127.0.0.1:8000/api/cats/                                                                         ~*   Trying 127.0.0.1:8000...* Connected to 127.0.0.1 (127.0.0.1) port 8000 (#0)
+> GET /api/cats/ HTTP/1.1
+> Host: 127.0.0.1:8000
+> User-Agent: curl/7.74.0
+> Accept: */*
+> 
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< content-type: application/json
+< server: Rocket
+< permissions-policy: interest-cohort=()
+< x-frame-options: SAMEORIGIN
+< x-content-type-options: nosniff
+< content-length: 561
+< date: Sun, 30 Jan 2022 05:54:35 GMT
+< 
+* Connection #0 to host 127.0.0.1 left intact
+{"result":[{"description":"Erino es el hijo de Erina, es un gato de la misma raza, pequeño y travieso. Le gusta dormir estirado","id":3,"is_adopted":true,"name":"Erino","photo_url":"https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/master/assets/img/erino.jpeg"},{"description":"Erina es un gato de la raza 'ocicat' adoptada el 6 de Septiembre del 2021, es una gata tranquila y traviesa.","id":1,"is_adopted":true,"name":"Erina","photo_url":"https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/master/assets/img/erina.jpg"}],"status":200}
 ```
+
+## Creando un frontend para nuestra API
