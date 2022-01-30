@@ -855,9 +855,11 @@ pub fn delete(id: i32, conn: DbConn) -> Json<Value> {
 }
 ```
 
+Este endpoint hace uso del atributo `delete` y al igual que los anteriores, requiere del ID de un gato específico para que lo borre de nuestra base de datos. El modo de regresar el status es similar al del endpoint `update` y de nuevo lo recalcaré, recomiendo hacer un mejor manejo de errores.
 
 ### Endpoint: name
 
+Finalmente, en caso de que necesitemos consultar todos los gatos con un nombre en específico podemos crear un endpoint `name` para ello:
 
 ```rust
 #[get("/cats/names/<name>", format = "application/json")]
@@ -868,3 +870,119 @@ pub fn name(name: String, conn: DbConn) -> Json<Value> {
     }))
 }
 ```
+
+Este endpoint llamará a la función `all_by_name` y nos devolverá un solo JSON con todos los gatos que compartan el mismo nombre. En este caso no manejé errores por flojo, no hagas eso tu también. Con este último endpoint nuestro archivo `routes.rs` debería estar terminado, en caso de que te hayas perdido el resultado final debería verse así:
+
+```rust
+use crate::db::Conn as DbConn;
+use crate::models::{Cat, NewCat};
+use rocket::serde::json::{json, Json, Value};
+
+#[get("/cats", format = "application/json")]
+pub fn index(conn: DbConn) -> Json<Value> {
+    let cats: Vec<Cat> = Cat::all(&conn);
+
+    Json(json!({
+        "status": 200,
+        "result": cats,
+    }))
+}
+
+#[post("/cats", format = "application/json", data = "<new_cat>")]
+pub fn new(conn: DbConn, new_cat: Json<NewCat>) -> Json<Value> {
+    Json(json!({
+        "status": Cat::insert(new_cat.into_inner(), &conn),
+        "result": Cat::all(&conn).first(),
+    }))
+}
+
+#[get("/cats/<id>", format = "application/json")]
+pub fn show(conn: DbConn, id: i32) -> Json<Value> {
+    let result: Vec<Cat> = Cat::show(id, &conn);
+    let status: i32 = if result.is_empty() { 404 } else { 200 };
+
+    Json(json!({
+        "status": status,
+        "result": result.get(0),
+    }))
+}
+
+#[put("/cats/<id>", format = "application/json", data = "<cat>")]
+pub fn update(conn: DbConn, id: i32, cat: Json<NewCat>) -> Json<Value> {
+    let status: i32 = if Cat::update_by_id(id, &conn, cat.into_inner()) {
+        200
+    } else {
+        404
+    };
+
+    Json(json!({
+        "status": status,
+        "result": null,
+    }))
+}
+
+#[delete("/cats/<id>")]
+pub fn delete(id: i32, conn: DbConn) -> Json<Value> {
+    let status: i32 = if Cat::delete_by_id(id, &conn) {
+        200
+    } else {
+        404
+    };
+    Json(json!({
+        "status": status,
+        "result": null,
+    }))
+}
+
+#[get("/cats/names/<name>", format = "application/json")]
+pub fn name(name: String, conn: DbConn) -> Json<Value> {
+    Json(json!({
+        "status": 200,
+        "result": Cat::all_by_name(name, &conn),
+    }))
+}
+```
+
+## Montando los endpoints
+
+Casi hemos terminado nuestra REST API, solo queda montar los endpoints de nuestra API, para hacer esto solo tenemos que repetir el paso donde incluimos una función `mount()` en nuestro archivo `main.rs`, en este caso, montaremos nuestra API bajo la ruta `/api/` arriba de la ruta "/" . También podemos borrar el método `GET` que tenemos arriba de la función principal de Rocket:
+
+```rust
+#[launch]
+fn rocket() -> _ {
+    dotenv().ok();
+    let db_url: String = env::var("DATABASE_URL").expect("set DATABASE_URL");
+    let pool = db::init_pool(db_url);
+    rocket::build()
+        .mount(
+            "/api/v1/",
+            routes![
+                crate::routes::index,
+                crate::routes::new,
+                crate::routes::show,
+                crate::routes::delete,
+                crate::routes::name,
+                crate::routes::update
+            ],
+        )
+        .mount(
+            "/",
+            routes![crate::static_files::all, crate::static_files::index],
+        )
+}
+```
+
+## Archivos finales
+Si te perdiste en el proceso y deseas saber como se ven los archivos en este punto, no te preocupes, debajo podrás leer en un subtítulo el nombre del archivo y como debería verse llegados a este punto.
+
+### src/main.rs
+El archivo principal debería verse así:
+
+```rust
+
+```
+
+
+## Probando nuestra REST API
+
+Llegó el momento de la verdad, guardemos cambios.  
