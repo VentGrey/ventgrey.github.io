@@ -979,9 +979,74 @@ Si te perdiste en el proceso y deseas saber como se ven los archivos en este pun
 El archivo principal debería verse así:
 
 ```rust
+use diesel::prelude::*;
+use diesel::sqlite::SqliteConnection;
+use dotenv::dotenv;
+use std::env;
+
+#[macro_use]
+extern crate diesel;
+
+#[macro_use]
+extern crate rocket;
+
+mod db;
+mod models;
+mod routes;
+mod schema;
+mod static_files;
+
+#[launch]
+fn rocket() -> _ {
+    dotenv().ok();
+    let db_url: String = env::var("DATABASE_URL").expect("set DATABASE_URL");
+    let pool = db::init_pool(db_url);
+    rocket::build()
+        .mount(
+            "/api/v1/",
+            routes![
+                crate::routes::index,
+                crate::routes::new,
+                crate::routes::show,
+                crate::routes::delete,
+                crate::routes::name,
+                crate::routes::update
+            ],
+        )
+        .mount(
+            "/",
+            routes![crate::static_files::all, crate::static_files::index],
+        )
+}
+```
+
+### src/models.rs
+El archivo de los modelos de la base de datos deberá verse así:
+
+```rust
 
 ```
 
+### src/routes.rs
+El archivo de rutas (endpoints) de nuestra API deberá verse así:
+
+```rust
+
+```
+
+### src/static_files.rs
+El archivo para manejar archivos estáticos en Rocket deberá verse así:
+
+```rust
+```
+
+### src/schema.rs
+
+El archivo autogenerado por Diesel deberá verse así:
+
+```rust
+
+```
 
 ## Probando nuestra REST API
 
