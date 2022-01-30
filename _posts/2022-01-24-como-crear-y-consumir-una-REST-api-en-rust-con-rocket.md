@@ -1229,4 +1229,9 @@ table! {
 
 Llegó el momento de la verdad, guardemos cambios y ejecutemos `$ cargo run` en nuestra terminal y observar la magia:
 
-![imágen de rocket ejecutando una REST API]()
+![imágen de rocket ejecutando una REST API](https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/master/assets/img/rocket.png)
+
+Si ponemos atención a la sección que dice: `🛰  Routes:` podemos darnos cuenta de que todas nuestras rutas existen y parece que funcionan. Sin embargo no sabremos esto hasta hacer unas pruebas con la herramienta más poderosa que existe para probar REST API: `curl`.
+
+En una nueva terminal intentemos ejecutar la siguiente orden:
+
