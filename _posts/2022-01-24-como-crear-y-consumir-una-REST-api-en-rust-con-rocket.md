@@ -1337,3 +1337,13 @@ curl -v http://127.0.0.1:8000/api/cats/                                         
 ```
 
 ## Creando un frontend para nuestra API
+
+¡Perfecto! Ahora que nuestra API funciona, vamos a integrar un frontend para consumir los datos. En nuestro caso usaremos el framework Svelte. Para ello, podemos descomprimir el código proporcionado por Svelte. (Lo puedes descargar [aquí](https://github.com/sveltejs/template)) Solo es necesario presionar el botón "Code" y luego presionar el botón "Download Zip". 
+
+Podríamos usar la herramienta `degit` pero sinceramente, no le veo un uso práctico más alla ser un `git clone --depth=1` hecho en JS.
+
+Colocamos el código descomprimido en el directorio donde tenemos el proyecto de Rust. Antes de ello, cambiaremos el nombre de la carpeta `src` de la plantilla de Svelte a algo como `frontend` para evitar conflictos con el directorio `src` de Rust.
+
+
+
+
