@@ -1344,6 +1344,130 @@ Podríamos usar la herramienta `degit` pero sinceramente, no le veo un uso prác
 
 Colocamos el código descomprimido en el directorio donde tenemos el proyecto de Rust. Antes de ello, cambiaremos el nombre de la carpeta `src` de la plantilla de Svelte a algo como `frontend` para evitar conflictos con el directorio `src` de Rust.
 
+Antes de continuar, debemos modificar el archivo `rollup.config.js` para indicarle que `frontend/` será nuestro nuevo directorio donde guardaremos el frontend de nuestra aplicación web. Si necesitas ayuda te dejo mi archivo `rollup.config.js` final para que lo tomes como guía:
+
+```js
+import svelte from 'rollup-plugin-svelte';
+import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
+import livereload from 'rollup-plugin-livereload';
+import { terser } from 'rollup-plugin-terser';
+import css from 'rollup-plugin-css-only';
+
+const production = !process.env.ROLLUP_WATCH;
+
+function serve() {
+	let server;
+
+	function toExit() {
+		if (server) server.kill(0);
+	}
+
+	return {
+		writeBundle() {
+			if (server) return;
+			server = require('child_process').spawn('npm', ['run', 'start', '--', '--dev'], {
+				stdio: ['ignore', 'inherit', 'inherit'],
+				shell: true
+			});
+
+			process.on('SIGTERM', toExit);
+			process.on('exit', toExit);
+		}
+	};
+}
+
+export default {
+	input: 'frontend/main.js',
+	output: {
+		sourcemap: true,
+		format: 'iife',
+		name: 'app',
+		file: 'public/build/bundle.js'
+	},
+	plugins: [
+		svelte({
+			compilerOptions: {
+				// enable run-time checks when not in production
+				dev: !production
+			}
+		}),
+		// we'll extract any component CSS out into
+		// a separate file - better for performance
+		css({ output: 'bundle.css' }),
+
+		// If you have external dependencies installed from
+		// npm, you'll most likely need these plugins. In
+		// some cases you'll need additional configuration -
+		// consult the documentation for details:
+		// https://github.com/rollup/plugins/tree/master/packages/commonjs
+		resolve({
+			browser: true,
+			dedupe: ['svelte']
+		}),
+		commonjs(),
+
+		// In dev mode, call `npm run start` once
+		// the bundle has been generated
+		!production && serve(),
+
+		// Watch the `public` directory and refresh the
+		// browser on changes when not in production
+		!production && livereload('public'),
+
+		// If we're building for production (npm run build
+		// instead of npm run dev), minify
+		production && terser()
+	],
+	watch: {
+		clearScreen: false
+	}
+};
+```
+
+Perfecto. Ahora para terminar metemos todo el contenido de la plantilla de Svelte en nuestro proyecto de la REST API de Rust:
+
+``` 
+tree -L 1                                                                          rest-rust-template -> master ?
+.
+├── Cargo.lock
+├── Cargo.toml
+├── debug.db
+├── diesel.toml
+├── frontend
+├── migrations
+├── package.json
+├── public
+├── README.md
+├── rollup.config.js
+├── scripts
+├── src
+└── target
+
+6 directories, 7 files
+```
+
+Si tu estructura de directorios es similar, entonces todo perfecto. Solo falta un último paso antes de comenzar con el frontend, hay que añadir las siguientes líneas al archivo `.gitignore`:
+
+```
+/node_modules/
+/public/build/
+.DS_Store
+```
+
+Perfecto, con eso evitaremos subir cosas que no necesitamos al repositorio de git.
+
+## Comenzando con Svelte
+
+**Nota: Recuerda encender el servidor de Rocket con `$cargo run` para acceder a los recursos de la API**
+
+Dentro de nuestro directorio del proyecto ejecutaremos la orden `$ npm install && npm run dev` para comenzar con la instalación de dependencias y la vista en vivo de nuestro proyecto con NodeJS.
+
+Cuando la terminal lo indique, se nos entregará una URL para revisar el progreso de nuestra aplicación de Svelte, en mi caso la URL es: `http://localhost:8080`. Si entramos a esta URL en nuestro navegador preferido obtendremos una pantalla así:
+
+![pantalla de proyecto de SvelteJS]()
+
+
 
 
 
