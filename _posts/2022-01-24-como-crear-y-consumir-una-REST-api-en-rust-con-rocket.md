@@ -1552,5 +1552,93 @@ Ahora en la función `rocket`, debajo de `.manage(pool)` añadiremos la función
 El archivo `main.rs` debería verse así ahora:
 
 ```rust
+use dotenv::dotenv;
+use rocket::fairing::{Fairing, Info, Kind};
+use rocket::http::Header;
+use rocket::{Request, Response};
+use std::env;
 
+#[macro_use]
+extern crate diesel;
+
+#[macro_use]
+extern crate rocket;
+
+mod db;
+mod models;
+mod routes;
+mod schema;
+mod static_files;
+
+struct CORS;
+
+#[rocket::async_trait]
+impl Fairing for CORS {
+    fn info(&self) -> Info {
+        Info {
+            name: "Attaching CORS headers to responses",
+            kind: Kind::Response,
+        }
+    }
+
+    async fn on_response<'r>(&self, _request: &'r Request<'_>, response: &mut Response<'r>) {
+        response.set_header(Header::new("Access-Control-Allow-Origin", "*"));
+        response.set_header(Header::new(
+            "Access-Control-Allow-Methods",
+            "POST, GET, PATCH, OPTIONS",
+        ));
+        response.set_header(Header::new("Access-Control-Allow-Headers", "*"));
+        response.set_header(Header::new("Access-Control-Allow-Credentials", "true"));
+    }
+}
+
+#[launch]
+fn rocket() -> _ {
+    dotenv().ok();
+    let db_url: String = env::var("DATABASE_URL").expect("set DATABASE_URL");
+    let pool = db::init_pool(db_url);
+    rocket::build()
+        .manage(pool)
+        .attach(CORS)
+        .mount(
+            "/api/",
+            routes![
+                crate::routes::index,
+                crate::routes::new,
+                crate::routes::show,
+                crate::routes::delete,
+                crate::routes::name,
+                crate::routes::update
+            ],
+        )
+        .mount(
+            "/",
+            routes![crate::static_files::all, crate::static_files::index],
+        )
+}
 ```
+
+Recompilemos nuestro proyecto interrumpiendo la ejecución del API con <kbd>Ctrl</kbd> <kbd>c</kbd> y volvemos a compilar con `$cargo run`.
+
+Si refrescamos la página web donde se encuentra nuestro frontend podremos ver que el error relacionado con CORS desapareció.
+
+## Hagamos la estructura de los gatitos.
+
+Con el problema de CORS resuelto, podemos regresar a nuestro archivo `App.svelte` y dentro de las etiquetas `main` comenzaremos a crear la estructura HTML para mostrar los gatitos.
+
+En mi caso, yo hice algo así para la estructura base:
+
+```html
+    <h1 align="center">Base de Gatos 😺</h1>
+    <div class="container">
+        <div class="card">
+            <img class="img-gato" src="" alt="Foto del gatito"/>
+            <h2 class="cat-name">Nombre del gatito</h2>
+            <h3 class="adopted">Adoptado ❤️</h3>
+            <h3 class="noadopted">Buscando un hogar 🏠</h3>
+            <hr>
+            <p class="cat-desc">Descripción del gato</p>
+        </div>
+    </div>
+```
+
