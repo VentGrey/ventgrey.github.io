@@ -1521,4 +1521,36 @@ El error viene de un bloqueo que nos hace CORS, ya que no existe un header espec
 
 En mi opinión personal esto es un poco extraño. No me hace sentido que, para que mi código pueda acceder a recursos externos necesite de headers especiales en las peticiones. Mucho menos en un entorno web donde el 99.9% de las páginas que visitamos son de hecho muchos recursos extraños, HTML, CSS y sobre todo JavaScript que es un lenguaje de programación completo que podría hacer cualquier cosa, como rastrearnos con analítica, acceder a nuestros sensores y otras cosas. Eso si, no sea un JSON de una URL externa porque arde Troya.
 
-En pocas palabras, CORS es un cáncer, afortunadamente es un cáncer que tiene cura. Y la cura la podemos implementar en nuestro archivo `main.rs`
+En pocas palabras, CORS es un cáncer, afortunadamente es un cáncer que tiene cura. Y la cura la podemos implementar en nuestro archivo `main.rs`, dentro del mismo tenemos que pegar el siguiente pedazo de código (arriba de la función `rocket`):
+
+```rust
+struct CORS;
+
+#[rocket::async_trait]
+impl Fairing for CORS {
+    fn info(&self) -> Info {
+        Info {
+            name: "Attaching CORS headers to responses",
+            kind: Kind::Response,
+        }
+    }
+
+    async fn on_response<'r>(&self, _request: &'r Request<'_>, response: &mut Response<'r>) {
+        response.set_header(Header::new("Access-Control-Allow-Origin", "*"));
+        response.set_header(Header::new(
+            "Access-Control-Allow-Methods",
+            "POST, GET, PATCH, OPTIONS",
+        ));
+        response.set_header(Header::new("Access-Control-Allow-Headers", "*"));
+        response.set_header(Header::new("Access-Control-Allow-Credentials", "true"));
+    }
+}
+```
+
+Ahora en la función `rocket`, debajo de `.manage(pool)` añadiremos la función `.attach(CORS)`.
+
+El archivo `main.rs` debería verse así ahora:
+
+```rust
+
+```
