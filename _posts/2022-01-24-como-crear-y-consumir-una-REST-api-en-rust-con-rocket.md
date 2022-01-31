@@ -1642,3 +1642,85 @@ En mi caso, yo hice algo así para la estructura base:
     </div>
 ```
 
+Debería verse así en el navegador:
+
+![foto del HTML básico de los gatitos](https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/master/assets/img/basedegatos1.png)
+
+## Hagamos que se vea lindo con el poder de CSS
+
+Como podrás ver, el HTML que hicimos ya tiene algunas clases que no existen, nuestro trabajo será hacerlas existir. Para ello debemos ir a las etiquetas `style` de nuestro archivo `App.svelte` y colocar el siguiente código:
+
+```css
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700;900&display=swap');
+
+    * {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .container {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-template-rows: auto auto auto auto;
+        justify-content: space-evenly;
+        align-content: center;
+    }
+
+    .card {
+        margin: 1.3em;
+        padding: 1.3em;
+        border-radius: 1.5em;
+        box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.3);
+    }
+
+    .img-gato {
+        display: inline-block;
+        max-width: 100%;
+        max-height: 100%;
+        height: 45%;
+        width: 45%;
+        border-radius: 1.5em;
+    }
+
+    .cat-name{
+        display: block;
+        color: #452981;
+        text-shadow: 1px 1px 1px #452981;
+    }
+
+    .adopted {
+        display: inline-block;
+        padding: 5px;
+        background-color: #3a9104;
+        background: linear-gradient(90deg, rgba(88,230,0,1) 0%, rgba(58,145,4,1) 100%);
+        box-shadow: 1px 1px 2px 1px rgba(58, 145, 4, 0.3);
+        color: #FAFAFA;
+        border-radius: 0.5em;
+        font-size: 0.9em;
+    }
+
+    .noadopted {
+        display: inline-block;
+        padding: 5px;
+        background-color: #002e99;
+        background: linear-gradient(90deg, rgba(0,77,255,1) 0%, rgba(0,46,153,1) 100%);
+        box-shadow: 1px 1px 2px 1px rgba(0, 46, 153, 0.3);
+        color: #FAFAFA;
+        border-radius: 0.5em;
+        font-size: 0.9em;
+    }
+
+    .cat-desc {
+        color: #666666;
+        text-overflow: ellipsis;
+        word-break: break-all;
+        overflow-wrap: break-word;
+    }
+
+```
+
+Si hicimos todo correctamente nuestro sitio ahora debería verse así:
+
+![foto del sitio con las reglas CSS aplicadas]()
+
+
+
