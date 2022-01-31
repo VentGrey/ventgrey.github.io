@@ -1465,9 +1465,60 @@ Dentro de nuestro directorio del proyecto ejecutaremos la orden `$ npm install &
 
 Cuando la terminal lo indique, se nos entregará una URL para revisar el progreso de nuestra aplicación de Svelte, en mi caso la URL es: `http://localhost:8080`. Si entramos a esta URL en nuestro navegador preferido obtendremos una pantalla así:
 
-![pantalla de proyecto de SvelteJS]()
+![pantalla de proyecto de SvelteJS](https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/master/assets/img/svelte.png)
 
+Tengo que decir que yo no soy un desarrollador frontend (ni deseo serlo realmente) por lo que la interfaz que voy a construir es por mucho, muy fea.
 
+Dentro de nuestro proyecto de Svelte entraremos a editar el archivo `App.svelte`. Aquí ocurrirá toda la magia.
 
+Dentro de `App.svelte` podemos ver que ya hay contenido, sugiero borrar todo lo que hay dentro y colocar esto en su lugar:
 
+```html
+<script charset="utf-8">
+    
+</script>
 
+<style type="text/css" media="screen">
+    
+</style>
+
+<main>
+
+</main>
+```
+
+Con esto tendremos un marco de trabajo para comenzar con el proyecto. Antes de comenzar a programar nada debo decir que el enfoque de SvelteJS es hacer interfaces con un framework sencillo pero completo y sobre todo enfocado en hacer componentes. 
+
+En este caso no estoy creando componentes por simplicidad, sin embargo en proyectos más serios desapruebo encarecidamente hacer todo dentro de `App.svelte`.
+
+Con esta advertencia hecha, ahora si. Vamos a programar la parte de JavaScript que nos entregará a nuestros gatos registrados, dentro de las etiquetas `script` colocaremos el siguiente código:
+
+```js
+    // URL del API de los gatitos
+    const api_url = 'http://127.0.0.1:8000/api/cats';
+    // Obtener información del API
+    const fetchCats = (async () => {
+        const response = await fetch(api_url)
+        return await response.json()
+    })()
+```
+
+Este pequeño trozo de código lo que hará es definir la URL donde nuestro servidor de Rocket está ejecutándose. Lo segundo es una constante que es (con mi conocimiento límitado del desmadre de lenguaje que es JavaScript) el resultado del uso del [API fetch](https://developer.mozilla.org/es/docs/Web/API/Fetch_API/Using_Fetch) de JavaScript. Honestamente no sabría explicar esas líneas de código a detalle, si eres un conocedor de JavaScript agradecería tu retroalimentación para saber como llamar a esa aberración que tiene las palabras: "Función anónima asíncrona" dentro de ella.
+
+## CORS, un dolor de cabeza que no debería existir. (Literalmente)
+
+Si hicimos todo bien, luego de guardar nuestra página debería auto-refrescarse. Todo parece ir bien por ahora, pero si abrimos la consola podremos ver un error de JavaScript que nos dice:
+
+```
+Access to fetch at 'http://127.0.0.1:8000/api/cats' from origin 'http://localhost:8080' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+```
+
+![meme reese malcom el de en medio](http://images2.memedroid.com/images/UPLOADED83/533dbb4331fcc.jpeg)
+
+El error viene de un bloqueo que nos hace CORS, ya que no existe un header especial que nos permita acceder a los recursos de la API como es debido. CORS es un acrónimo de *Cross Origin Resource Sharing* y es un mecanismo que permite que los sitios web pidan recursos a direcciones o dominios diferentes a donde están siendo servidos.
+
+¿Por qué existe? Pues por "protección", lo pongo entre comillas por que en papel la idea es muy buena. La mayoría del tiempo nuestro sitio web y nuestra API están alojados en el mismo lugar. En nuestro caso este error está saltando porque rocket sirve nuestra API en `127.0.0.1:algo` y svelte se encuentra en `localhost:algo`. Aunque puedan parecer lo mismo no lo son. Al usar `127.0.0.1` el software que utilizamos directamente lo convierte a una dirección IP y la usa. De otra forma hay que "resolver" un nombre a una dirección, suponiendo que estamos en linux nuestro archivo `hosts` nos puede ayudar, pero si algo cambia ahí dentro, entonces `localhost` puede ser algo totalmente diferente a `127.0.0.1`. 
+
+En mi opinión personal esto es un poco extraño. No me hace sentido que, para que mi código pueda acceder a recursos externos necesite de headers especiales en las peticiones. Mucho menos en un entorno web donde el 99.9% de las páginas que visitamos son de hecho muchos recursos extraños, HTML, CSS y sobre todo JavaScript que es un lenguaje de programación completo que podría hacer cualquier cosa, como rastrearnos con analítica, acceder a nuestros sensores y otras cosas. Eso si, no sea un JSON de una URL externa porque arde Troya.
+
+En pocas palabras, CORS es un cáncer, afortunadamente es un cáncer que tiene cura. Y la cura la podemos implementar en nuestro archivo `main.rs`
