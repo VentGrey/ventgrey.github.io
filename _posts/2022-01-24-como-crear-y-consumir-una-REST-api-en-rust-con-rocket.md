@@ -1658,69 +1658,131 @@ Como podrás ver, el HTML que hicimos ya tiene algunas clases que no existen, nu
     }
 
     .container {
+        align-content: center;
         display: grid;
         grid-template-columns: auto auto auto auto;
         grid-template-rows: auto auto auto auto;
         justify-content: space-evenly;
-        align-content: center;
     }
 
     .card {
-        margin: 1.3em;
-        padding: 1.3em;
         border-radius: 1.5em;
         box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.3);
+        margin: 1.3em;
+        padding: 1.3em;
     }
 
     .img-gato {
-        display: inline-block;
-        max-width: 100%;
-        max-height: 100%;
-        height: 45%;
-        width: 45%;
         border-radius: 1.5em;
+        display: inline-block;
+        height: 45%;
+        max-height: 100%;
+        max-width: 100%;
+        width: 45%;
     }
 
     .cat-name{
-        display: block;
         color: #452981;
+        display: block;
         text-shadow: 1px 1px 1px #452981;
     }
 
     .adopted {
-        display: inline-block;
-        padding: 5px;
         background-color: #3a9104;
         background: linear-gradient(90deg, rgba(88,230,0,1) 0%, rgba(58,145,4,1) 100%);
+        border-radius: 0.5em;
         box-shadow: 1px 1px 2px 1px rgba(58, 145, 4, 0.3);
         color: #FAFAFA;
-        border-radius: 0.5em;
+        display: inline-block;
         font-size: 0.9em;
+        padding: 5px;
     }
 
     .noadopted {
-        display: inline-block;
-        padding: 5px;
         background-color: #002e99;
         background: linear-gradient(90deg, rgba(0,77,255,1) 0%, rgba(0,46,153,1) 100%);
+        border-radius: 0.5em;
         box-shadow: 1px 1px 2px 1px rgba(0, 46, 153, 0.3);
         color: #FAFAFA;
-        border-radius: 0.5em;
+        display: inline-block;
         font-size: 0.9em;
+        padding: 5px;
     }
 
     .cat-desc {
         color: #666666;
+        margin-bottom: 1.5em;
+        margin-top: 1.5em;
+        overflow-wrap: break-word;
+        padding-bottom: 5em;
         text-overflow: ellipsis;
         word-break: break-all;
-        overflow-wrap: break-word;
     }
-
 ```
 
 Si hicimos todo correctamente nuestro sitio ahora debería verse así:
 
-![foto del sitio con las reglas CSS aplicadas]()
+![foto del sitio con las reglas CSS aplicadas](https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/master/assets/img/basedegatos2.png)
 
+Yo agregué la foto del gato como ejemplo de internet. Por el momento las tarjetas se ven un poco feas. Ya que solo es una y como dije, no soy un desarrollador frontend, solo conozco un poco de CSS, lo suficiente para hacer cosas feas pero no horribles.
+
+## Implementando las propiedades de Svelte.
+
+Ya tenemos la lógica de JavaScript, el maquetado con HTML y los estilos con CSS, ahora viene la integración de Svelte en la parte del frontend.
+
+Para consumir nuestra constante `fetchCats`  haremos uso de la propiedad `await` que viene con Svelte. Await nos permitirá renderizar nuestro HTML dependiendo de los tres posibles estados de una *Promise* en JavaScript:
+* Pending
+* Fullfilled
+* Rejected
+
+Podemos saltar el tercer estado si podemos omitir renderizar un mensaje de error si el promise falla o si sabemos que nuestra promise jamás va a fallar. En todo caso lo incluiré. Esto debe hacerse en las etiquetas `main` de nuestro archivo `App.svelte`:
+
+```html
+    <h1 align="center">Base de Gatos 😺</h1>
+
+    <div class="container">
+
+        {#await fetchCats}
+            <p>Cargando gatos...</p>
+        {:then data}
+        <div class="card">
+            <img class="img-gato" src="https://www.rover.com/blog/wp-content/uploads/2019/06/sitting-siamese-cat-960x540.jpg" alt="Foto del gatito"/>
+            <h2 class="cat-name">Nombre del gatito</h2>
+            <h3 class="adopted">Adoptado ❤️</h3>
+            <h3 class="noadopted">Buscando un hogar 🏠</h3>
+            <hr>
+            <p class="cat-desc">Descripción del gato en cuestión. Las descripciones de los gatos largas son más convenientes para que las personas decidan adoptar a los gatitos que les presentemos.</p>
+        </div>
+
+        {:catch error}
+            <p>Ocurrió un error al cargar los gatos :(</p>
+        {/await}
+    </div>
+``` 
+
+El párrafo (`<p>`) que está dentro del bloque `{#await fetchCats}` lo utilizaremos como "placeholder" en caso de que JS tarde en responder con nuestro JSON de gatos. Este podría ser el caso si tenemos miles de entradas o si nuestra conexión a internet es lenta.
+
+El bloque `{:then}` será lo que renderizaremos si la *promise*  de JavaScript llega al estado *fullfilled*, en este caso el bloque de HTML donde está nuestra tarjeta de gatitos.
+
+Finalmente el bloque `{:catch error}` y el párrafo (`<p>`) debajo cargarán solo y solo si la *promise* tuvo un error o fue rechazada (Gracias CORS).
+
+Perfecto, con esto tenemos la primera parte de nuestro renderizado de gatitos, ahora tenemos que cargar una tarjeta por gato en nuestra base de datos. Esto lo podemos hacer con la propiedad `{#each}` de Svelte, para recorrer el arreglo de gatitos que nos devuelve `fetchCats`. 
+
+En mi caso logré crear una tarjeta por gato así (esto es debajo del bloque `{:then}`):
+
+```html
+            {#each data.result as cat}
+                <div class="card">
+                    <img class="img-gato" src="https://www.rover.com/blog/wp-content/uploads/2019/06/sitting-siamese-cat-960x540.jpg" alt="Foto del gatito"/>
+                    <h2 class="cat-name">Nombre del gatito</h2>
+                    <h3 class="adopted">Adoptado ❤️</h3>
+                    <h3 class="noadopted">Buscando un hogar 🏠</h3>
+                    <hr>
+                    <p class="cat-desc">Descripción del gato en cuestión. Las descripciones de los gatos largas son más convenientes para que las personas decidan adoptar a los gatitos que les presentemos.</p>
+                </div>
+            {/each}
+```
+
+Perfecto, esto cargará una tarjeta por 
 
 
