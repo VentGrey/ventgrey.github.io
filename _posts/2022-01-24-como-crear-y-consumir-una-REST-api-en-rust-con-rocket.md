@@ -1783,6 +1783,8 @@ En mi caso logré crear una tarjeta por gato así (esto es debajo del bloque `{:
             {/each}
 ```
 
-Perfecto, esto cargará una tarjeta por 
+Perfecto, esto cargará una tarjeta por cada gato que tengamos registrado, en nuestro caso solo tenemos dos gatos por lo que el resultado se ve así:
+
+![dos tarjetas mostrando dos gatos en nuestro frontend]()
 
 
