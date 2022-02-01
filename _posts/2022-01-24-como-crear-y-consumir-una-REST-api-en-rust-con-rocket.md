@@ -1776,7 +1776,7 @@ Perfecto, con esto tenemos la primera parte de nuestro renderizado de gatitos, a
 En mi caso logré crear una tarjeta por gato así (esto es debajo del bloque `{:then}`):
 
 ```html
-            {#each data.result as cat}
+            \{#each data.result as cat\}
                 <div class="card">
                     <img class="img-gato" src="https://www.rover.com/blog/wp-content/uploads/2019/06/sitting-siamese-cat-960x540.jpg" alt="Foto del gatito"/>
                     <h2 class="cat-name">Nombre del gatito</h2>
