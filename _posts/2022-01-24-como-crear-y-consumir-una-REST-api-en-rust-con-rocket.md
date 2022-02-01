@@ -1741,6 +1741,7 @@ Para consumir nuestra constante `fetchCats`  haremos uso de la propiedad `await`
 * Rejected
 
 Podemos saltar el tercer estado si podemos omitir renderizar un mensaje de error si el promise falla o si sabemos que nuestra promise jamás va a fallar. En todo caso lo incluiré. Esto debe hacerse en las etiquetas `main` de nuestro archivo `App.svelte`:
+{% raw %}
 
 ```html
     <h1 align="center">Base de Gatos 😺</h1>
@@ -1765,6 +1766,7 @@ Podemos saltar el tercer estado si podemos omitir renderizar un mensaje de error
     </div>
 ``` 
 
+{% endraw %}
 El párrafo (`<p>`) que está dentro del bloque `{#await fetchCats}` lo utilizaremos como "placeholder" en caso de que JS tarde en responder con nuestro JSON de gatos. Este podría ser el caso si tenemos miles de entradas o si nuestra conexión a internet es lenta.
 
 El bloque `{:then}` será lo que renderizaremos si la *promise*  de JavaScript llega al estado *fullfilled*, en este caso el bloque de HTML donde está nuestra tarjeta de gatitos.
@@ -1776,7 +1778,7 @@ Perfecto, con esto tenemos la primera parte de nuestro renderizado de gatitos, a
 En mi caso logré crear una tarjeta por gato así (esto es debajo del bloque `{:then}`):
 
 ```html
-            \{#each data.result as cat\}
+            {#each data.result as cat}
                 <div class="card">
                     <img class="img-gato" src="https://www.rover.com/blog/wp-content/uploads/2019/06/sitting-siamese-cat-960x540.jpg" alt="Foto del gatito"/>
                     <h2 class="cat-name">Nombre del gatito</h2>
