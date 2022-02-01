@@ -7,6 +7,7 @@ Seamos sinceros, todos hemos hecho al menos una REST API en nuestra vida, honest
 
 No creo que sea necesario dar tanto contexto sobre qué es una REST API, mucho menos en estos años donde podemos encontrar (sin exagerar) miles de sitios donde se nos podría explicar perfectamente que son las REST API, como funcionan, sus casos de uso, ventajas, desventajas y todas esas cosas que nos encanta leer para excusar una flamewar en foros o grupos de chat.
 
+
 Para esta entrada vamos a ver como crear y consumir una REST API. Con la parte de la creación utilizaremos [Rust](https://www.rust-lang.org/) con [Rocket](https://rocket.rs/) y para la parte del consumo una página web con un script básico debería funcionar. Asímismo voy a utilizar como ejemplo mi proyecto personal "[upventrs](https://github.com/UpVent/upventrs)" (Por: UpVent RustSvelte). Donde pondré ejemplos de como podemos consumir nuestra REST API desde un framework para JavaScript como [Svelte](https://svelte.dev/).
 
 ## Prerequisitos
@@ -24,6 +25,8 @@ Si te interesa aprender un poco más aquí te dejo una lista de recursos que pod
 Si estás leyendo este tutorial asumiré que ya tienes un poco de experiencia con Rust (por lo menos la [instalación](https://rustup.rs/) debería ser algo que ya lograste hacer con éxito). Para este trabajo vamos a crear un binario de Rust y añadiremos algunas dependencias.
 
 ### El magnánimo ORM
+
+![meme ORM](https://i.redd.it/1paoq27ri1h31.jpg)
 
 Los ORM ya son el pan de cada día para los DBA (*Database Administrator*) y también para los desarrolladores *backend*. En este proyecto necesitaremos un ORM hecho en Rust que nos permita crear, modificar o re-ejecutar migraciones en nuestra base de datos. Para nuestra fortuna existe [Diesel](https://diesel.rs/), un ORM que ya está bastante maduro y que, además tiene otras ventajas que para un desarrollador de Rust solo podrían describirse como "jugosas". 
 
@@ -50,7 +53,9 @@ Los tiempos de compilación de Rust son lentos, sugiero que encuentres algo que 
 
 ### Crear un proyecto como un buen dev moderno...lleno de dependencias externas.
 
-Para crear un nuevo proyecto de Rust necesitamos usar la herramienta Cargo, de nuevo y como dije al inicio de esta entrada de blog, estoy asumiendo que ya tienes algo de experiencia con Rust. En caso de que hayas olvidado como crear un nuevo binario te recuerdo que la orden es: `cargo new --bin <nombre>`. En mi caso yo llamaré mi proyecto: `rest-rust-template` y encontrarás el link del repositorio al final de esta entrada. Eres libre de utilizar este repositorio como plantilla para futuros proyectos de REST API con Rust.
+![meme](https://tomatesasesinos.com/wp-content/uploads/2020/10/php_vs_nextjs.jpg)
+
+Para crear un nuevo proyecto de Rust necesitamos usar la herramienta Cargo, de nuevo y como dije al inicio de esta entrada de blog, estoy asumiendo que ya tienes algo de experiencia con Rust. En caso de que hayas olvidado como crear un nuevo binario te recuerdo que la orden es: `cargo new --bin <nombre>`. En mi caso yo llamaré mi proyecto: `rest-rust-template` y encontrarás el enlace del repositorio al final de esta entrada. Eres libre de utilizar este repositorio como plantilla para futuros proyectos de REST API con Rust.
 
 Dentro de nuestro proyecto de Rust debemos encontrar el archivo `Cargo.toml` y ahí añadir las dependencias necesarias. Antes de hacer esto debo hacer una recomendación y es que, cada que necesites utilizar una biblioteca hecha en Rust es recomendable que leas la documentación oficial el https://docs.rs/. La razón por la que digo esto es por que he visto una gran cantidad de tutoriales donde importan bibliotecas externas sin saber que a veces, la misma biblioteca que están utilizando tiene incrustadas las funciones de las bibliotecas externas por lo que solo estamos gastando espacio en disco y *namespace*.
 
@@ -1809,6 +1814,143 @@ Con el código corregido, nuestro bloque de tarjetas debería verse así:
 
 ¡Perfecto! Ahora Svelte mostrará a los gatos correctos en el sitio:
 
-![Imágen mostrando a los gatos en Svelte]()
+![Imágen mostrando a los gatos en Svelte](https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/master/assets/img/basedegatos4.png)
+
+En caso de que te hayas perdido, el archivo `App.Svelte` debería verse así una vez completes este paso:
+
+```html
+<script charset="utf-8">
+    // URL del API de los gatitos
+    const api_url = 'http://127.0.0.1:8000/api/cats';
+    // Get api info
+    const fetchCats = (async () => {
+        const response = await fetch(api_url)
+        return await response.json()
+    })()
+</script>
+
+<style type="text/css" media="screen">
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;700;900&display=swap');
+
+    * {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .container {
+        align-content: center;
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        grid-template-rows: auto auto auto auto;
+        justify-content: space-evenly;
+    }
+
+    .card {
+        border-radius: 1.5em;
+        box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.3);
+        margin: 1.3em;
+        padding: 1.3em;
+    }
+
+    .img-gato {
+        border-radius: 1.5em;
+        display: inline-block;
+        height: 45%;
+        max-height: 100%;
+        max-width: 100%;
+        width: 45%;
+    }
+
+    .cat-name{
+        color: #452981;
+        display: block;
+        text-shadow: 1px 1px 1px #452981;
+    }
+
+    .adopted {
+        background-color: #3a9104;
+        background: linear-gradient(90deg, rgba(88,230,0,1) 0%, rgba(58,145,4,1) 100%);
+        border-radius: 0.5em;
+        box-shadow: 1px 1px 2px 1px rgba(58, 145, 4, 0.3);
+        color: #FAFAFA;
+        display: inline-block;
+        font-size: 0.9em;
+        padding: 5px;
+    }
+
+    .noadopted {
+        background-color: #002e99;
+        background: linear-gradient(90deg, rgba(0,77,255,1) 0%, rgba(0,46,153,1) 100%);
+        border-radius: 0.5em;
+        box-shadow: 1px 1px 2px 1px rgba(0, 46, 153, 0.3);
+        color: #FAFAFA;
+        display: inline-block;
+        font-size: 0.9em;
+        padding: 5px;
+    }
+
+    .cat-desc {
+        color: #666666;
+        margin-bottom: 1.5em;
+        margin-top: 1.5em;
+        overflow-wrap: break-word;
+        padding-bottom: 5em;
+        text-overflow: ellipsis;
+        word-break: break-all;
+    }
+</style>
+
+<main>
+    <h1 align="center">Base de Gatos 😺</h1>
+
+    <div class="container">
+
+        {#await fetchCats}
+            <p>Cargando gatos...</p>
+        {:then data}
+            {#each data.result as cat}
+                <div class="card">
+                    <img class="img-gato" src={cat.photo_url} alt="Foto del gatito"/>
+                    <h2 class="cat-name">{cat.name}</h2>
+                    {#if cat.is_adopted}
+                        <h3 class="adopted">Adoptado ❤️</h3>
+                    {:else}
+                        <h3 class="noadopted">Buscando un hogar 🏠</h3>
+                    {/if}
+                    <hr>
+                    <p class="cat-desc">{cat.description}</p>
+                </div>
+            {/each}
+        {:catch error}
+            <p>Ocurrió un error al cargar los gatos :(</p>
+        {/await}
+    </div>
+</main>
+```
+
+¡Y con esto podemos concluir el consumo de nuestra REST API con Svelte!
+
+## Cerrando el blog
+
+Sin dudas hacer una REST API no es un proceso que podamos catalogar como difícil, más bien es laborioso. Sin embargo sirve mucho para aprender como funcionan las API que consumimos a diario, aún de manera inconsciente cuando vamos a páginas web modernas. Ciertamente crear una en Rust desde cero no es la excepción en cuanto al tiempo se refiere, pero es entretenido y sobre todo didáctico.
+
+Si quieres usar este proyecto como plantilla para trabajos futuros eres bienvenid@ por mi. Puedes encontrar la plantilla del mismo [aquí](https://github.com/VentGrey/rest-rust-api-template).
+
+El código está bajo la licencia [AGPL-3.0](https://github.com/VentGrey/rest-rust-api-template/blob/master/LICENSE). Por lo que puede usarse para lo que sea :D
+
+Si te interesan los retos aquí tengo algunos para que juegues y aprendas un poco más de la REST API por ti mismo:
+
+- Ingresar muchos registros de gatos.
+- Crear un endpoint para mostrar solo los gatos adoptados
+- Crear un endpoint para mostrar solo los gatos que están buscando un hogar
+- Implementar HTTPS en la API
+- Implementar autenticación en la API
+
+Además, si quieres basarte en una API un poco más trabajada por mi parte tengo [UpVentRS](https://github.com/UpVent/upventrs) que es el proyecto que inspiró la creación de este blog.
+
+Por mucho es la entrada de blog más larga que he escrito en mucho tiempo (casi una hora de lectura) según [Apostrophe](https://apps.gnome.org/es/app/org.gnome.gitlab.somas.Apostrophe/). (Por cierto, tengo que cambiar de editor de Markdown, Apostrophe parecía buena idea al inicio, la cosa es que está hecho en slowthon y en entradas de blog como esta el live-preview e incluso la propia escritura se vuelven terriblemente acartonadas).
+
+Si te gustó mi contenido por favor compártelo con tus amigos, de ser posible suscríbete usando el botón de RSS en el fondo de la página o si te sientes con ánimos puedes invitarme un café picando el botón azúl en la esquina inferior izquierda de tu pantalla.
+
+¡Nos leemos pronto! :)
 
 
