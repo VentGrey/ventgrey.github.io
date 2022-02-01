@@ -1741,7 +1741,6 @@ Para consumir nuestra constante `fetchCats`  haremos uso de la propiedad `await`
 * Rejected
 
 Podemos saltar el tercer estado si podemos omitir renderizar un mensaje de error si el promise falla o si sabemos que nuestra promise jamás va a fallar. En todo caso lo incluiré. Esto debe hacerse en las etiquetas `main` de nuestro archivo `App.svelte`:
-{% raw %}
 
 ```html
     <h1 align="center">Base de Gatos 😺</h1>
@@ -1766,7 +1765,6 @@ Podemos saltar el tercer estado si podemos omitir renderizar un mensaje de error
     </div>
 ``` 
 
-{% endraw %}
 El párrafo (`<p>`) que está dentro del bloque `{#await fetchCats}` lo utilizaremos como "placeholder" en caso de que JS tarde en responder con nuestro JSON de gatos. Este podría ser el caso si tenemos miles de entradas o si nuestra conexión a internet es lenta.
 
 El bloque `{:then}` será lo que renderizaremos si la *promise*  de JavaScript llega al estado *fullfilled*, en este caso el bloque de HTML donde está nuestra tarjeta de gatitos.
@@ -1794,7 +1792,7 @@ Perfecto, esto cargará una tarjeta por cada gato que tengamos registrado, en nu
 
 ![dos tarjetas mostrando dos gatos en nuestro frontend](https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/master/assets/img/basedegatos3.png)
 
-Pero algo está mal...esos gatos no son los que registramos. Si eres un poco audaz, sabrás que le colocamos un nombre a cada valor de ese arreglo de gatos que estamos consultando, en este caso a cada elemento le llamamos `cat`, específicamente en la propiedad `{{#each data.result as cat}`. Esto nos dejará acceder a las propiedades de cada elemento con el mismo nombre que les pusimos en nuestra API al inicio de este proyecto.
+Pero algo está mal...esos gatos no son los que registramos. Si eres un poco audaz, sabrás que le colocamos un nombre a cada valor de ese arreglo de gatos que estamos consultando, en este caso a cada elemento le llamamos `cat`, específicamente en la propiedad `{#each data.result as cat}`. Esto nos dejará acceder a las propiedades de cada elemento con el mismo nombre que les pusimos en nuestra API al inicio de este proyecto.
 
 Vamos a sustituir los valores por defecto por cada uno de los valores correspondientes usando Svelte. También utilizaremos una propiedad `{#if}` para el caso de la adopción, sin embargo, considero que no debo explicar que hace esta propiedad por una razón sencilla, esto es un tutorial de como hacer un REST API, no un tutorial de programación básica.
 
