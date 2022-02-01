@@ -1785,6 +1785,30 @@ En mi caso logré crear una tarjeta por gato así (esto es debajo del bloque `{:
 
 Perfecto, esto cargará una tarjeta por cada gato que tengamos registrado, en nuestro caso solo tenemos dos gatos por lo que el resultado se ve así:
 
-![dos tarjetas mostrando dos gatos en nuestro frontend]()
+![dos tarjetas mostrando dos gatos en nuestro frontend](https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/master/assets/img/basedegatos3.png)
+
+Pero algo está mal...esos gatos no son los que registramos. Si eres un poco audaz, sabrás que le colocamos un nombre a cada valor de ese arreglo de gatos que estamos consultando, en este caso a cada elemento le llamamos `cat`, específicamente en la propiedad `{{#each data.result as cat}`. Esto nos dejará acceder a las propiedades de cada elemento con el mismo nombre que les pusimos en nuestra API al inicio de este proyecto.
+
+Vamos a sustituir los valores por defecto por cada uno de los valores correspondientes usando Svelte. También utilizaremos una propiedad `{#if}` para el caso de la adopción, sin embargo, considero que no debo explicar que hace esta propiedad por una razón sencilla, esto es un tutorial de como hacer un REST API, no un tutorial de programación básica.
+
+Con el código corregido, nuestro bloque de tarjetas debería verse así:
+
+```html
+                <div class="card">
+                    <img class="img-gato" src={cat.photo_url} alt="Foto del gatito"/>
+                    <h2 class="cat-name">{cat.name}</h2>
+                    {#if cat.is_adopted}
+                        <h3 class="adopted">Adoptado ❤️</h3>
+                    {:else}
+                        <h3 class="noadopted">Buscando un hogar 🏠</h3>
+                    {/if}
+                    <hr>
+                    <p class="cat-desc">{cat.description}</p>
+                </div>
+```
+
+¡Perfecto! Ahora Svelte mostrará a los gatos correctos en el sitio:
+
+![Imágen mostrando a los gatos en Svelte]()
 
 
