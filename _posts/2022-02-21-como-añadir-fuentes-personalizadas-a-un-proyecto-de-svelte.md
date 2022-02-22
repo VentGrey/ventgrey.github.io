@@ -4,7 +4,7 @@ layout: post
 
 # De nuevo con el lenguaje más feo que un coche por debajo.
 
-> **ADVERTENCIA**: Esta entrada de blog es algo más a título personal y muy satírica y no contiene el mismo nivel de "profesionalidad"(según) que otras entradas. Nomas aviso para que nadie caliente los chiles en comal luego.
+> **ADVERTENCIA**: Esta entrada de blog es algo más a título personal y muy satírico y no contiene el mismo nivel de "profesionalidad"(según) que otras entradas. Nomas aviso para que nadie caliente los chiles en comal luego.
 
 
 Esta entrada de blog la escribo a modo de futura referencia / rant por un problema que tuve hace poco con un proyecto hecho en Svelte. Puedo decir que como framework es una alternativa muy ideal si eres un tanto "conservador" como yo cuando refiere al software. En mi caso Svelte me agrada porque más que un framework solo es un compilador donde todo acaba siendo puro VanillaJS y un poco más. Adiós a configurar un framework bajando su herramienta CLI, configurando webpack / snowpack, parcel o dios sabe que blasfemias se usen hoy en día para construir una página web.
