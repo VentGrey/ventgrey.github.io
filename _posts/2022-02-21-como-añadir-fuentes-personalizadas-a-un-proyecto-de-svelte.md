@@ -141,9 +141,9 @@ Al final mi componente de Svelte quedó así:
 
 Y con eso logré solucionar el santo problema de las fuentes.
 
-Considero que no es menester incluir una conclusión en esta entrada pues está escrita con las patas, en tono informal, sin revisión de ortografía ni redacción y a altas horas de la noche. 
+Considero que no es menester incluir una conclusión en esta entrada pues está escrita con las patas, en tono informal, sin revisión de ortografía ni redacción y a altas horas de la noche.
 
-Si te sirvió aun así, invítame un café con el botón azul de abajo :3 cosas así me ayudan a seguir creando software libre para todos y entradas de blog documentando como hacer algunas cosas, comparte el blog con tus amigos, y, si te es posible suscríbete usando el botón de RSS en el fondo de la página.
+Si te sirvió aun así, invítame un café con el botón azul de abajo :3 acciones así me ayudan a seguir creando software libre para todos y entradas de blog documentando como hacer algunas cosas, comparte el blog con tus amigos, y, si te es posible suscríbete usando el botón de RSS en el fondo de la página.
 
 Aprovecho esta entrada también para agradecer a ese héroe anónimo que lleva casi un año donando BAT en mi sitio de Brave Creators. Sigue sin aparecer o sin decir quien es y ya lo he buscado en todos lados, pero supongo que prefiere ser eso...anónimo. Amigo o amiga (no se que eres xD) seas quien seas gracias :D no se quien eres pero lo menos que puedo hacer es reconocer tus acciones.
 
