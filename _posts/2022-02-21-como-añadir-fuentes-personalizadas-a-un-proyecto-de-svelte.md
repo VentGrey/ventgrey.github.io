@@ -55,6 +55,9 @@ y todo estaba listo para empezar. Pero...uh oh, ¿ahora qué?
 404 ─ 0.23ms ─ /build/files/pacifico-latin-400-normal.woff2
 404 ─ 0.19ms ─ /build/files/pacifico-all-400-normal.woff
 ```
+
+![meme reese malcom el de en medio](http://images2.memedroid.com/images/UPLOADED83/533dbb4331fcc.jpeg)
+
 ¿En serio un 404? ¿Por qué un 404? Oh no...¿Qué demonios estás haciendo? >:c
 
 Okay, al parecer yo soy idiota y no me fijé en la parte donde dice que todas las fuentes que no se especifique su archivo, se van por defecto a un "peso" de 400 y su variante normal. Para corroborar todo, decidí entrar a la carpeta `node_modules/` y revisar el contenido del módulo de fontsource para la fuente *Pacifico*. Adentro del directorio había un archivo llamado `400.css`, bingo, además las instrucciones de la documentación oficial decían que podíamos importar los estilos y pesos individuales directo del directorio:
