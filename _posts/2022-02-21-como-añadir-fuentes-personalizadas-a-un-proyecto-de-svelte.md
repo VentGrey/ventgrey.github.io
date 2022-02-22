@@ -10,7 +10,7 @@ layout: post
 Esta entrada de blog la escribo a modo de futura referencia / rant por un problema que tuve hace poco con un proyecto hecho en Svelte. Puedo decir que como framework es una alternativa muy ideal si eres un tanto "conservador" como yo cuando refiere al software. En mi caso Svelte me agrada porque más que un framework solo es un compilador donde todo acaba siendo puro VanillaJS y un poco más. Adiós a configurar un framework bajando su herramienta CLI, configurando webpack / snowpack, parcel o dios sabe que blasfemias se usen hoy en día para construir una página web.
 
 
-> **NOTA:** Si bien este blog es a modo de rant por una situación que para mi debería haber sido algo sencillo de resolver, lo cierto es que yo también puedo ser idiota y haber cometido un error en alguna parte. En mi caso el proyecto era Svelte con Bootstrap. Bootstrap incluye fuentes "fallback" en caso de que tu no le asignes una a tu proyecto para evitar que las cosas se vean feas "así nomas."
+> **NOTA:** Si bien este blog es a modo de rant por una situación que para mi debería haber sido algo sencillo de resolver, lo cierto es que yo también puedo ser idiota y pude haber cometido un error en alguna parte. En mi caso el proyecto era Svelte con Bootstrap. Bootstrap incluye fuentes "fallback" en caso de que tu no le asignes una a tu proyecto para evitar que las cosas se vean feas "así nomas."
 
 ## Omar contra Svelte y las font-zas del mal.
 
