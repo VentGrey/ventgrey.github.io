@@ -69,7 +69,7 @@ location /supersecret {
 
 Una vez hecho esto, al ingresar a la ruta de ejemplo example.com/supersecret NGINX nos pedirá ingresar nuestras credenciales al ingresar con un navegador:
 
-<figure class="wp-block-image size-full is-resized img-fluid">![Imágen mostrando la ventana de inicio de sesión de NGINX](https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/e0e7b85789531fa9c738b1dec59c99391cceec4a/assets/img/auth.png)<figcaption>El diálogo de este color es propio del Navegador Brave.</figcaption></figure>
+![Imágen mostrando la ventana de inicio de sesión de NGINX](https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/e0e7b85789531fa9c738b1dec59c99391cceec4a/assets/img/auth.png)
 
 ## (Opcional) Autenticación por contraseña + Lista blanca de direcciones IP
 
