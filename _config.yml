@@ -3,8 +3,7 @@ author:
   name: VentGrey
   email: ventgrey@gmail.com
 description: > # this means to ignore newlines until "show_excerpts:"
-  Mi blog de tecnología por terapia. Escribo cosas de linux y
-  poco más.
+  Mi blog de tecnología por terapia.
 
 show_excerpts: false # set to true to show excerpts on the homepage
 
