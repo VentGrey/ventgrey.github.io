@@ -50,9 +50,13 @@ minima:
 #header_pages:
 # - about.md
 
+# Jekyll sitemap plugin
+url: "https://ventgrey.github.io/"
+
 # Build settings
 theme: minima
 
 plugins:
  - jekyll-feed
  - jekyll-seo-tag
+ - jekyll-sitemap
