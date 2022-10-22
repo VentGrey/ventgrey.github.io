@@ -29,6 +29,7 @@ Aquí puedes encontrar un portafolio extenso de mi carrera como programador :)
 - [Traductor en la wiki de Debian](https://wiki.debian.org/CategoryWikiTranslator)
 - [Todas mis contribuciones en la wiki de Funtoo](https://www.funtoo.org/Special:Contributions/Ventgrey)
 - [Numerosos cambios en la wiki de Debian](https://wiki.debian.org/Omar%20Jair%20Purata%20Funes)
+- [Contribuciones de código al siio https://menu.labarra.xyz una cadena de restaurantes Mexicanos](https://menu.labarra.xyz)
 
 ## Trabajo (Experiencia Laboral) 👨‍💼
 
@@ -53,6 +54,9 @@ Estos son los lugares donde he trabajado a lo largo de mi carrera como programad
 - BrannAR (2017 - 2019) 🔥
   - Colaboré con la creación y mantenimiento de los archivos `.iso` de la distribución de Gnu/Linux que mantenían
   además de ayudar con diferentes medidas de código y seguridad.
+  
+- NetlogistiK (2022) 👷🏻
+  - Trabajé como consultor de servicios administrados, me encargaba de automatizar tareas con Ansible y manejar servidores RHEL, Oracle Linux y AIX.
 
-- UpVent (2020 - Present) 🚀
+- UpVent (2020 - Present) 🚀 
   - Fundé UpVent con la misión de promover una sociedad, educación y movimiento empresarial basado en software libre.
