@@ -2,9 +2,17 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#38414B" />
+  <meta name="application-name" content="La Esquina Gris">
+  <meta name="apple-mobile-web-app-title" content="La Esquina Gris">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
   {%- seo -%}
   <link rel="stylesheet" href="{{ "/assets/css/style.css" | relative_url }}">
   <link rel="icon" type="image/x-icon" href="{{ "assets/img/favicon.ico" | relative_url }}">
+  <link rel="apple-touch-icon" href="{{  "assets/img/apple-touch-icon.png" | relative_url }}" sizes="180x180">
+
   {%- feed_meta -%}
   {%- if jekyll.environment == 'production' and site.google_analytics -%}
     {%- include google-analytics.html -%}
