@@ -1,0 +1,32 @@
+{
+    "theme_color": "#29364d",
+    "background_color": "#FAFAFA",
+    "display": "minimal-ui",
+    "scope": "/",
+    "start_url": "/",
+    "name": "La Esquina Gris",
+    "short_name": "La Esquina Gris",
+    "description": "Hago un blog de tecnolog\u00eda por terapia. Conoce m\u00e1s de Gnu/Linux conmigo :D",
+    "icons": [
+        {
+            "src": "/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-256x256.png",
+            "sizes": "256x256",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-384x384.png",
+            "sizes": "384x384",
+            "type": "image/png"
+        },
+        {
+            "src": "/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
