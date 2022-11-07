@@ -3,19 +3,23 @@ layout: post
 ---
 # ¿Firebase? ¿Supabase? No gracias, soy hombre simple.
 
-Hace poco descubrí un proyecto asombroso gracias al canal de [Fireship](https://fireship.io/), este proyecto se llama *"Pocketbase"* y es asombroso. Piensa en Firebase o Supabase pero, literalmente, "De bolsillo". Algo así es pocketbase. Una
+Hace poco descubrí un proyecto asombroso gracias al canal de [Fireship](https://fireship.io/), este proyecto se llama *"Pocketbase"* y es asombroso. Piensa en Firebase o Supabase pero, literalmente, "De bolsillo". Algo así es PocketBase. Una
 base de datos / PaaS ideal para proyectos pequeños-medianos que necesitan de un backend o incluso una REST API sencilla.
 
-Otra cosa interesante de PocketBase es que no usa una BD como MySQL, PostgreSQL o SQLServer. Pocketbase usa *SQLite3* para guardar las tablas y los datos. *SQLite* es una base de datos muy malentendida y que, gracias a informáticos chafas se han dicho puntos negativos que ya fueron arreglados o que directamente son falsos. PocketBase utiliza *SQLite3* con modo *WAL* y, según la [página de preguntas frecuentes](https://pocketbase.io/faq/) puede llegar a superar el rendimiento de otras bases de datos para operaciones de lectura. Si eso es cierto o no [te invito a comprobarlo](https://ericdraken.com/sqlite-performance-testing/) por tu cuenta.
+Otra cosa interesante de PocketBase es que no usa una base de datos como MySQL, PostgreSQL o SQLServer. Pocketbase usa *SQLite3* para almacenar los datos. La cosa graciosa es que...bueno, *SQLite* es una base de datos muy malentendida, más que nada gracias a informáticos chafas, que han repetido puntos negativos que, o bien ya fueron arreglados o falsos en un todo. 
+
+PocketBase utiliza *SQLite3* con modo *WAL* y, según la [página de preguntas frecuentes](https://pocketbase.io/faq/) puede llegar a superar el rendimiento de otras bases de datos para operaciones de lectura. Si eso es cierto o no [te invito a comprobarlo](https://ericdraken.com/sqlite-performance-testing/) por tu cuenta.
 
 
 ## En el mundo del *-as-a-service aun hay esperanza.
 
 ![soyrverless](https://raw.githubusercontent.com/VentGrey/ventgrey.github.io/master/assets/img/soy-verless.jpg)
 
-No soy muy fan de las cosas *"As a service"*, uno podría usar el ya desgastado argumento de *P-pero es que es más barato*, sin embargo en muchos casos (inclusive fuera de la tecnología) el *"barato"* tiene sus puntos débiles. Principalmente porque confías tu dependencia de dicho servicio en terceros. Acompañado del primer argumento viene el "Pero es que **M.A.A.N.G** nunca falla, es muy raro que falle, es poco el downtime." Entre otros, y esto no podría estar más alejado de la verdad, manejar un servicio para tantos usuarios y de esas dimensiones es una tarea colosal, el downtime es algo que va a pasar si o si, no importa el tamaño de la empresa ni lo caro de los servicios.
+No soy muy fan de las cosas *"As a service"*, uno podría usar el ya desgastado argumento de *"P-pero es que es más barato"*. Sin embargo en muchos casos (inclusive fuera de la tecnología) lo *"barato"* tiene sus puntos débiles. Principalmente porque depositas o dejas tu dependencia de dicho servicio en las manos de terceros. Acompañado del primer argumento viene el "Pero es que **M.A.A.N.G** nunca falla", "Es muy raro que un servicio así falle", "Es poco el downtime que llegan a tener".
 
-Para muestra aquí están los servicios y los downtimes que han tenido en el año 2022:
+Esto no podría estar más alejado de la verdad, manejar un servicio para tantos usuarios y de esas dimensiones es una tarea colosal, el downtime es algo que va a pasar si o si, no importa el tamaño de la empresa ni lo caro de los servicios.
+
+Si no crees lo que te digo, aquí están los servicios y los downtimes que han tenido en el año 2022, todas las páginas son las "oficiales":
 
 - [Downtime y errores de servicio de Google Cloud](https://status.cloud.google.com/summary)
 - [Lista de incidentes de GitHub](https://www.githubstatus.com/history)
@@ -23,17 +27,22 @@ Para muestra aquí están los servicios y los downtimes que han tenido en el añ
 - [Downtime y lista de incidentes de Netlify](https://www.netlifystatus.com/history)
 - [Lista de incidentes de Heroku](https://status.heroku.com/incidents)
 
-Todos estos proveedores de SaaS (*Software as a Service*). Ni ellos siendo los gigantes tecnológicos que son se salvan del famoso *¿Quién la cagó?* que tira producción a veces, sea humano o máquina. 
+Todos estos proveedores de SaaS (*Software as a Service*) o *CaaS* (Cosas as a Service xD). Siendo los gigantes tecnológicos que son no están libres del famoso *"¿Quién la cagó?"*, frase atribuida al que tira producción, sea humano o máquina. 
 
-**OJO** no digo que todo el *-as-a-service sea malo, lo que digo es que la dependencia extrema del mismo es o tiene potencial de ser dañina para quien lo consume. Para muestra las pérdidas generadas por el incendio y fallo de [OVHcloud](https://www.datacenterdynamics.com/en/news/ovhcloud-reports-14-percent-growth-but-last-years-fire-caused-a-loss/) en 2021, donde OVHcloud tuvo que cubrir 3 millones de Euros de su propia bolsa, sumado a eso, las [demandas presentadas](https://www.datacenterdynamics.com/en/news/ovhcloud-fire-losses-103-join-class-action-four-firms-sue-individually/) para pedir compensasión por las pérdidas monetarias generadas que se estiman en 9.2 millones de Euros de acuerdo con el [JournalDuNet](https://www.journaldunet.com/web-tech/cloud/1509029-exclusif-103-entreprises-reclament-plus-de-9-millions-d-euros-de-dedommagement-a-ovh/?utm_campaign=Quotidienne_2022-02-04&utm_medium=email&seen=2&utm_source=MagNews&een=5a09c20e56d482d345813f3f04d0bace).
+### No me malentiendas, If I had a mind to I wouldn't want to think like you
 
-Para esta dependencia extrema a los proveedores externos siempre existe el *self-hosting* que básicamente es mantener tu propia infraestructura. A esta práctica también la acompañan los argumentos pedorros. "Si **M.A.A.N.G** tiene downtime o errores ¿Qué esperanza tienes tú?", "Ellos tienen ingenieros con x años de experiencia, tu nada más eres uno.", "Es que ellos entregan mejor calidad", etc. A esto no puedo responder algo más concreto que hay de dos sopas, o son informáticos con pedos muy serios de confianza en si mismos o de plano desarrollaron una dependencia tan fuerte que raya en el grado de lamer una bota.
+**OJO** no digo que todo el "*-as-a-service" sea malo, lo que digo es que la dependencia extrema del mismo tiene potencial de ser dañina para quien lo consume. Para muestra las pérdidas generadas por el incendio y fallo de [OVHcloud](https://www.datacenterdynamics.com/en/news/ovhcloud-reports-14-percent-growth-but-last-years-fire-caused-a-loss/) en 2021, donde OVHcloud tuvo que cubrir 3 millones de Euros de su propia bolsa, sumado a eso, las [demandas presentadas](https://www.datacenterdynamics.com/en/news/ovhcloud-fire-losses-103-join-class-action-four-firms-sue-individually/) para pedir compensasión por las pérdidas monetarias generadas que se estiman en 9.2 millones de Euros de acuerdo con el [JournalDuNet](https://www.journaldunet.com/web-tech/cloud/1509029-exclusif-103-entreprises-reclament-plus-de-9-millions-d-euros-de-dedommagement-a-ovh/?utm_campaign=Quotidienne_2022-02-04&utm_medium=email&seen=2&utm_source=MagNews&een=5a09c20e56d482d345813f3f04d0bace).
 
-De nuevo, con esto no digo que deberías alojar todo por ti mismo (si puedes hacerlo, mejor), sin embargo, si los servicios son para ti mismo claro que es posible manejar tu propia infraestructura, como muestra tengo el [monitoreo de uptime de UpVent](https://stats.uptimerobot.com/qXywYt1lg9) que, si entras a detalle podrás notar que en efecto, el sitio principal sufrió downtime y el API tuvo una pausa. Ahora te invito a ver el downtime del sitio principal, fue de 4 minutos algo mucho menor si lo comparamos con los downtimes mencionados anteriormente y claro, es porque mantener un servidor "personal" con infraestructura para pocas personas no es una tarea realmente titánica, menos si eres un buen sysadmin y sabes y conoces las herramientas adecuadas para no mover ni un solo dedo en meses y que tus servidores funcionen *como si nada*. En mi caso solo dependo de 3 servicios en la nube, mi proveedor de VPS [Linode](https://www.linode.com/lp/refer/?r=2b48a57a9c813fa9972e3287171358c4f36746af), [GitHub](https://github.com/UpVent) para alojar el código fuente y [Uptime Robot](https://uptimerobot.com/?rid=89ab54e5cbe447) para monitorear mis sitios. Y si, planeo reducir esa dependencia en un futuro.
+La cura esta dependencia extrema a los proveedores externos siempre existe el *self-hosting* que básicamente es mantener tu propia infraestructura. A esta práctica también la acompañan los argumentos pedorros. "Si **M.A.A.N.G** tiene downtime o errores ¿Qué esperanza tienes tú?", "Ellos tienen ingenieros con x años de experiencia, tu nada más eres uno.", "Es que ellos entregan mejor calidad", etc. A esto no puedo responder algo más concreto que "*hay de dos sopas*".
+
+1.  Son informáticos con pedos muy serios de confianza en si mismos 
+2.  De plano desarrollaron una dependencia tan fuerte que raya en el grado de lamer una bota.
+
+De nuevo, con esto no digo que deberías alojar todo por ti mismo (si puedes hacerlo, mejor), sin embargo, si los servicios son para ti mismo claro que es posible manejar tu propia infraestructura, como muestra tengo el [monitoreo de uptime de UpVent](https://stats.uptimerobot.com/qXywYt1lg9) que, si observas a detalle podrás notar que en efecto, el sitio principal sufrió downtime y el API tuvo una pausa. Ahora te invito a ver el downtime del sitio principal, fue de 4 minutos algo mucho menor si lo comparamos con los downtimes mencionados anteriormente y claro, es porque mantener un servidor "personal" con infraestructura para pocas personas no es una tarea realmente titánica, menos si eres un buen sysadmin y sabes y conoces las herramientas adecuadas para no mover ni un solo dedo en meses y que tus servidores funcionen *como si nada*. En mi caso solo dependo de 3 servicios en la nube, mi proveedor de VPS [Linode](https://www.linode.com/lp/refer/?r=2b48a57a9c813fa9972e3287171358c4f36746af), [GitHub](https://github.com/UpVent) para alojar el código fuente y [Uptime Robot](https://uptimerobot.com/?rid=89ab54e5cbe447) para monitorear mis sitios. Y si, planeo reducir esa dependencia en un futuro.
 
 ## ¿Y esto en qué afecta a Ultra Lord? (¿Qué tiene que ver Pocketbase?)
 
-Pocketbase nos ofrece una forma sencilla de sustituir un SaaS como lo son Supabase y Firebase. Esto con sus respectivas ventajas, por ejemplo, Firebase no es realmente económico y, salvo que sea un experimento su plan *"gratis"* no ofrece mucho realmente, además de que, si en algún momento necesitamos migrar de servicio tendremos una tarea monumental entre manos.
+PocketBase nos ofrece una forma sencilla de sustituir un SaaS como lo son Supabase y Firebase. Esto con sus respectivas ventajas, por ejemplo, Firebase no es realmente económico y, salvo que sea un experimento su plan *"gratis"* no ofrece mucho realmente, además de que, si en algún momento necesitamos migrar de servicio tendremos una tarea monumental entre manos.
 
 Con Supabase las cosas cambian un poco, también tienen un plan gratis y con ese hay un poco más de espacio para maniobrar. Sin embargo, para hacer *self-hosting* de Supabase no tengo palabras salvo *"es un santísimo pedo"* de repositorios, contenedores, configuraciones y dios sabrá que cosas más en el futuro. 
 
@@ -111,7 +120,7 @@ Cuando Pocketbase se termine de descargar debemos extraerla, darle permisos y ej
 $ unzip pocketbase.zip
 
 # Dar permisos y elminar los archivos innecesarios
-$ chown +x pocketbase && rm pocketbase.zip LICENSE.md
+$ chmod +x pocketbase && rm pocketbase.zip LICENSE.md
 
 # Ejecutar pocketbase una vez para crear el directorio de archivos
 ./pocketbase
@@ -301,7 +310,7 @@ nginx: configuration file /etc/nginx/nginx.conf test is successful
 
 Si todo está correcto ya solo es momento de estrenar nuestra nueva BD. Ejecutamos `sudo systemctl restart nginx` nuevamente, esperamos a que el servidor reinicie de forma correcta y vamos al siguiente paso.
 
-### Comenzar a usar Pocketbase
+### Comenzar a usar PocketBase
 
 Bien, si todo nos salió como debería, podemos ir con nuestro navegador a https://api.ejemplo.com/_/ , en tu caso, a la URL de tu dominio personal para PocketBase, en el caso ideal deberíamos ver la siguiente pantalla:
 

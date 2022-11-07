@@ -51,7 +51,10 @@ minima:
 # - about.md
 
 # Jekyll sitemap plugin
-url: "https://ventgrey.github.io/"
+url: https://ventgrey.github.io/
+
+# Google Analytics
+google_analytics: G-DHDYE6WRR4
 
 # Build settings
 theme: minima
