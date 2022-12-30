@@ -10,7 +10,7 @@ draft: false
 hidemeta: false
 comments: false
 description: "Todos los que hemos usado un Window Manager en Gnu/Linux hemos pensado en lemonbar, una barra simple, minimalista y experta en causar alopecia por estrés. ¡Acompañame a aprender a configurarla!"
-canonicalURL: "https://canonical.url/to/page"
+canonicalURL: "https://ventgrey.github.io/posts/configurar-lemonbar-en-linux/"
 disableHLJS: true # to disable highlightjs
 disableShare: false
 disableHLJS: false

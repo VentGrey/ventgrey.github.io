@@ -10,7 +10,7 @@ draft: false
 hidemeta: false
 comments: false
 description: "Un rayito de luz para los que queremos un poco de independencia en esta pandemia de tanto SaaS, PaaS y tanto *aaS haya hoy."
-canonicalURL: "https://canonical.url/to/page"
+canonicalURL: "https://ventgrey.github.io/posts/desplegar-pocketbase/"
 disableHLJS: true # to disable highlightjs
 disableShare: false
 disableHLJS: false

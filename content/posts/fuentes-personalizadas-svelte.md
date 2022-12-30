@@ -10,7 +10,7 @@ draft: false
 hidemeta: false
 comments: false
 description: "Es fácil ¿no? Sería una pena encontrarme únicamente con respuestas diciendome que use la CDN de Google Fonts ¿verdad? 🙎‍♂️"
-canonicalURL: "https://canonical.url/to/page"
+canonicalURL: "https://ventgrey.github.io/posts/fuentes-personalizadas-svelte/"
 disableHLJS: true # to disable highlightjs
 disableShare: false
 disableHLJS: false

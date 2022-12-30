@@ -10,7 +10,7 @@ draft: false
 hidemeta: false
 comments: false
 description: "Todas las API son iguales. ¿Qué tan igual será una hecha en Rust y Rocket?"
-canonicalURL: "https://canonical.url/to/page"
+canonicalURL: "https://ventgrey.github.io/posts/rest-api-rocket/"
 disableHLJS: true # to disable highlightjs
 disableShare: false
 disableHLJS: false

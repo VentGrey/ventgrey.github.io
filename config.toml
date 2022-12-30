@@ -122,8 +122,8 @@ SiteVerificationTag = "G-DHDYE6WRR4"
   hiddenInSingle = true
 
   [params.editPost]
-  URL = "https://github.com/VentGrey/ventgrey.github.io/"
-  Text = "Suggest Changes"
+  URL = "https://github.com/VentGrey/ventgrey.github.io/issues"
+  Text = "Sugerir cambios"
   appendFilePath = true
 
   [params.fuseOpts]

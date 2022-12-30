@@ -10,7 +10,7 @@ draft: false
 hidemeta: false
 comments: false
 description: "De nuevo, supongo que no encontraré respuestas diciendome que use Heroku, Vercel o esas weas...¿verdad? :("
-canonicalURL: "https://canonical.url/to/page"
+canonicalURL: "https://ventgrey.github.io/posts/desplegar-svelte-nginx/"
 disableHLJS: true # to disable highlightjs
 disableShare: false
 disableHLJS: false

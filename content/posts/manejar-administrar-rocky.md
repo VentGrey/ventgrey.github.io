@@ -10,7 +10,7 @@ draft: false
 hidemeta: false
 comments: false
 description: "La clave del manejo de usuarios en un solo blog. Te invito a conocer las bases de la administración de Linux :)"
-canonicalURL: "https://canonical.url/to/page"
+canonicalURL: "https://ventgrey.github.io/posts/manejar-administrar-rocky/"
 disableHLJS: true # to disable highlightjs
 disableShare: false
 disableHLJS: false

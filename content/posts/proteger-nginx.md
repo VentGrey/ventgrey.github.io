@@ -9,8 +9,8 @@ TocOpen: false
 draft: false
 hidemeta: false
 comments: false
-description: "Desc Text."
-canonicalURL: "https://canonical.url/to/page"
+description: "En la seguridad está la confianza. No confíes en el programador, te toca a ti salvar a los usuarios."
+canonicalURL: "https://ventgrey.github.io/posts/proteger-nginx/"
 disableHLJS: true # to disable highlightjs
 disableShare: false
 disableHLJS: false
