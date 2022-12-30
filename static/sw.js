@@ -1,26 +1,26 @@
 const CACHE_VERSION = 1;
 
 const BASE_CACHE_FILES = [
-    '/manifest.json',
-    '/favicon.ico',
-    '/img/profile.jpeg',
-    '/apple-touch-icon.png',
-    '/assets/css/stylesheet.bccfefac377bc340f06c260aed1bddf49a4354816d7c570d6aac75a997986c95.css',
+    './',
+    './manifest.json',
+    './favicon.ico',
+    './img/profile.jpeg',
+    './apple-touch-icon.png',
+    './assets/css/stylesheet.bccfefac377bc340f06c260aed1bddf49a4354816d7c570d6aac75a997986c95.css',
 ];
 
 const OFFLINE_CACHE_FILES = [
-    '/img/profile.jpeg',
-    '/apple-touch-icon.png',
-    '/assets/css/stylesheet.bccfefac377bc340f06c260aed1bddf49a4354816d7c570d6aac75a997986c95.css',
+    './img/profile.jpeg',
+    './apple-touch-icon.png',
+    './assets/css/stylesheet.bccfefac377bc340f06c260aed1bddf49a4354816d7c570d6aac75a997986c95.css',
 ];
 
-const NOT_FOUND_CACHE_FILES = [
-    
-    '/404.html',
+const NOT_FOUND_CACHE_FILES = [    
+    './404.html',
 ];
 
-const OFFLINE_PAGE = '/offline/index.html';
-const NOT_FOUND_PAGE = '/404.html';
+const OFFLINE_PAGE = './offline/index.html';
+const NOT_FOUND_PAGE = './404.html';
 
 const CACHE_VERSIONS = {
     assets: 'assets-v' + CACHE_VERSION,
