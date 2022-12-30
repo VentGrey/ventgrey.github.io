@@ -114,7 +114,7 @@ ShareButtons = ["linkedin", "twitter", "reddit", "facebook", "whatsapp", "telegr
   url = "https://upvent.codes/"
 
 [params.analytics.google]
-SiteVerificationTag = "Iyb36hxWrYaEXR1JJHRsc-E3vXidjcKH8hdE1pU5KxA"
+SiteVerificationTag = "G-DHDYE6WRR4"
 
   [params.cover]
   hidden = true
