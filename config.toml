@@ -98,10 +98,6 @@ ShareButtons = ["linkedin", "twitter", "reddit", "facebook", "whatsapp", "telegr
   url = "https://www.linkedin.com/in/omar-jair-purata-funes/"
 
   [[params.socialIcons]]
-  name = "monero"
-  url = ""
-
-  [[params.socialIcons]]
   name = "paypal"
   url = "https://paypal.me/VentGrey?country.x=MX&locale.x=es_XC"
 
