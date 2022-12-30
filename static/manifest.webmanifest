@@ -67,7 +67,7 @@
   ],
   "screenshots": [
     {
-      "src": "screenshot.png",
+      "src": "screenshot1.png",
       "sizes": "1280x800",
       "type": "image/png"
     },
@@ -76,5 +76,6 @@
       "sizes": "750x1334",
       "type": "image/png"
     }
-  ]
+  ],
+  "prefer_related_applications": false
 }
