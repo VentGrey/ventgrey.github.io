@@ -26,6 +26,12 @@
       "src": "splash.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "splash.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
   "start_url": "/",
