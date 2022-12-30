@@ -1,26 +1,17 @@
 const CACHE_VERSION = 1;
 
 const BASE_CACHE_FILES = [
-    '/css/custom.css',
-    '/js/custom.js',
-    '/search/index.json',
     '/manifest.json',
-    '/favicon.png',
-    '/images/logo.png',
-    '/techformist-logo-no-text.png',
-    '/assets/css/main.6a060eb7.css',
-    '/assets/js/main.67d669ac.js',
-    '/assets/js/sidebar.9ea42a6e.js',
-    '/assets/js/fuse_search.1ada4bca.js',
+    '/favicon.ico',
+    '/img/profile.jpeg',
+    '/apple-touch-icon.png',
+    '/assets/css/stylesheet.bccfefac377bc340f06c260aed1bddf49a4354816d7c570d6aac75a997986c95.css',
 ];
 
 const OFFLINE_CACHE_FILES = [
-    '/images/logo.png',
-    '/techformist-logo-no-text.png',
-    '/assets/css/main.6a060eb7.css',
-    '/assets/js/main.67d669ac.js',
-    '/assets/js/sidebar.9ea42a6e.js',
-    '/assets/js/fuse_search.1ada4bca.js',
+    '/img/profile.jpeg',
+    '/apple-touch-icon.png',
+    '/assets/css/stylesheet.bccfefac377bc340f06c260aed1bddf49a4354816d7c570d6aac75a997986c95.css',
 ];
 
 const NOT_FOUND_CACHE_FILES = [
