@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Svelte on La Esquina Gris</title>
+    <link>https://ventgrey.github.io/categories/svelte/</link>
+    <description>Recent content in Svelte on La Esquina Gris</description>
+    <image>
+      <url>https://ventgrey.github.io/img/laesquinagris.png</url>
+      <link>https://ventgrey.github.io/img/laesquinagris.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-mx</language>
+    <lastBuildDate>Thu, 25 Aug 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://ventgrey.github.io/categories/svelte/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Desplegar Svelte en NGINX y no morir en el intento</title>
+      <link>https://ventgrey.github.io/posts/desplegar-svelte-nginx/</link>
+      <pubDate>Thu, 25 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/posts/desplegar-svelte-nginx/</guid>
+      <description>De nuevo, supongo que no encontraré respuestas diciendome que use Heroku, Vercel o esas weas...¿verdad? :(</description>
+    </item>
+    
+    <item>
+      <title>Como añadir fuentes personalizadas a un proyecto de Svelte (Sin plugins de Vite)</title>
+      <link>https://ventgrey.github.io/posts/fuentes-personalizadas-svelte/</link>
+      <pubDate>Mon, 21 Feb 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/posts/fuentes-personalizadas-svelte/</guid>
+      <description>Es fácil ¿no? Sería una pena encontrarme únicamente con respuestas diciendome que use la CDN de Google Fonts ¿verdad? 🙎‍♂️</description>
+    </item>
+    
+    <item>
+      <title>Crear y consumir una REST API con Rust y Rocket</title>
+      <link>https://ventgrey.github.io/posts/rest-api-rocket/</link>
+      <pubDate>Mon, 24 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/posts/rest-api-rocket/</guid>
+      <description>Todas las API son iguales. ¿Qué tan igual será una hecha en Rust y Rocket?</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Base de datos on La Esquina Gris</title>
+    <link>https://ventgrey.github.io/tags/base-de-datos/</link>
+    <description>Recent content in Base de datos on La Esquina Gris</description>
+    <image>
+      <url>https://ventgrey.github.io/img/laesquinagris.png</url>
+      <link>https://ventgrey.github.io/img/laesquinagris.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-mx</language>
+    <lastBuildDate>Mon, 24 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://ventgrey.github.io/tags/base-de-datos/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Crear y consumir una REST API con Rust y Rocket</title>
+      <link>https://ventgrey.github.io/posts/rest-api-rocket/</link>
+      <pubDate>Mon, 24 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/posts/rest-api-rocket/</guid>
+      <description>Todas las API son iguales. ¿Qué tan igual será una hecha en Rust y Rocket?</description>
+    </item>
+    
+  </channel>
+</rss>

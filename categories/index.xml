@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Categories on La Esquina Gris</title>
+    <link>https://ventgrey.github.io/categories/</link>
+    <description>Recent content in Categories on La Esquina Gris</description>
+    <image>
+      <url>https://ventgrey.github.io/img/laesquinagris.png</url>
+      <link>https://ventgrey.github.io/img/laesquinagris.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-mx</language>
+    <lastBuildDate>Wed, 02 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://ventgrey.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux</title>
+      <link>https://ventgrey.github.io/categories/linux/</link>
+      <pubDate>Wed, 02 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/categories/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pocketbase</title>
+      <link>https://ventgrey.github.io/categories/pocketbase/</link>
+      <pubDate>Wed, 02 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/categories/pocketbase/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tutoriales</title>
+      <link>https://ventgrey.github.io/categories/tutoriales/</link>
+      <pubDate>Wed, 02 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/categories/tutoriales/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Svelte</title>
+      <link>https://ventgrey.github.io/categories/svelte/</link>
+      <pubDate>Thu, 25 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/categories/svelte/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rust</title>
+      <link>https://ventgrey.github.io/categories/rust/</link>
+      <pubDate>Mon, 24 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/categories/rust/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LeftWM</title>
+      <link>https://ventgrey.github.io/categories/leftwm/</link>
+      <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/categories/leftwm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Scripts Shell</title>
+      <link>https://ventgrey.github.io/categories/scripts-shell/</link>
+      <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/categories/scripts-shell/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Window Managers</title>
+      <link>https://ventgrey.github.io/categories/window-managers/</link>
+      <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/categories/window-managers/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

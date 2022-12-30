@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tags on La Esquina Gris</title>
+    <link>https://ventgrey.github.io/tags/</link>
+    <description>Recent content in Tags on La Esquina Gris</description>
+    <image>
+      <url>https://ventgrey.github.io/img/laesquinagris.png</url>
+      <link>https://ventgrey.github.io/img/laesquinagris.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-mx</language>
+    <lastBuildDate>Wed, 02 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://ventgrey.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Gnu</title>
+      <link>https://ventgrey.github.io/tags/gnu/</link>
+      <pubDate>Wed, 02 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/tags/gnu/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://ventgrey.github.io/tags/linux/</link>
+      <pubDate>Wed, 02 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>NGINX</title>
+      <link>https://ventgrey.github.io/tags/nginx/</link>
+      <pubDate>Wed, 02 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/tags/nginx/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Pocketbase</title>
+      <link>https://ventgrey.github.io/tags/pocketbase/</link>
+      <pubDate>Wed, 02 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/tags/pocketbase/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tutoriales</title>
+      <link>https://ventgrey.github.io/tags/tutoriales/</link>
+      <pubDate>Wed, 02 Nov 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/tags/tutoriales/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Svelte</title>
+      <link>https://ventgrey.github.io/tags/svelte/</link>
+      <pubDate>Thu, 25 Aug 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/tags/svelte/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>API</title>
+      <link>https://ventgrey.github.io/tags/api/</link>
+      <pubDate>Mon, 24 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/tags/api/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Base de datos</title>
+      <link>https://ventgrey.github.io/tags/base-de-datos/</link>
+      <pubDate>Mon, 24 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/tags/base-de-datos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rocket</title>
+      <link>https://ventgrey.github.io/tags/rocket/</link>
+      <pubDate>Mon, 24 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/tags/rocket/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rust</title>
+      <link>https://ventgrey.github.io/tags/rust/</link>
+      <pubDate>Mon, 24 Jan 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/tags/rust/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Bash</title>
+      <link>https://ventgrey.github.io/tags/bash/</link>
+      <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/tags/bash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C</title>
+      <link>https://ventgrey.github.io/tags/c/</link>
+      <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/tags/c/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fifo</title>
+      <link>https://ventgrey.github.io/tags/fifo/</link>
+      <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/tags/fifo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>LeftWM</title>
+      <link>https://ventgrey.github.io/tags/leftwm/</link>
+      <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/tags/leftwm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Window Managers</title>
+      <link>https://ventgrey.github.io/tags/window-managers/</link>
+      <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/tags/window-managers/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

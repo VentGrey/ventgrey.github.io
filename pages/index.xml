@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Pages on La Esquina Gris</title>
+    <link>https://ventgrey.github.io/pages/</link>
+    <description>Recent content in Pages on La Esquina Gris</description>
+    <image>
+      <url>https://ventgrey.github.io/img/laesquinagris.png</url>
+      <link>https://ventgrey.github.io/img/laesquinagris.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-mx</language><atom:link href="https://ventgrey.github.io/pages/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Portafolio Extendido</title>
+      <link>https://ventgrey.github.io/pages/resume/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/pages/resume/</guid>
+      <description>Aquí puedes encontrar un portafolio extenso de mi carrera como programador :)</description>
+    </item>
+    
+  </channel>
+</rss>

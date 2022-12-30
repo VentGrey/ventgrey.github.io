@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Scripts Shell on La Esquina Gris</title>
+    <link>https://ventgrey.github.io/categories/scripts-shell/</link>
+    <description>Recent content in Scripts Shell on La Esquina Gris</description>
+    <image>
+      <url>https://ventgrey.github.io/img/laesquinagris.png</url>
+      <link>https://ventgrey.github.io/img/laesquinagris.png</link>
+    </image>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-mx</language>
+    <lastBuildDate>Wed, 01 Dec 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://ventgrey.github.io/categories/scripts-shell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Configurar lemonbar en linux</title>
+      <link>https://ventgrey.github.io/posts/configurar-lemonbar-en-linux/</link>
+      <pubDate>Wed, 01 Dec 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://ventgrey.github.io/posts/configurar-lemonbar-en-linux/</guid>
+      <description>Todos los que hemos usado un Window Manager en Gnu/Linux hemos pensado en lemonbar, una barra simple, minimalista y experta en causar alopecia por estrés. ¡Acompañame a aprender a configurarla!</description>
+    </item>
+    
+  </channel>
+</rss>
