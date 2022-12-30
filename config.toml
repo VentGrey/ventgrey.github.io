@@ -1,0 +1,163 @@
+baseURL = 'https://ventgrey.github.io/'
+languageCode = 'es-mx'
+title = 'La Esquina Gris'
+theme = 'PaperMod'
+paginate = 5
+
+# Build Options
+enableRobotsTXT = true
+buildDrafts = false
+buildFuture = false
+buildExpired = false
+
+# Asset minification
+[minify]
+disableXML = true
+minifyOutput = true
+
+# Google Analytics
+googleAnalytics = 'G-DHDYE6WRR4'
+
+# Parameters
+[params]
+env = "production"
+title = "La Esquina Gris - Escribo un blog por terapia"
+description = "Blog de personal habland de tecnología como Gnu/Linux, lenguajes de programación y pensamientos que rondan la cabeza de un programador."
+keywords = [ "Blog", "Portfolio", "VentGrey", "Omar Jair Purata Funes", "La Esquina Gris", "Blog de Linux en español" ]
+author = "VentGrey"
+images = [ "img/laesquinagris.png" ]
+DateFormat = "January 2, 2006"
+defaultTheme = "auto"
+disableThemeToggle = false
+ShowReadingTime = true
+ShowShareButtons = true
+ShowPostNavLinks = true
+ShowBreadCrumbs = true
+ShowCodeCopyButtons = true
+ShowWordCount = true
+ShowRssButtonInSectionTermList = true
+UseHugoToc = true
+disableSpecial1stPost = false
+disableScrollToTop = false
+comments = false
+hidemeta = false
+hideSummary = false
+showtoc = false
+tocopen = false
+ShareButtons = ["linkedin", "twitter", "reddit", "facebook", "whatsapp", "telegram"]
+
+  [params.assets]
+  favicon = "favicon.ico"
+  apple_touch_icon = "apple-touch-icon.png"
+  safari_pinned_tab = "<link / abs url>"
+
+  [params.label]
+  text = "La Esquina Gris"
+  icon = "/apple-touch-icon.png"
+  iconHeight = 35
+
+  [params.profileMode]
+  enabled = true
+  title = "La Esquina Gris"
+  subtitle = "Bienvenid@ a mi blog de tecnología por terapia."
+  imageUrl = "img/profile.jpeg"
+  imageWidth = 120
+  imageHeight = 120
+  imageTitle = "yo mero"
+
+    [[params.profileMode.buttons]]
+    name = "Blog"
+    url = "posts"
+
+    [[params.profileMode.buttons]]
+    name = "Portafolio de Trabajo"
+    url = "pages/resume"
+
+  [params.homeInfoParams]
+  Title = "Puedo ver tu casa desde aquí 🪐"
+  Content = "Bienvenid@ a mi blog de tecnología por terapia."
+
+  [[params.socialIcons]]
+  name = "twitter"
+  url = "https://twitter.com/VentGrey"
+
+  [[params.socialIcons]]
+  name = "github"
+  url = "https://github.com/VentGrey"
+
+  [[params.socialIcons]]
+  name = "kofi"
+  url = "https://ko-fi.com/ventgrey"
+
+  [[params.socialIcons]]
+  name = "liberapay"
+  url = "https://liberapay.com/VentGrey"
+
+  [[params.socialIcons]]
+  name = "linkedin"
+  url = "https://www.linkedin.com/in/omar-jair-purata-funes/"
+
+  [[params.socialIcons]]
+  name = "monero"
+  url = ""
+
+  [[params.socialIcons]]
+  name = "paypal"
+  url = "https://paypal.me/VentGrey?country.x=MX&locale.x=es_XC"
+
+  [[params.socialIcons]]
+  name = "spotify"
+  url = "https://open.spotify.com/user/22ikuvunhe6y36x6lzdbfxywi?si=82e22671c75740b0"
+
+  [[params.socialIcons]]
+  name = "telegram"
+  url = "tg://resolve?domain=VentGrey"
+
+  [[params.socialIcons]]
+  name = "other"
+  url = "https://upvent.codes/"
+
+[params.analytics.google]
+SiteVerificationTag = "Iyb36hxWrYaEXR1JJHRsc-E3vXidjcKH8hdE1pU5KxA"
+
+  [params.cover]
+  hidden = true
+  hiddenInList = true
+  hiddenInSingle = true
+
+  [params.editPost]
+  URL = "https://github.com/VentGrey/ventgrey.github.io/"
+  Text = "Suggest Changes"
+  appendFilePath = true
+
+  [params.fuseOpts]
+  isCaseSensitive = false
+  shouldSort = true
+  location = 0
+  distance = 1_000
+  threshold = 0.4
+  minMatchCharLength = 0
+  keys = [ "title", "permalink", "summary", "content" ]
+
+pygmentsUseClasses = true
+
+[[menu.main]]
+identifier = "categories"
+name = "Categorias"
+url = "/categories/"
+weight = 10
+
+[[menu.main]]
+identifier = "tags"
+name = "Etiquetas"
+url = "/tags/"
+weight = 20
+
+[[menu.main]]
+identifier = "example"
+name = "¿Buscas a UpVent?"
+url = "https://upvent.codes"
+weight = 30
+
+[markup.highlight]
+noClasses = false
