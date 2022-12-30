@@ -40,9 +40,16 @@
   "orientation": "any",
   "background_color": "#FAFAFA",
   "theme_color": "#38414B",
+  "prefer_related_applications": false,
   "description": "Blog de personal habland de tecnología como Gnu/Linux, lenguajes de programación y pensamientos que rondan la cabeza de un programador.",
   "dir": "auto",
   "lang": "es",
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://ventgrey.github.io/"
+    }
+  ],
   "shortcuts": [
     {
       "name": "Blog",
@@ -77,6 +84,5 @@
       "sizes": "750x1334",
       "type": "image/png"
     }
-  ],
-  "prefer_related_applications": false
+  ]
 }
