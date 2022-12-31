@@ -40,6 +40,7 @@ Si recibiste mi CV o si te interesa saber a detalle mi experiencia en la computa
 - [Orchid](https://github.com/UpVent/orchid) - *Un script para automatizar diferentes tareas de servidor* 🌺
 - [Weeping moon](https://github.com/UpVent/weeping-moon) - *Un script para mejorar la seguridad de instalaciones de Ubuntu Server* 🌙
 - [Epitaph](https://github.com/VentGrey/Epitaph) - *Un tema completo para LeftWM* ☠️
+- [Camel](https://github.com/VentGrey/Camel) - *Un tema completo para AwesomeWM* 🐫
 - [Debian MATE Themes](https://github.com/VentGrey/debian-mate-themes) - *Temas de Ubuntu MATE portados para Debian MATE* 🎨
 - [VentMacs](https://github.com/VentGrey/VentMacs) - *Mi microdistribución personal de Emacs* ✒️
 - [scanrs](https://github.com/VentGrey/scanrs) - *Una biblioteca de Rust para leer entrada estándar* ⌨️
@@ -78,7 +79,7 @@ Estos son los lugares donde he trabajado a lo largo de mi carrera como programad
   - Realicé mejoras en la página web del proyecto estudiantil y futuro producto AsCard.
   - Creé multiples proyectos en favor del proyecto como un navegador web sencillo o un editor de tarjetas.
 
-- CyberIndustree (2020 - 2020) 🌳
+- CyberIndustree (2020) 🌳
   - Colaboré como externo en esta empresa, realizando trabajos a petición de los clientes y mejorando las tecnologías
   actuales, así como el servidor empresarial.
 
