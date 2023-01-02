@@ -15,9 +15,6 @@ buildExpired = false
 disableXML = true
 minifyOutput = true
 
-# Google Analytics
-googleAnalytics = 'G-DHDYE6WRR4'
-
 # Parameters
 [params]
 env = "production"
