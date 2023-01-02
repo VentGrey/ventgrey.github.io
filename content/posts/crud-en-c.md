@@ -48,7 +48,7 @@ Vamos a aprender a hacer este CRUD con C, para hacer algunos conceptos más entr
 
 En un lugar de internet, de cuyo dominio no quiero acordarme, no ha mucho tiempo que vivía un hidalgo de los de teclado en bolsa, adarga antigua, rocín flaco y galgo corredor. Es decir, tu mero (o mera), pero en esta historia.
 
-En este mundo no existen los programadores, pero si los magos, que son más o menos lo mismo. Sin embargo ambos deben lidiar con el mismo sufrimiento, todo lo que hagan deberá estar escrito en C (por el momento).
+En este mundo no existen los programadores, pero sí los magos, que son más o menos lo mismo. Sin embargo ambos deben lidiar con el mismo sufrimiento, todo lo que hagan deberá estar escrito en C (por el momento).
 
 Tu, al ser novel en estas prácticas, acabas de conseguir tu primer tarea. No te preocupes, que no deberás hacerla por tu cuenta, este blog está aquí para ayudarte.
 
@@ -199,7 +199,7 @@ typedef struct {
         double recompensa;
         int experiencia;
         char habilidades[80];
-} Heroe;
+} Mision;
 ```
 
 Perfecto, así nos aseguraremos de guardar todo en un solo tipo de dato
@@ -571,7 +571,7 @@ Si deseas usar gcc:
 > C18 solo está disponible en gcc-9 o superior y clang-9 o superior, en caso de no contar con ellos
 > puedes cambiarlo a C99 con `-std=c99`.
 
-Si, estoy consciente de que no cubrí la parte de las "Misiones" en el blog y lo hice completamente intencional, pues la diferencia entre funciones es mínima y básicamente solo es cambiar `printf()`'s y `scanf()`'s así que ponerlas aquí solo sería inflar la longitud del blog.
+Sí, estoy consciente de que no cubrí la parte de las "Misiones" en el blog y lo hice completamente intencional, pues la diferencia entre funciones es mínima y básicamente solo es cambiar `printf()`'s y `scanf()`'s así que ponerlas aquí solo sería inflar la longitud del blog.
 
 Si pusiste atención al inicio del tutorial, te darás cuenta de que, en la función donde ejemplifiqué el caso de uso de un CRUD. Cambié el uso de `scanf()` por `fgets()`. Aun así seguí usando `scanf()` en mis funciones. Ahora es tu turno, te propongo un reto.
 
