@@ -87,12 +87,24 @@ ShareButtons = ["linkedin", "twitter", "reddit", "facebook", "whatsapp", "telegr
   url = "https://ko-fi.com/ventgrey"
 
   [[params.socialIcons]]
+  name = "email"
+  url = "mailto:ventgrey@gmail.com?subject=Contacto%20a%20trav%C3%A9s%20de%20tu%20blog.&body=%C2%A1Hola!%20Le%C3%AD%20tu%20blog%20y%20me%20gustar%C3%ADa%20contactarte."
+
+  [[params.socialIcons]]
   name = "liberapay"
   url = "https://liberapay.com/VentGrey"
 
   [[params.socialIcons]]
+  name = "lastfm"
+  url = "https://www.last.fm/user/omarpurataf/library"
+
+  [[params.socialIcons]]
   name = "linkedin"
   url = "https://www.linkedin.com/in/omar-jair-purata-funes/"
+
+  [[params.socialIcons]]
+  name = "medium"
+  url = "https://medium.com/@omarpurataf_53869"
 
   [[params.socialIcons]]
   name = "paypal"
