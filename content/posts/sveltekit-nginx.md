@@ -109,6 +109,18 @@ Al parecer este adaptador necesita los siguientes pasos:
 
 Nada de esto se produce en un directorio nuevo para evitar "contaminar" el proyecto principal, solamente el primer paso produce un directorio `build/` con una tercera parte de lo necesario para un despliegue.
 
+#### Cargar los .env (opcional)
+
+La [documentación](https://github.com/sveltejs/kit/tree/master/packages/adapter-node) del `adapter-node` de Svelte nos dice que, en un entorno de producción, las variables de los archivos `.env` no se cargan de forma automática. Por lo que es necesario instalar `dotenv` como dependencia con:
+
+```
+$ npm install dotenv
+```
+
+Es importante mencionar que `dotenv` debe estar instalado en la sección `dependencies` y **NO** en `devDependencies` para que funcione. Si, como yo eres bundle-size-phobic esto quizá te genere ansiedad de a mentis.
+
+Guarda una copia de este archivo `.env` o crea uno especial para producción, porque necesitaremos subirlo a producción también.
+
 Ahorraré un poco más del *rant* actual para mostrarles algunos pasos que tuve que seguir para dar por terminada esta desventura.
 
 ## Prerrequisitos
@@ -149,7 +161,10 @@ Vamos a replicar los pasos del tutorial de Svelte normal. Podemos subir los arch
 Si eres como yo (bastante *gil*), te apresuraste a subir solamente el directorio `build/` a tu servidor. Bueno, no seas un tonto como yo y lee esto primero, de acuerdo a la documentación del adaptador de node, otro directorio y otro archivo son necesarios. Por lo que la orden de subida al directorio que elijas debería ser la siguiente:
 
 ```bash
-scp -r build package.json node_modules root@dominio.com:/var/www/html/sitio
+scp -r build package.json node_modules root@dominio.com:/var/www/html/sitio.com
+
+# O si estás usando un archivo .env
+scp -r build package.json node_modules .env root@dominio.com:/var/www/html/sitio.com
 ```
 
 (Sustituyendo el usuario de ssh y la ruta por lo que desees en tu servidor.)
@@ -158,6 +173,19 @@ Finalmente debemos otorgar permisos adecuados para que el usuario de NGINX pueda
 
 ```bash
 ssh root@dominio.com "chown -R www-data:www-data /var/www/html"
+
+# Si estás usando un archivo .env ejecuta esta línea para darle los permisos adecuados.
+ssh root@dominio.com "chmod 644 /var/www/html/sitio.com/.env"
+```
+
+Si tienes dudas de como debería verse el árbol de directorios de tu directorio `sitio.com/` aquí te dejo un ejemplo:
+
+```
+.
+├── [4.0K]  build
+├── [ 550]  .env (Si no necesitas uno, no pasa nada si no aparece.)
+├── [4.0K]  node_modules
+└── [ 984]  package.json
 ```
 
 Es momento de crear un servicio de systemd que nos ayude a manejar el servidor de Node que estará ejecutando nuestro código.
@@ -191,6 +219,32 @@ ExecStart = /usr/bin/node /var/www/html/sitio.com/build
 [Install] 
 WantedBy = multi-user.target
 ```
+
+**SI VAS A USAR UN ARCHIVO `.env` EN PRODUCCIÓN, USA ESTA CONFIGURACIÓN EN SU LUGAR:**
+
+```ini
+[Unit]
+Description = Servicio de Sveltekit
+
+[Service]
+# Environment variables for node
+Environment=HOST=127.0.0.1
+Environment=ORIGIN=https://sitio.com
+Environment=BODY_SIZE_LIMIT=0
+# END
+Type = simple
+User = www-data
+Group = www-data
+LimitNOFILE = 4096
+Restart = always
+RestartSec = 5s
+WorkingDirectory=/var/www/html/sitio.com/
+ExecStart = node -r dotenv/config build
+
+[Install] 
+WantedBy = multi-user.target
+```
+
 
 Es importante que, en la sección `# Environment variables for node` ajustes las variables que necesitas para que el servidor de node se ejecute de forma correcta:
 
