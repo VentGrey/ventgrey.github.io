@@ -9,7 +9,7 @@ TocOpen: false
 draft: false
 hidemeta: false
 comments: false
-description: "Nunca bajes la guarda, protege tus API como protegerías cualquier otro despliegue en un servidor."
+description: "Nunca bajes la guardia, protege tus API como protegerías cualquier otro despliegue en un servidor. No seas un developer."
 canonicalURL: "https://ventgrey.github.io/posts/protect-api-nginx/"
 disableHLJS: true # to disable highlightjs
 disableShare: false
