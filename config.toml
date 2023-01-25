@@ -161,5 +161,11 @@ name = "¿Buscas a UpVent?"
 url = "https://upvent.codes"
 weight = 30
 
+[[menu.main]]
+identifier = "new"
+name = "Próximos artículos"
+url = "/upcoming/posts"
+weight = 40
+
 [markup.highlight]
 noClasses = false
