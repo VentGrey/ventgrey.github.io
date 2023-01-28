@@ -344,7 +344,7 @@ Si quieres un par de retos con Ansible te puedo dejar algunos:
 
 Espero que te haya gustado este blog, intenté darle un giro un poco más formal a esta entrada, sin tantos memes, groserías y cinismo. Espero que te haya gustado y que te sea de ayuda en tu camino como sysadmin.
 
-Debo dar un agradecimiento especial al [señor esmif]() por darme la idea de este blog :) esta entrada va en su honor buen hombre.
+Debo dar un agradecimiento especial al [señor esmif](https://www.linkedin.com/in/anthonysmithvg/) por darme la idea de este blog :) esta entrada va en su honor buen hombre.
 
 ¡Nos leemos luego!
 
