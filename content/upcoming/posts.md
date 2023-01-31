@@ -35,7 +35,6 @@ Si deseas que escriba acerca de algo puedes pedirlo :) tomaré en cuenta tus dud
 
 ## Próximos artículos
 
-- ¿Por qué "La Esquina Gris"?
 - Emacs como IDE de Python.
 - Como saber quien apagó un windows server con powershell.
 - Emacs does what Vim-tendon't.
