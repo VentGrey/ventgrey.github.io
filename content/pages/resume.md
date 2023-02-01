@@ -1,34 +1,22 @@
 ---
 title: "Portafolio Extendido"
 author: "VentGrey"
-showToc: true
+showToc: false
 TocOpen: false
 draft: false
 hidemeta: false
 comments: false
-description: "Aquí puedes encontrar un portafolio extenso de mi carrera como programador :)"
-canonicalURL: "https://canonical.url/to/page"
 disableHLJS: true # to disable highlightjs
 disableShare: false
 disableHLJS: false
-hideSummary: false
+hideSummary: true
 searchHidden: true
-ShowReadingTime: true
-ShowBreadCrumbs: true
+ShowReadingTime: false
+ShowBreadCrumbs: false
 ShowPostNavLinks: true
-ShowWordCount: true
+ShowWordCount: false
 ShowRssButtonInSectionTermList: true
-UseHugoToc: true
-cover:
-    image: "/img/posts/<post>/cover.png" # image path/url
-    alt: "Imágen del post" # alt text
-    caption: "Imágen del post" # display caption under cover
-    relative: false # when using page bundles set this to true
-    hidden: true # only hide on current single page
-editPost:
-    URL: "https://github.com/<path_to_repo>/content"
-    Text: "Sugerir Cambios" # edit text
-    appendFilePath: true # to append file path to Edit link
+UseHugoToc: false
 ---
 
 Si recibiste mi CV o si te interesa saber a detalle mi experiencia en la computación este es el sitio para ti :)
