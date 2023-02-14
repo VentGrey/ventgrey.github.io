@@ -40,7 +40,7 @@ editPost:
 
 No pretendo caer en la eterna flamewar de que editor "es mejor", porque al final del día la respuesta va a depender de que tan eficiente eres en uno o en otro. Usar Vim sin saber las bases o cosas tan graciosas como una sustitución de palabras en un visual-block y defenderlo a capa y espada solo te hace un usuario de nano/notepad con ínfulas de superioridad.
 
-Es interesante ver como la popularidad de los editores de texto cambia tan rápido con los años. Cuando iniciaba mis épocas de la universidad (allá por el 2017) Atom era el editor de texto más popular junto con Sublime y sus dios sabrá cuantos plugins. Todo mundo amaba Atom. Ahora Atom está prácticamente muerto, Sublime solo dios sabe que está pasando con el y lamentablemente (dependiendo de a quien le preguntes) Visual Studio Code es el nuevo rey de los editores de texto.
+Es interesante ver como la popularidad de los editores de texto cambia tan rápido con los años. Cuando iniciaba mis épocas de la universidad (allá por el 2017) Atom era el editor de texto más popular junto con Sublime y su dios sabrá cuantos plugins. Todo mundo amaba Atom. Ahora Atom está prácticamente muerto, Sublime solo dios sabe que está pasando con el y lamentablemente (dependiendo de a quien le preguntes) Visual Studio Code es el nuevo rey de los editores de texto.
 
 Lo bueno es que hay dos editores viejísimos que siguen vivos, son populares y no parece que vayan a morir pronto. Vim y Emacs. Personalmente considero que son "La crème de la crème" de los editores de texto. Son tan poderosos que pueden hacer casi cualquier cosa que se te ocurra (limitada a su alcance). Vim posee bindings de teclado y operaciones capaces de ahorrarte horas de trabajo si aprendes a usarlo correctamente.
 
@@ -103,7 +103,7 @@ Además de todo esto, con org puedes crear *"literate configs"* que son archivos
 
 ## Plugins completos
 
-Emacs tiene una gran cantidad de plugins que hacen prácticamente cualquier cosa que se te ocurra. Si bien no me agrada la idea de consultar el correo, navegar por internet o escuchar música desde Emacs, es posible hacerlo y bueno, suponog que a alguien le servirá de algo hacer todo desde Emacs. Pocos plugins son realmente necesarios para lograr un IDE productivo. Al menos yo utilizo los siguientes plugins para C, Rust, Python, JavaScript / Typescript y sus frameworks:
+Emacs tiene una gran cantidad de plugins que hacen prácticamente cualquier cosa que se te ocurra. Si bien no me agrada la idea de consultar el correo, navegar por internet o escuchar música desde Emacs, es posible hacerlo y bueno, supongo que a alguien le servirá de algo hacer todo desde Emacs. Pocos plugins son realmente necesarios para lograr un IDE productivo. Al menos yo utilizo los siguientes plugins para C, Rust, Python, JavaScript / Typescript y sus frameworks:
 
 - [vertico.el](https://github.com/minad/vertico) - Un sustituto de Ivy para Emacs.
 - [emacs-lsp](https://github.com/emacs-lsp/lsp-mode) - Un cliente LSP para Emacs con soporte para MUUUUUUUUUUUUUUUUUUUUUCHOS lenguajes.
