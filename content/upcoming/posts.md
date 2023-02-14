@@ -37,6 +37,5 @@ Si deseas que escriba acerca de algo puedes pedirlo :) tomaré en cuenta tus dud
 
 - Emacs como IDE de Python.
 - Como saber quien apagó un windows server con powershell.
-- Emacs does what Vim-tendon't.
 - Apparmor ¿Qué es y como funciona?
 - Puedo ver tu casa desde aquí con goaccess.
