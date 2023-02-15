@@ -270,7 +270,7 @@ Mucho de este pedo se pudo solucionar gracias a las siguientes fuentes de inform
 
 *Colours - Airbag*
 
-![Colours](/img/posts/gnomesuck/spotify.png)
+![Colours](/img/posts/gnomesucks/spotify.png)
 
 ---
 
