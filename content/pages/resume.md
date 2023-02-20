@@ -28,6 +28,7 @@ Si recibiste mi CV o si te interesa saber a detalle mi experiencia en la computa
 - [Orchid](https://github.com/UpVent/orchid) - *Un script para automatizar diferentes tareas de servidor* 🌺
 - [Weeping moon](https://github.com/UpVent/weeping-moon) - *Un script para mejorar la seguridad de instalaciones de Ubuntu Server* 🌙
 - [Epitaph](https://github.com/VentGrey/Epitaph) - *Un tema completo para LeftWM* ☠️
+- [Epitaph Website](https://ventgrey.github.io/EpitaphWM/) - *El sitio web de Epitaph hecho en Svelte + Bootstrap*
 - [Camel](https://github.com/VentGrey/Camel) - *Un tema completo para AwesomeWM* 🐫
 - [Debian MATE Themes](https://github.com/VentGrey/debian-mate-themes) - *Temas de Ubuntu MATE portados para Debian MATE* 🎨
 - [VentMacs](https://github.com/VentGrey/VentMacs) - *Mi microdistribución personal de Emacs* ✒️
