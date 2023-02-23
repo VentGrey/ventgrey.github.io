@@ -1,7 +1,7 @@
 ---
 title: "Protege tu API con NGINX"
 date: 2023-01-21
-tags: ["Gnu", "Linux", "NGINX", "Tutoriales", "API", "Seguridad", "Seguridad de API", "Configuración de servidores, Desarrollo de software, Backend"]
+tags: ["Gnu", "Linux", "NGINX", "Tutoriales", "API", "Seguridad", "Seguridad de API", "Configuración de servidores", "Desarrollo de software", "Backend"]
 categories: ["Linux", "Tutoriales", "NGINX"]
 author: "VentGrey"
 showToc: true
