@@ -1,7 +1,7 @@
 ---
 title: "Crear y consumir una REST API con Rust y Rocket"
 date: 2022-01-24
-tags: ["Rust", "Rocket", "API", "Svelte", "Base de datos"]
+tags: ["Rust", "Rocket", "API", "Svelte", "Base de datos", "REST API", "Desarrollo de software", "Backend"]
 categories: ["Tutoriales", "Rust", "Svelte"]
 author: "VentGrey"
 showToc: true

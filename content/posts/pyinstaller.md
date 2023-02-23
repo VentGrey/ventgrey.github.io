@@ -1,7 +1,7 @@
 ---
 title: "Distribuye tus programas de Python con Pyinstaller + GitHub Actions"
 date: 2023-02-22
-tags: ["Automatización", "DevOps", "Linux", "Windows", "MacOS", "CI/CD", "GitHub Actions", "Tutoriales", "Programación"]
+tags: ["Automatización", "DevOps", "Linux", "Windows", "MacOS", "CI/CD", "GitHub Actions", "Tutoriales", "Programación", "Python", "Distribución de software", "Ejecutables", "Desarrollo de Software"]
 categories: ["DevOps", "Linux", "Tutoriales", "Python", "CI/CD"]
 author: "VentGrey"
 showToc: true

@@ -1,7 +1,7 @@
 ---
 title: "Como desplegar SvelteKit en NGINX (usando el adaptador de Node)"
 date: 2023-01-06
-tags: ["Tutoriales", "Svelte", "NGINX", "Linux", "Rant"]
+tags: ["Tutoriales", "Svelte", "NGINX", "Linux", "Rant", "SvelteKit", "Configuración de servidores", "Desarrollo Web", "Frontend"]
 categories: ["Tutoriales", "Svelte", "Linux"]
 author: "VentGrey"
 showToc: true

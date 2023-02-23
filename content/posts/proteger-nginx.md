@@ -1,7 +1,7 @@
 ---
 title: "Proteger rutas web con NGINX"
 date: 2022-10-22
-tags: ["Gnu", "Linux", "NGINX", "Tutoriales"]
+tags: ["Gnu", "Linux", "NGINX", "Tutoriales", "Seguridad Web", "Autenticación HTTP", "Configuración de servidores", "Desarrollo Web"]
 categories: ["Linux", "Tutoriales", "Linux"]
 author: "VentGrey"
 showToc: true
