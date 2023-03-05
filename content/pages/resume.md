@@ -37,7 +37,8 @@ Si recibiste mi CV o si te interesa saber a detalle mi experiencia en la computa
 - [Algorithms and data struct](https://github.com/VentGrey/algorithms-and-data-struct) - *Repositorio de algoritmos y estructura de datos* 🪐
 - [Rust Easy Snippets](https://github.com/VentGrey/rust-easy-snippets) - *Pequeños fragmentos de código para evitar usar bibliotecas en Rust* 🪄
 - [Marwaita Icons Remix](https://github.com/VentGrey/Marwaita-Icons-Remix) - *Tema de iconos revivido para Budgie* 🧩
-
+- [Papi-two](https://github.com/VentGrey/papi-two.pas) - Un probador de REST API's 100% portable, literalmente 0 dependencias y muy rápido hecho en Pascal.
+- [Teargas](https://github.com/VentGrey/teargas) - Papi-two reescrito en Go.
 ## Contribuciones a la comunidad F.L.O.S.S (Free, Libre and Open Source Software) 🤝
 
 - [Mejoras a indicator-emojitwo de Ubuntu MATE](https://github.com/ubuntu-mate/indicator-emojitwo/pull/2)
