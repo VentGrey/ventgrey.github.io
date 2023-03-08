@@ -58,7 +58,7 @@ Veamos algunas de las características más bonitas de Go:
 6. Es un lenguaje concurrente gracias a las gorutinas, las cuales son muy fáciles de usar y muy potentes (Sobre todo para servidores).
 7. No es de mi agrado realmente, pero su duck-typing es muy bueno, es decir, no necesitas especificar el tipo de una variable, solo que tenga las características que necesitas.
 8. No tiene excepciones, pero tiene un mecanismo de errores muy bueno.
-9. La declaración de variables y imports es muy sencilla y limpia, muy parecida a la de Pascal.
+9. La declaración de variables e imports es muy sencilla y limpia, muy parecida a la de Pascal.
 10. No me agrada que el `;` sea opcional, sin embargo, en Go el código se ve muy limpio y ordenado, por lo que puedo hacer a un lado mis caprichos tarugos.
 11. No tiene aritmética de punteros, pero tiene un mecanismo de punteros muy bueno y muy fácil de usar. Encima evita que hagas un cagadero con la memoria.
 12. El compilador tiene algunas reglas muy hermosas de las que hablaré más adelante.
@@ -144,7 +144,7 @@ Si viste la parte de declaración de variables de forma extraña o poco familiar
 
 ### 2. Tipado estático y la NO inferencia de tipos.
 
-En el ejemplo anterior vimos que podemos declarar un consjunto de variables dentro de `var()`, debo destacar que, en Go, las variables que declares dentro de un bloque `var()` deben ser explícitas, es decir, no podrás usar el operador `:=` para declararlas. Sinceramente prefiero esta forma a usar el duck-typing porque, si bien el duck-typing es muy conveniente en términos de tamaño de código y "legibilidad", no es muy conveniente cuando se trata de variables que no son explícitas, es decir, que no tienen un tipo de dato asociado.
+En el ejemplo anterior vimos que podemos declarar un conjunto de variables dentro de `var()`, debo destacar que, en Go, las variables que declares dentro de un bloque `var()` deben ser explícitas, es decir, no podrás usar el operador `:=` para declararlas. Sinceramente prefiero esta forma a usar el duck-typing porque, si bien el duck-typing es muy conveniente en términos de tamaño de código y "legibilidad", no es muy conveniente cuando se trata de variables que no son explícitas, es decir, que no tienen un tipo de dato asociado.
 
 Otra cosa un poco fea del duck-typing es que, deja en manos del programador la responsabilidad de escribir código limpio y libre de errores, cosa que aquí no hacemos porque, ya saben, no se confía en el programador. En el caso de Go a este tipo de asignaciones con el operador `:=` se les llama "short declarations". 
 
@@ -363,7 +363,7 @@ Hay dos reglas de compilación (lamentablemente opcionales) que Go tiene y que, 
 1. ¿Tienes un import sin usar? Ni madres que te compila.
 2. ¿Tienes una variable sin usar? Ni madres que te compila.
 
-Veo en StackOverflow (no me sorprende), a personas quejandose de estas dos reglas, pero debo decirlo, como alguien que se dedica(ba?) a configurar pipielines de CI/CD que analizaban el código en más de una forma, era muy común ver que fallaban por que en algunos lenguajes estas dos reglas no aplican y se les olvidaba quitar los imports o variables sin usar. En Go, si no usas una variable o un import, no compila, y eso es bueno. Así ya no le echan la culpa al DevOps porque *son muy estrictas las pipelines*. 🙄
+Veo en StackOverflow (no me sorprende), a personas quejandose de estas dos reglas, pero debo decirlo, como alguien que se dedica(ba?) a configurar pipelines de CI/CD que analizaban el código en más de una forma, era muy común ver que fallaban por que en algunos lenguajes estas dos reglas no aplican y se les olvidaba quitar los imports o variables sin usar. En Go, si no usas una variable o un import, no compila, y eso es bueno. Así ya no le echan la culpa al DevOps porque *son muy estrictas las pipelines*. 🙄
 
 Lo único que le falta es detectar código comentado y tampoco dejarte compilar, pero bueno, no todo es perfecto. 😅
 
@@ -496,11 +496,11 @@ No entiendo (y quizás nunca entienda) esta clase de pensamiento. ¿Atorado? Bue
 
 [Que bueno](https://betterprogramming.pub/object-oriented-programming-the-trillion-dollar-disaster-92a4b666c7c7?gi=78425b2adeda).
 
-Personalmente la POO me parece delesnable. Es útil, si, sin embargo, es el claro ejemplo de la frase: "Ordeñar una vaca vieja hasta dejarla seca", hazte un favor y aprende programación estructurada o funcional, no te arrepentirás, podrás hacer cosas más complejas y con menos código.
+Personalmente la POO me parece delesnable. Es útil, sí, sin embargo, es el claro ejemplo de la frase: "Ordeñar una vaca vieja hasta dejarla seca", hazte un favor y aprende programación estructurada o funcional, no te arrepentirás, podrás hacer cosas más complejas y con menos código.
 
 #### 10. No ofrece una buena "Developer Experience".
 
-Ni la más minima idea de que sea eso.
+Ni la más mínima idea de que sea eso.
 
 ## Conclusión.
 
