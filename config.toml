@@ -70,6 +70,10 @@ ShareButtons = ["linkedin", "twitter", "reddit", "facebook", "whatsapp", "telegr
     name = "Portafolio de Trabajo"
     url = "pages/resume"
 
+    [[params.profileMode.buttons]]
+    name = "Herramientas Grises"
+    url = "pages/ventools"
+
   [params.homeInfoParams]
   Title = "Puedo ver tu casa desde aquí 🪐"
   Content = "Bienvenid@ a mi blog de tecnología por terapia."
