@@ -217,7 +217,7 @@ jobs:
           folder: dist
 ```
 
-Si, se que GitHub tiene su workflow para desplegar a GitHub Pages, sin embargo está en fase beta y no tiene tantas opciones como la que yo uso. El workflow es muy sencillo, si tu página de Svelte es lo suficientemente pequeña, no debería tardar más de dos minutos en desplegarse.
+Si, sé que GitHub tiene su workflow para desplegar a GitHub Pages, sin embargo, está en fase beta y no tiene tantas opciones como la que yo uso. El workflow es muy sencillo, si tu página de Svelte es lo suficientemente pequeña, no debería tardar más de dos minutos en desplegarse.
 
 También, como paso extra, si deseas acelerar aún más el proceso, puedes crear una caché de NPM para que no se descarguen todas las dependencias cada vez que se ejecute el workflow.
 
@@ -225,7 +225,7 @@ También, como paso extra, si deseas acelerar aún más el proceso, puedes crear
 
 Sip, así de sencillo es. Por eso dije desde el inicio que no era necesario hacer un tutorial completo, el proceso ya está bien documentado en la documentación de Vite y Svelte.
 
-Este ha sido un blog cortito, realmente lo hice para caer en el hype de la IA que se ve en estos días. También para no volver a abandonar el blog por varios meses de nuevo. Espero que te haya gustad y que hayas aprendido algo nuevo. Si quieres ver las posibilidades con título mamador de "AI and beyond", puedes tratar de usar las herramientas para las siguientes cosas:
+Este ha sido un blog cortito, realmente lo hice para caer en el hype de la IA que se ve en estos días. También para no volver a abandonar el blog por varios meses de nuevo. Espero que te haya gustado y que hayas aprendido algo nuevo. Si quieres ver las posibilidades con título mamador de "AI and beyond", puedes tratar de usar las herramientas para las siguientes cosas:
 
 - Mejorar los README de tus proyectos.
 - Generar documentación de código.
