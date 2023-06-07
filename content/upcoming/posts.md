@@ -39,3 +39,4 @@ Si deseas que escriba acerca de algo puedes pedirlo :) tomaré en cuenta tus dud
 - Como saber quien apagó un windows server con powershell.
 - Apparmor ¿Qué es y como funciona?
 - Puedo ver tu casa desde aquí con goaccess.
+- Unix Socket, ¡programas con modelo cliente-servidor en `localhost`!

@@ -1,4 +1,4 @@
-baseURL = 'https://ventgrey.github.io/'
+baseURL = 'https://laesquinagris.com/'
 languageCode = 'es-mx'
 title = 'La Esquina Gris'
 theme = 'PaperMod'
@@ -46,7 +46,7 @@ ShareButtons = ["linkedin", "twitter", "reddit", "facebook", "whatsapp", "telegr
   [params.assets]
   favicon = "favicon.ico"
   apple_touch_icon = "apple-touch-icon.png"
-  safari_pinned_tab = "<link / abs url>"
+  safari_pinned_tab = "https://laesquinagris.com/"
 
   [params.label]
   text = "La Esquina Gris"
