@@ -40,3 +40,4 @@ Si deseas que escriba acerca de algo puedes pedirlo :) tomaré en cuenta tus dud
 - Apparmor ¿Qué es y como funciona?
 - Puedo ver tu casa desde aquí con goaccess.
 - Unix Socket, ¡programas con modelo cliente-servidor en `localhost`!
+- Honeypots para los juakers, inteligencia para tu software.
