@@ -176,7 +176,7 @@ Con una sola línea, definimos 9 hosts, en lugar de definirlos a mano. Esto es e
 
 También podemos definir hosts por incrementos (Por ejemplo, de 2 en 2)
 ```ini
-www[01:50:2].netlogistik.com
+www[01:50:2].example.com
 ```
 Esto será similar al primer ejemplo, solo que saltará 2 unidades por cada host, es decir: 
 `www01`, `www03`, `www05`, …, `www49`
