@@ -130,9 +130,9 @@ Ahora si, hora de ensuciarnos las manos. Vamos a crear nuestro primer contenedor
 
 Se que odio los ejemplos pedorros de otros blogs, pero, por el momento vamos a desplegar una imágen de *"Hola Mundo"* como en todos los mugrosos blogs introductorios a algo.
 
-Si te interesa más el tema puedes tratar de re-crear mi [tutorial introductorio de Ansible](https://laesquinagris.com/posts/ansible-primeros-pasos/) y camibar los pasos de Docker por Podman, también, puedes aplicar tus conocimientos de estos dos blogs y automatizar los despliegues de alguna aplión web que tengas. Puedes incluso, ir más allá y extender tu aplicación web para que tenga una arquitectura de "Microservicios" y separar el frontend del backend y la base de datos. Todos desplegarlos en contenedores separados y orquestarlos con Podman y Podman-Compose.
+Si te interesa más el tema puedes tratar de re-crear mi [tutorial introductorio de Ansible](https://laesquinagris.com/posts/ansible-primeros-pasos/) y camibar los pasos de Docker por Podman, también, puedes aplicar tus conocimientos de estos dos blogs y automatizar los despliegues de alguna aplicación web que tengas. Puedes incluso, ir más allá y extender tu aplicación web para que tenga una arquitectura de "Microservicios" y separar el frontend del backend y la base de datos. Todos desplegarlos en contenedores separados y orquestarlos con Podman y Podman-Compose.
 
-Primero, necesitamos una imagen Podman para nuestra aplicación. Las imágenes Podman son como plantillas que se utilizan para crear contenedores. Una bena analogía de ello es que las imágenes son como los moldes de galletas y los contenedores son las galletas que se crean con ellos.
+Primero, necesitamos una imagen Podman para nuestra aplicación. Las imágenes Podman son como plantillas que se utilizan para crear contenedores. Una buena analogía de ello es que las imágenes son como los moldes de galletas y los contenedores son las galletas que se crean con ellos.
 
 Vamos a usar la imágen `hello-world`, abrimos una terminal y ya con podman instalado, ejecutamos el siguiente comando:
 
@@ -220,7 +220,7 @@ Podman es una herramienta muy completa, por lo que no podremos cubrir todas sus 
 
 ### Listando contenedores.
 
-Supongamos que queremosver todos los contenedores que tenemos en ejecución. Para ello, usamos el comando `podman ps -a`:
+Supongamos que queremos ver todos los contenedores que tenemos en ejecución. Para ello, usamos el comando `podman ps -a`:
 
 ```bash
 $ podman ps -a
@@ -378,5 +378,5 @@ Apenas vimos una pequeñísima parte de Podman, pero es suficiente para que comi
 --- 
 
 ¿Te gustan estos blogs? Ayúdame a seguir escribiéndolos de las siguientes formas:
-- [Invítame una marucan caduca](https://ko-fi.com/ventgrey)
+- [Invítame 2 chicles](https://ko-fi.com/ventgrey)
 - [Regálame un follow en GitHub ❤](https://github.com/VentGrey)
