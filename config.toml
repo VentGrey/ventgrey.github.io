@@ -161,8 +161,8 @@ weight = 20
 
 [[menu.main]]
 identifier = "example"
-name = "¿Buscas a UpVent?"
-url = "https://upvent.codes"
+name = "¿Necesitas una consulta?"
+url = "https://ko-fi.com/ventgrey"
 weight = 30
 
 [[menu.main]]
