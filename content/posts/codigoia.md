@@ -475,8 +475,8 @@ Aprende a usarla a tu favor, en el año en el que estoy escirbiendo esto (2023) 
 
 Finalmente, te dejo con una reflexión del poderoso Kratos de la saga God of War. Si, llámame ñoño, pero creo que esto que te mostraré aplica también con tus conocimientos en programación:
 
-![kratos1](/img/posts/codigoia/kratos1.jpg)
-![kratos2](/img/posts/codigoia/kratos2.jpg)
+![kratos1](/img/posts/codigoia/kratos1.png)
+![kratos2](/img/posts/codigoia/kratos2.png)
 
 ¡Nos leemos en el siguiente artículo!
 
