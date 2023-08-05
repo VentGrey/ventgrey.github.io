@@ -23,7 +23,7 @@ ShowWordCount: true
 ShowRssButtonInSectionTermList: true
 UseHugoToc: true
 cover:
-    image: "/img/posts/<post>/cover.png" # image path/url
+    image: "/img/posts/codigoia/cover.png" # image path/url
     alt: "Imágen del post" # alt text
     caption: "Imágen del post" # display caption under cover
     relative: false # when using page bundles set this to true
@@ -472,6 +472,11 @@ Al final del reto, deberías tener un código que compila y se ejecuta correctam
 Estamos entrando en una época donde la IA está tomando mucha reelevancia en nuestras vidas, a pesar de todas las noticias con hype hasta por las orejas, las especulaciones de skynet de algunos, los delirios de grandeza de otros y los gobiernos cagando todo, limitando y regulando cuanta cosa buena sale. Lo cierto es que la IA no es más que una herramienta hecha para ayudarnos a resolver problemas, una IA que no obedece al humano es una IA que no sirve.
 
 Aprende a usarla a tu favor, en el año en el que estoy escirbiendo esto (2023) se está comenzando a volver difícil encontrar un empleo cuando tienes un perfil de Jr. No estoy diciendo que, con aprender a usar una IA te convertirás en un Senior en poco tiempo, todos los que te digan eso están mintiendo y puedo apostar lo que quieras a que no tienen ni idea de lo que están hablando. Lo que si te puedo decir es que, si aprendes a usar una IA, tendrás una ventaja sobre los demás, y eso, en un mundo tan competitivo como el que vivimos, es algo que no puedes dejar pasar.
+
+Finalmente, te dejo con una reflexión del poderoso Kratos de la saga God of War. Si, llámame ñoño, pero creo que esto que te mostraré aplica también con tus conocimientos en programación:
+
+![kratos1](/img/posts/codigoia/kratos1.jpg)
+![kratos2](/img/posts/codigoia/kratos2.jpg)
 
 ¡Nos leemos en el siguiente artículo!
 
