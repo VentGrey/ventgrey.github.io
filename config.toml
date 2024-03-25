@@ -2,7 +2,7 @@ baseURL = 'https://laesquinagris.com/'
 languageCode = 'es-mx'
 title = 'La Esquina Gris'
 theme = 'PaperMod'
-paginate = 5
+paginate = 10
 
 # Build Options
 enableRobotsTXT = true
@@ -78,53 +78,6 @@ ShareButtons = ["linkedin", "twitter", "reddit", "facebook", "whatsapp", "telegr
   Title = "Puedo ver tu casa desde aquí 🪐"
   Content = "Bienvenid@ a mi blog de tecnología por terapia."
 
-  [[params.socialIcons]]
-  name = "twitter"
-  url = "https://twitter.com/VentGrey"
-
-  [[params.socialIcons]]
-  name = "github"
-  url = "https://github.com/VentGrey"
-
-  [[params.socialIcons]]
-  name = "kofi"
-  url = "https://ko-fi.com/ventgrey"
-
-  [[params.socialIcons]]
-  name = "email"
-  url = "mailto:ventgrey@gmail.com?subject=Contacto%20a%20trav%C3%A9s%20de%20tu%20blog.&body=%C2%A1Hola!%20Le%C3%AD%20tu%20blog%20y%20me%20gustar%C3%ADa%20contactarte."
-
-  [[params.socialIcons]]
-  name = "liberapay"
-  url = "https://liberapay.com/VentGrey"
-
-  [[params.socialIcons]]
-  name = "lastfm"
-  url = "https://www.last.fm/user/omarpurataf/library"
-
-  [[params.socialIcons]]
-  name = "linkedin"
-  url = "https://www.linkedin.com/in/omar-jair-purata-funes/"
-
-  [[params.socialIcons]]
-  name = "medium"
-  url = "https://medium.com/@omarpurataf_53869"
-
-  [[params.socialIcons]]
-  name = "paypal"
-  url = "https://paypal.me/VentGrey?country.x=MX&locale.x=es_XC"
-
-  [[params.socialIcons]]
-  name = "spotify"
-  url = "https://open.spotify.com/user/22ikuvunhe6y36x6lzdbfxywi?si=82e22671c75740b0"
-
-  [[params.socialIcons]]
-  name = "telegram"
-  url = "tg://resolve?domain=VentGrey"
-
-  [[params.socialIcons]]
-  name = "other"
-  url = "https://upvent.codes/"
 
   [params.cover]
   hidden = true
